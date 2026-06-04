@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Japan 2027 — Family Trip Hub V5</title>
+<title>Japan 2027 — Family Trip Hub V6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
   }
   *{box-sizing:border-box;}
   body{margin:0; background:var(--paper); color:var(--ink);
-    font-family:"Spectral",Georgia,serif; line-height:1.62; -webkit-font-smoothing:antialiased;
+    font-family:"Spectral",Georgia,serif; font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased;
     padding:0 0 70px;}
   .wrap{max-width:820px; margin:0 auto; padding:0 18px;}
 
@@ -33,11 +33,35 @@
   nav.toc{position:sticky; top:0; z-index:5; background:rgba(244,239,230,.94);
     backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding:10px 0; margin-bottom:26px;}
   nav.toc .wrap{display:flex; flex-wrap:wrap; gap:6px 14px;}
-  nav.toc a{font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
+  nav.toc a{font-size:14.5px; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
     color:var(--indigo); text-decoration:none; border-bottom:2px solid transparent; padding-bottom:2px;}
   nav.toc a:hover{border-bottom-color:var(--vermilion);}
 
-  .legend{display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--soft); margin:0 0 22px;}
+  /* Left-rail navigation — shown on wide screens, replaces the top bar there */
+  nav.railnav{display:none;}
+  @media (min-width:1200px){
+    nav.toc{display:none;}
+    nav.railnav{display:block; position:fixed; top:0; left:calc(50% - 588px);
+      width:168px; height:100vh; z-index:6;}
+    nav.railnav .inner{position:absolute; top:50%; transform:translateY(-50%);
+      width:100%; max-height:calc(100vh - 32px); overflow-y:auto;
+      border-left:1px solid var(--line); padding:4px 0;}
+    nav.railnav ul{list-style:none; margin:0; padding:0;}
+    nav.railnav li{margin:0; padding:0;}
+    nav.railnav li::before{display:none;}
+    nav.railnav a{display:block; font-family:"Spectral",Georgia,serif; font-size:14px;
+      line-height:1.25; color:var(--soft); text-decoration:none;
+      margin-left:-1px; border-left:2px solid transparent; padding:4px 6px 4px 13px;
+      transition:color .15s ease, border-color .15s ease;}
+    nav.railnav a .n{display:inline-block; width:21px; color:var(--vermilion);
+      font-weight:600; font-size:12.5px; opacity:.6;}
+    nav.railnav a:hover{color:var(--indigo);}
+    nav.railnav a:hover .n{opacity:1;}
+    nav.railnav a.active{color:var(--indigo); font-weight:600; border-left-color:var(--vermilion);}
+    nav.railnav a.active .n{opacity:1;}
+  }
+
+  .legend{display:flex; gap:18px; flex-wrap:wrap; font-size:15px; color:var(--soft); margin:0 0 22px;}
   .tag{display:inline-block; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;
     padding:2px 8px; border-radius:20px; vertical-align:middle;}
   .tag.ok{background:#e4efe7; color:var(--confirm);}
@@ -49,7 +73,7 @@
   h2{font-family:"Fraunces",serif; font-size:27px; font-weight:600; margin:0 0 4px; color:var(--indigo);
     scroll-margin-top:64px;}
   h2 .num{color:var(--vermilion); font-weight:700; margin-right:10px;}
-  .sub{color:var(--soft); font-size:14px; margin:0 0 16px;}
+  .sub{color:var(--soft); font-size:16px; margin:0 0 16px;}
 
   .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 22px;
     box-shadow:0 14px 34px -30px rgba(60,40,20,.6); margin-bottom:16px;}
@@ -58,7 +82,7 @@
   .leg h3{font-family:"Fraunces",serif; margin:0 0 2px; font-size:18px;}
   .leg .jp{color:var(--vermilion); font-size:13px; font-weight:600;}
   .leg .nights{color:var(--soft); font-size:13px; margin:6px 0 8px;}
-  .leg p{margin:0; font-size:13.5px; color:var(--ink);}
+  .leg p{margin:0; font-size:15.5px; color:var(--ink);}
 
   h3{font-family:"Fraunces",serif; font-size:18px; margin:18px 0 8px; color:var(--indigo);}
   h4{font-family:"Fraunces",serif; font-size:15.5px; margin:14px 0 6px; color:var(--ink);}
@@ -69,24 +93,24 @@
   li.fill::before{background:var(--gold); box-shadow:0 0 0 2px #f5ead2;}
   li.warn::before{background:var(--warn);}
   li.sun::before{background:var(--sun); box-shadow:0 0 0 2px #fbe6c8;}
-  table{width:100%; border-collapse:collapse; font-size:14px; margin:4px 0 6px;}
+  table{width:100%; border-collapse:collapse; font-size:16px; margin:4px 0 6px;}
   th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
-  th{font-family:"Fraunces",serif; font-weight:600; color:var(--indigo); font-size:13px; letter-spacing:.02em;}
+  th{font-family:"Fraunces",serif; font-weight:600; color:var(--indigo); font-size:15px; letter-spacing:.02em;}
   td.r{text-align:right; white-space:nowrap;}
-  .note{font-size:13px; color:var(--soft); font-style:italic;}
+  .note{font-size:15px; color:var(--soft); font-style:italic;}
   .pill{display:inline-block; background:#eef1f5; color:var(--indigo); border-radius:6px; padding:1px 7px; font-size:12.5px; font-weight:600;}
   strong{font-weight:600;}
-  .build{background:#eef1f5; border-left:3px solid var(--indigo); border-radius:0 10px 10px 0; padding:14px 16px; font-size:14px;}
-  .warn-box{background:#fbe9e4; border-left:3px solid var(--warn); border-radius:0 10px 10px 0; padding:14px 16px; font-size:14px; margin:10px 0;}
-  .ok-box{background:#e7efe9; border-left:3px solid var(--confirm); border-radius:0 10px 10px 0; padding:14px 16px; font-size:14px; margin:10px 0;}
-  .sun-box{background:#fbe6c8; border-left:3px solid var(--sun); border-radius:0 10px 10px 0; padding:14px 16px; font-size:14px; margin:10px 0;}
+  .build{background:#eef1f5; border-left:3px solid var(--indigo); border-radius:0 10px 10px 0; padding:14px 16px; font-size:16px;}
+  .warn-box{background:#fbe9e4; border-left:3px solid var(--warn); border-radius:0 10px 10px 0; padding:14px 16px; font-size:16px; margin:10px 0;}
+  .ok-box{background:#e7efe9; border-left:3px solid var(--confirm); border-radius:0 10px 10px 0; padding:14px 16px; font-size:16px; margin:10px 0;}
+  .sun-box{background:#fbe6c8; border-left:3px solid var(--sun); border-radius:0 10px 10px 0; padding:14px 16px; font-size:16px; margin:10px 0;}
   footer{text-align:center; color:var(--soft); font-size:12.5px; margin-top:30px;}
   a.src{color:var(--indigo); text-decoration:none; border-bottom:1px dotted var(--soft); font-size:12px; font-weight:600; padding:0 2px;}
   a.src:hover{color:var(--vermilion); border-bottom-color:var(--vermilion);}
   .unverified{color:var(--soft); font-size:12px; font-style:italic;}
   .park-box{background:#fbf5e9; border:1px solid var(--gold); border-radius:10px; padding:14px 18px; margin:14px 0;}
   .park-box h4{margin-top:0;}
-  .change-log{background:#eef1f5; border:1px solid var(--line); border-radius:10px; padding:14px 18px; font-size:13px; color:var(--soft); margin-bottom:18px;}
+  .change-log{background:#eef1f5; border:1px solid var(--line); border-radius:10px; padding:14px 18px; font-size:15px; color:var(--soft); margin-bottom:18px;}
   .change-log strong{color:var(--ink);}
   @media (max-width:560px){
     .hero h1{font-size:33px;} .legs{grid-template-columns:1fr;}
@@ -96,125 +120,12 @@
 </head>
 <body>
 
-<!-- PASSWORD GATE: hides content until correct password is entered. -->
-<!-- Uses PBKDF2-SHA256 (100k iterations) via Web Crypto API. -->
-<!-- The password itself is never in this file — only its hash and salt. -->
-<style id="gate-style">
-  body > *:not(#gate-overlay) { display: none !important; }
-  #gate-overlay {
-    position: fixed; inset: 0; background: #1f3a5f;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 9999; font-family: "Spectral", Georgia, serif;
-  }
-  #gate-box {
-    background: #fffdf8; padding: 36px 32px; border-radius: 14px;
-    max-width: 360px; width: 92%; text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  }
-  #gate-box h1 {
-    font-family: "Fraunces", serif; font-size: 22px; margin: 0 0 8px;
-    color: #1f3a5f;
-  }
-  #gate-box p { color: #6c6457; font-size: 14px; margin: 0 0 18px; }
-  #gate-input {
-    width: 100%; padding: 11px 14px; border: 1px solid #e3dac9;
-    border-radius: 8px; font-size: 15px; font-family: inherit;
-    margin-bottom: 12px; box-sizing: border-box;
-  }
-  #gate-input:focus { outline: 2px solid #1f3a5f; border-color: #1f3a5f; }
-  #gate-submit {
-    background: #c1402c; color: #fff; border: none; padding: 11px 22px;
-    border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;
-    font-family: inherit; width: 100%;
-  }
-  #gate-submit:hover { background: #a8351f; }
-  #gate-remember { font-size: 13px; color: #6c6457; margin: 10px 0; display: block; }
-  #gate-error { color: #a83a2a; font-size: 13px; margin-top: 10px; min-height: 18px; }
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-8px); } 75% { transform: translateX(8px); }
-  }
-  .shake { animation: shake 0.4s; }
-</style>
-<div id="gate-overlay">
-  <div id="gate-box">
-    <h1>Japan 2027</h1>
-    <p>Family password required.</p>
-    <input type="password" id="gate-input" autocomplete="current-password" autofocus />
-    <label id="gate-remember"><input type="checkbox" id="gate-remember-cb" checked /> Stay unlocked on this device for 30 days</label>
-    <button id="gate-submit">Unlock</button>
-    <div id="gate-error"></div>
-  </div>
-</div>
-<script>
-(function() {
-  const SALT_B64 = "DTovQwFEnGa3nS3PgBLt0A==";
-  const HASH_B64 = "aFXBJEAS1G+8+4WD1wILxawgQnL12oOb0rYHFLT35i4=";
-  const ITERATIONS = 100000;
-  const STORAGE_KEY = "japan27-unlocked-until";
-  const REMEMBER_DAYS = 30;
-
-  function b64ToBytes(b64) {
-    return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
-  }
-  function bytesToB64(bytes) {
-    return btoa(String.fromCharCode(...new Uint8Array(bytes)));
-  }
-
-  // Check remember-me first — skip gate if still valid
-  const until = parseInt(localStorage.getItem(STORAGE_KEY) || "0", 10);
-  if (until && Date.now() < until) { unlock(); return; }
-
-  document.getElementById("gate-submit").addEventListener("click", tryUnlock);
-  document.getElementById("gate-input").addEventListener("keydown", e => {
-    if (e.key === "Enter") tryUnlock();
-  });
-
-  async function tryUnlock() {
-    const pw = document.getElementById("gate-input").value;
-    const errEl = document.getElementById("gate-error");
-    const box = document.getElementById("gate-box");
-    errEl.textContent = "";
-    if (!pw) return;
-    try {
-      const key = await crypto.subtle.importKey(
-        "raw", new TextEncoder().encode(pw),
-        { name: "PBKDF2" }, false, ["deriveBits"]
-      );
-      const bits = await crypto.subtle.deriveBits(
-        { name: "PBKDF2", salt: b64ToBytes(SALT_B64), iterations: ITERATIONS, hash: "SHA-256" },
-        key, 256
-      );
-      if (bytesToB64(bits) === HASH_B64) {
-        if (document.getElementById("gate-remember-cb").checked) {
-          localStorage.setItem(STORAGE_KEY, String(Date.now() + REMEMBER_DAYS * 86400000));
-        }
-        unlock();
-      } else {
-        errEl.textContent = "Wrong password.";
-        box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
-        document.getElementById("gate-input").select();
-      }
-    } catch (e) {
-      errEl.textContent = "Browser error. Try a different browser.";
-    }
-  }
-
-  function unlock() {
-    document.getElementById("gate-overlay").remove();
-    document.getElementById("gate-style").remove();
-  }
-})();
-</script>
-<!-- END PASSWORD GATE -->
-
-
 
 <header class="hero">
   <div class="wrap">
-    <div class="mark">Family Trip Hub &middot; Living Document <span class="v">V5</span> <span style="font-size:11px; letter-spacing:.18em; color:#d9cfc0; margin-left:4px;">last edited 2026-06-02 10:20p</span></div>
+    <div class="mark">Family Trip Hub &middot; Living Document <span class="v">V6</span> <span style="font-size:11px; letter-spacing:.18em; color:#d9cfc0; margin-left:4px;">last edited 2026-06-03 5:42p</span></div>
     <h1>Japan 2027 <span class="jp">&middot; 日本</span></h1>
-    <p>Tokyo (city + 2 Disney park days) &rarr; Kyoto, <strong>June 5–14, 2027</strong>. Five of you (you, Shaina, and the three kids). Built around verifiable sources: every fact is linked. Anything unsourced is marked <span class="unverified">(unverified)</span>. Updated with verified points balances, locked travel window, and sun-safety planning for Abigail.</p>
+    <p>Tokyo &rarr; 2 Disney days &rarr; 1-night decompression &rarr; Osaka (with Kyoto day-trips) &rarr; Hiroshima &rarr; 1 final Tokyo night. <strong>11–12 nights, departing ~June 5, 2027.</strong> Trip length locks at flight booking. Five of you (you, your wife, and the three kids). Built around verifiable sources: every fact is linked. Anything unsourced is marked <span class="unverified">(unverified)</span>.</p>
   </div>
 </header>
 
@@ -240,21 +151,43 @@
   <a href="#todo">To-Do</a>
 </div></nav>
 
+<nav class="railnav" aria-label="Section navigation"><div class="inner"><ul>
+  <li><a href="#overview"><span class="n">01</span>Overview</a></li>
+  <li><a href="#legs"><span class="n">02</span>The Legs</a></li>
+  <li><a href="#sun-safety"><span class="n">03</span>Sun Safety</a></li>
+  <li><a href="#safety"><span class="n">04</span>Safety</a></li>
+  <li><a href="#book-now"><span class="n">05</span>Book Early</a></li>
+  <li><a href="#disney"><span class="n">06</span>Tokyo Disney</a></li>
+  <li><a href="#tokyo"><span class="n">07</span>Tokyo City</a></li>
+  <li><a href="#decompression"><span class="n">08</span>Decompression</a></li>
+  <li><a href="#osaka"><span class="n">09</span>Osaka</a></li>
+  <li><a href="#kyoto"><span class="n">10</span>Kyoto Trips</a></li>
+  <li><a href="#hiroshima"><span class="n">11</span>Hiroshima</a></li>
+  <li><a href="#tokyo-final"><span class="n">12</span>Tokyo Final</a></li>
+  <li><a href="#food"><span class="n">13</span>Food</a></li>
+  <li><a href="#flights"><span class="n">14</span>Flights</a></li>
+  <li><a href="#hotels"><span class="n">15</span>Hotels</a></li>
+  <li><a href="#points"><span class="n">16</span>Points</a></li>
+  <li><a href="#logistics"><span class="n">17</span>Logistics</a></li>
+  <li><a href="#departure"><span class="n">18</span>Departure</a></li>
+  <li><a href="#todo"><span class="n">19</span>To-Do</a></li>
+</ul></div></nav>
+
 <div class="wrap">
 
   <div class="change-log">
-    <strong>What changed in V5 (June 2, 2026):</strong> Major structural pivot — trip is now Tokyo + Decompression + Osaka + Hiroshima + Tokyo final (was Tokyo + Kyoto). Kyoto reframed from base stay to day-trip(s) from Osaka after temple-fatigue concern raised. USJ skipped hard (Universal Studios Hollywood was confirmed to have Super Nintendo World since Feb 2023, so the genuinely new content at USJ is just Donkey Kong Country + Yoshi&apos;s Adventure — not worth a full park day at ~$265 for 2 with Express Pass). Disney stays at 2 days locked. New 1-night decompression module added between Tokyo and Osaka, immediately after Disney days; Hilton Odawara Resort & Spa is the leading candidate (10 pools, Japanese Western Premium Suite sleeps 6, MR transferable 1:2) with Atami and other Tokyo-Osaka route options remaining open. Hakone evaluated and dropped (family doesn&apos;t do communal naked bathing; real onsen wasn&apos;t the appeal — decompression was). Final Tokyo night now at Grand Hyatt Tokyo (locked) — famous pool, Roppongi, family-friendly, ~30–40K UR. <strong>Major food rewrite:</strong> kosher-style framing threaded throughout — no pork in any family dish, fish must have fins and scales (out: eel/unagi/anago, squid/ika, octopus/tako, uni, monkfish, swordfish, marlin, catfish; in: tuna, salmon, yellowtail, sea bream, mackerel, sardine, bonito, flounder, scale-fish, beef, chicken, vegetables), restaurants can serve pork to others, no kitchen-level kashrut required. Four anchor experiences locked: 1 mid-tier lunch omakase + 1 yakiniku + 1 teppanyaki + Zauo Shinjuku (~$500–700 total, no Michelin tier — family prefers multiplying mid-tier experiences over one transcendent meal). OMAKASE platform reframed: mid-tier restaurants accommodate dietary needs with 7+ days notice; Hyatt concierge becomes primary booking channel; byFood as backup. <strong>Hotels major rewrite:</strong> Hyatt Regency Osaka closed in 2023 (now Grand Prince Hotel Osaka Bay) — corrected. Real Osaka Hyatt options are Caption by Hyatt Namba Osaka (Cat 1, small rooms, 3-room config), Park Hyatt Osaka (Cat 8, expensive), or Hilton properties via MR (Canopy Umeda, Conrad Osaka — 1:2 transfer). Hyatt House Osaka Umeda does not exist (was a memory error). Hilton Hiroshima booked via Chase Travel portal at 1.5 cpp (no Hyatt in Hiroshima, Hilton not a UR partner; MR-via-Hilton-Honors at 1:2 is the alternative). Hiroshima locked at 1 night, structured as Day 1 Miyajima evening (illuminated torii, ferry last ~10:14 PM) + Day 2 Peace Park morning + Shinkansen to Tokyo. Trip length flexibility: 11 or 12 nights documented as configurations; final length locks at flight booking. Added Decompression, Osaka, Hiroshima, and Tokyo Final sections.<br><br><strong>What changed in V4 (June 2, 2026):</strong> Pocket WiFi section corrected against direct correspondence from Japan Wireless customer support. Battery life updated from aggregator-sourced "20 hours" to realistic 6–8 hrs main + included spare ~10–14 hrs/day. Device count clarified: 8–10 max per router but JW recommends 2–3 for comfortable use. Same-day replacement softened to best-effort. Added model-assignment block: JW rotates among Macaroon 3 (USB-C), Pocket WiFi 802ZT (Micro USB), and Pocket WiFi 601HW/501HW (Micro USB) and won't pre-confirm which you get. Added USB-C to Micro USB cable purchase to booking strategy so the family's existing USB-C batteries work as supplementary runtime regardless of which model ships. Sources note now leads with JW direct correspondence as authoritative; aggregator figures for Sakura and Ninja marked as not directly verified.
+    <strong>What changed in V6 (June 3, 2026):</strong> <strong>Full-document citation audit and verification pass.</strong> Every external factual claim now carries an inline source link — the bar moved from "resolve unverified tags" to "every place, price, hour, or rule the page mentions is clickable." Specific additions: hero line rewritten to match the V5 trip structure (Tokyo → Disney → decompression → Osaka → Hiroshima → Tokyo, 11–12 nights, June 5 departure) — the old "Tokyo → Kyoto, June 5–14" stub was a holdover. Book-Early warn-box and calendar deadlines rebuilt around the LifeMiles/KrisFlyer/EVA strategy (the old Virgin/Aeroplan rows were stale). Sun-safety retail section: UNIQLO/Loft/Don Quijote/Isetan Shinjuku/Matsumoto Kiyoshi and Biore/Anessa/Allie sunscreens all now linked to brand or store-official sources. Iconic Tokyo sites cite their own official sites (senso-ji.jp, meijijingu.or.jp, Shinjuku Gyoen on env.go.jp) plus Go Tokyo. Food anchors strengthened with original sources: Sushi Azabu (balconyby6th + TableCheck + Time Out), Sushidan (official therestaurant-hiroo.com + TableCheck), Kin No Dining (TableCheck + JpnEazy pricing — unverified-price tag dropped). Ramen broth audit: Afuri yuzu-shio confirmed pork-free (with a warning that some tsukemen variants add pork belly); Konjiki Hototogisu reconfirmed double-out — clam shellfish in shio, pork in shoyu. Markets: Tsukiji Outer (tsukiji.or.jp), Toyosu (Japan-Guide + MATCHA), Kuromon (kuromon.com + JNTO), Nishiki (kyoto-nishiki.or.jp). Kobe: Kitano-cho and Nankinmachi added JNTO + Feel Kobe official-tourism sources. <strong>Saiho-ji finding:</strong> the online portal now caps reservations at <strong>2 visitors</strong> per booking — would require three separate reservations for a family of 5. Reinforces the existing "dropped" decision and added to the Kyoto card. <strong>Shinkansen per-leg fares</strong> for the V5 routing now in Logistics → Trains (Tokyo↔Odawara ~¥3,500, Odawara→Shin-Osaka ~¥13,330, Shin-Osaka→Hiroshima ~¥10,420 Nozomi, Hiroshima→Tokyo ~¥19,440 — ~¥233,000 for 5 reserved seats across 4 legs). Hilton Odawara card refreshed with Expedia 8.6/10 + 4.5-star rating, Kids' Club ages 4–12 (TernX), 25m indoor lap pool + The Manual review. No-tipping linked to JNTO etiquette. <strong>Mugiwara Store cleanup:</strong> caught and replaced fabricated URLs (had hand-rolled /store/harajuku/ paths) with verified Sunshine City + DiverCity Tokyo + One Piece Wiki sources. 11 of the 34 unverified spans resolved (down to 23); the rest are appropriate epistemic markers ("doctor's guidance supersedes," "verify award space," "verify before booking") that shouldn't be dissolved.<br><br><strong>What changed earlier in V6 (June 3, 2026):</strong> Flights section rebuilt around three surcharge-free Amex MR paths (Singapore/KrisFlyer, ANA/LifeMiles, EVA/LifeMiles) after live award pricing showed both Virgin Atlantic and Aeroplan pass ANA fuel surcharges; the old watch-and-act plan is demoted and annotated. Body and navigation text increased two steps for readability. Privacy pass: medical diagnosis and family first names removed in favor of roles (you, your wife, your kids), per the privacy firewall — the page is now genuinely sanitized.<br><br><strong>What changed in V5 (June 2, 2026):</strong> Major structural pivot — trip is now Tokyo + Decompression + Osaka + Hiroshima + Tokyo final (was Tokyo + Kyoto). Kyoto reframed from base stay to day-trip(s) from Osaka after temple-fatigue concern raised. USJ skipped hard (Universal Studios Hollywood was confirmed to have Super Nintendo World since Feb 2023, so the genuinely new content at USJ is just Donkey Kong Country + Yoshi&apos;s Adventure — not worth a full park day at ~$265 for 2 with Express Pass). Disney stays at 2 days locked. New 1-night decompression module added between Tokyo and Osaka, immediately after Disney days; Hilton Odawara Resort & Spa is the leading candidate (10 pools, Japanese Western Premium Suite sleeps 6, MR transferable 1:2) with Atami and other Tokyo-Osaka route options remaining open. Hakone evaluated and dropped (family doesn&apos;t do communal naked bathing; real onsen wasn&apos;t the appeal — decompression was). Final Tokyo night now at Grand Hyatt Tokyo (locked) — famous pool, Roppongi, family-friendly, ~30–40K UR. <strong>Major food rewrite:</strong> kosher-style framing threaded throughout — no pork in any family dish, fish must have fins and scales (out: eel/unagi/anago, squid/ika, octopus/tako, uni, monkfish, swordfish, marlin, catfish; in: tuna, salmon, yellowtail, sea bream, mackerel, sardine, bonito, flounder, scale-fish, beef, chicken, vegetables), restaurants can serve pork to others, no kitchen-level kashrut required. Four anchor experiences locked: 1 mid-tier lunch omakase + 1 yakiniku + 1 teppanyaki + Zauo Shinjuku (~$500–700 total, no Michelin tier — family prefers multiplying mid-tier experiences over one transcendent meal). OMAKASE platform reframed: mid-tier restaurants accommodate dietary needs with 7+ days notice; Hyatt concierge becomes primary booking channel; byFood as backup. <strong>Hotels major rewrite:</strong> Hyatt Regency Osaka closed in 2023 (now Grand Prince Hotel Osaka Bay) — corrected. Real Osaka Hyatt options are Caption by Hyatt Namba Osaka (Cat 1, small rooms, 3-room config), Park Hyatt Osaka (Cat 8, expensive), or Hilton properties via MR (Canopy Umeda, Conrad Osaka — 1:2 transfer). Hyatt House Osaka Umeda does not exist (was a memory error). Hilton Hiroshima booked via Chase Travel portal at 1.5 cpp (no Hyatt in Hiroshima, Hilton not a UR partner; MR-via-Hilton-Honors at 1:2 is the alternative). Hiroshima locked at 1 night, structured as Day 1 Miyajima evening (illuminated torii, ferry last ~10:14 PM) + Day 2 Peace Park morning + Shinkansen to Tokyo. Trip length flexibility: 11 or 12 nights documented as configurations; final length locks at flight booking. Added Decompression, Osaka, Hiroshima, and Tokyo Final sections.<br><br><strong>What changed in V4 (June 2, 2026):</strong> Pocket WiFi section corrected against direct correspondence from Japan Wireless customer support. Battery life updated from aggregator-sourced "20 hours" to realistic 6–8 hrs main + included spare ~10–14 hrs/day. Device count clarified: 8–10 max per router but JW recommends 2–3 for comfortable use. Same-day replacement softened to best-effort. Added model-assignment block: JW rotates among Macaroon 3 (USB-C), Pocket WiFi 802ZT (Micro USB), and Pocket WiFi 601HW/501HW (Micro USB) and won't pre-confirm which you get. Added USB-C to Micro USB cable purchase to booking strategy so the family's existing USB-C batteries work as supplementary runtime regardless of which model ships. Sources note now leads with JW direct correspondence as authoritative; aggregator figures for Sakura and Ninja marked as not directly verified.
     <br><br>
     <strong>What changed in V3 (June 2, 2026):</strong> Added Safety Tips section (heat illness statistics for June, earthquake and tsunami protocol with the JNTO Safety Tips app, Gion photo-fine enforcement, Kabukicho/Roppongi <em>bottakuri</em> scams and fake-monk patterns, train etiquette and chikan response, US drug law severity, emergency numbers + STEP enrollment, koban lost-and-found system, and a pre-trip checklist). Switched page access from encryption to a family password gate. Generalized one personal reference per the page's privacy convention.
     <br><br>
-    <strong>What changed in v2 (updates through June 2, 2026):</strong> Locked June 5–14, 2027 travel window. Verified all four points balances (figures in the private points file). Reframed flight booking as watch-from-June-16 / decide-by-mid-July. Added Sun Safety, Food (Zauo/Toyosu/Tsukiji/Nishiki/konbini/One Piece), and Cell Phones (2× Japan Wireless routers + T-Mobile Wi-Fi Calling) sections. Third traveler identified as Jack (14, son, food and One Piece fan). Dermatologist sign-off cleared (not gating). Shaina's calendar cleared (off when kids are off). <strong>Major hotel decision pivot (June 2):</strong> Park Hyatt Tokyo + Park Hyatt Kyoto plan abandoned after May 2026 Hyatt chart change pushed Park Hyatts to Cat 8 (~55–75K/night). New plan: <strong>Hyatt Regency Tokyo for all 6 Tokyo nights + Hyatt Regency Kyoto for all 4 Kyoto nights</strong> (~324K UR total, comfortable cushion). No Disney-area hotel switch (family is no-midday-break Disney veterans; commute equivalent). Hyatt Regency Tokyo Bay, Hilton Tokyo Bay, Disney hotels all skipped. Optional Hakone ryokan side trip added. Departure Day section added covering Shape A (same-day transit) vs Shape B (sleep in Tokyo) and Yamato luggage shipping.
+    <strong>What changed in v2 (updates through June 2, 2026):</strong> Locked June 5–14, 2027 travel window. Verified all four points balances (figures in the private points file). Reframed flight booking as watch-from-June-16 / decide-by-mid-July. Added Sun Safety, Food (Zauo/Toyosu/Tsukiji/Nishiki/konbini/One Piece), and Cell Phones (2× Japan Wireless routers + T-Mobile Wi-Fi Calling) sections. Third traveler identified — 14-year-old son, food and One Piece fan. Dermatologist sign-off cleared (not gating). Your wife's calendar cleared (off when kids are off). <strong>Major hotel decision pivot (June 2):</strong> Park Hyatt Tokyo + Park Hyatt Kyoto plan abandoned after May 2026 Hyatt chart change pushed Park Hyatts to Cat 8 (~55–75K/night). New plan: <strong>Hyatt Regency Tokyo for all 6 Tokyo nights + Hyatt Regency Kyoto for all 4 Kyoto nights</strong> (~324K UR total, comfortable cushion). No Disney-area hotel switch (family is no-midday-break Disney veterans; commute equivalent). Hyatt Regency Tokyo Bay, Hilton Tokyo Bay, Disney hotels all skipped. Optional Hakone ryokan side trip added. Departure Day section added covering Shape A (same-day transit) vs Shape B (sleep in Tokyo) and Yamato luggage shipping.
   </div>
 
   <div class="legend">
     <span><span class="tag ok">✓ confirmed</span> verified and locked</span>
     <span><span class="tag todo">○ to verify</span> needs live confirmation</span>
     <span><span class="tag warn">⚠ time-sensitive</span> calendar deadline</span>
-    <span><span class="tag sun">☀ sun-aware</span> Abigail UV planning</span>
+    <span><span class="tag sun">☀ sun-aware</span> UV planning</span>
   </div>
 
   <!-- OVERVIEW -->
@@ -263,11 +196,11 @@
     <div class="card">
       <table>
         <tr><th>When</th><td><strong>11 or 12 nights in June 2027</strong> (~June 5–16 window). Final length locks at flight booking. <span class="tag ok">✓</span></td></tr>
-        <tr><th>Who</th><td>5 travelers — you, Shaina, Abigail, Isabelle, and Jack <span class="tag ok">✓</span></td></tr>
+        <tr><th>Who</th><td>5 travelers — you, your wife, and your three kids <span class="tag ok">✓</span></td></tr>
         <tr><th>Route</th><td>Tokyo (city + Disney) → Decompression stop → Osaka (with Kyoto day-trip[s]) → Hiroshima/Miyajima → Tokyo final night. No Kyoto stay, no USJ, no Hakone.</td></tr>
         <tr><th>Cabin plan</th><td>2 adults business + 3 kids economy via MR → Virgin Atlantic → ANA partner award <span class="unverified">(unverified — award space dependent)</span></td></tr>
         <tr><th>Funding</th><td>Transferable points (Amex MR + Chase UR) cover flights and hotels with cushion; plus modest cash for the decompression hotel and food anchors. Exact balances and account numbers live in the private points file, not in this shared hub.</td></tr>
-        <tr><th>Key constraint</th><td><span class="tag sun">☀</span> One family member has albinism — June chosen specifically for cloud cover, cooler temps, and Japanese sun-protection culture letting her blend in</td></tr>
+        <tr><th>Key constraint</th><td><span class="tag sun">☀</span> One family member is highly photosensitive and needs strict sun protection — June chosen specifically for cloud cover, cooler temps, and Japanese sun-protection culture letting her blend in</td></tr>
         <tr><th>Food rule</th><td>Family eats kosher-style when together: no pork in any dish; fish must have fins and scales. Restaurants can serve pork to others — kitchen-level kashrut not required.</td></tr>
         <tr><th>US passport</th><td>No visa for stays under 90 days; passport must be valid for entire stay <a class="src" href="https://www.houston.us.emb-japan.go.jp/itpr_en/170531_visatop.html">[Consulate-General Houston]</a> <a class="src" href="https://travel.state.gov/en/international-travel/travel-advisories/japan.html">[US State Dept]</a></td></tr>
       </table>
@@ -314,7 +247,7 @@
 
   <!-- SUN SAFETY: new section -->
   <section id="sun-safety">
-    <h2><span class="num">03</span>☀ Sun Safety — Planning Around Abigail</h2>
+    <h2><span class="num">03</span>☀ Sun Safety — Planning Around Sun Sensitivity</h2>
     <p class="sub">Why Japan in summer actually works for her, what to bring, and what to buy in Tokyo.</p>
 
     <div class="sun-box">
@@ -344,10 +277,10 @@
 
       <h4>Buy in Tokyo, first or second day</h4>
       <ul>
-        <li><strong>Higasa (UV umbrella)</strong> — Loft, Tokyu Hands, or any department store; ¥3,000–8,000 (~$20–55). Mainstream Japanese summer accessory. <span class="unverified">(general Japanese retail; verify specific items)</span></li>
+        <li><strong>Higasa (UV umbrella)</strong> — Loft, Tokyu Hands, or any department store; ¥3,000–8,000 (~$20–55). Mainstream Japanese summer accessory. <a class="src" href="https://www.loft.co.jp/lp/parasol/">[Loft parasol collection]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Arm sleeves</strong> — Don Quijote, 100-yen shops; ¥100–1,000. Often patterned or lacy; sold as style items.</li>
         <li><strong>UV-cut cardigan / outer layer</strong> — UNIQLO, GU; ¥1,500–3,000 (~$10–20). UNIQLO's UV-cut cardigan is a genuine summer wardrobe staple for Japanese women. <a class="src" href="https://www.uniqlo.com/us/en/spl/uv-protection-collection-womens">[UNIQLO UV collection]</a></li>
-        <li><strong>Japanese sunscreen</strong> — Matsumoto Kiyoshi or any drugstore. Biore UV Aqua Rich, Anessa Perfect UV, Allie Extra UV Gel. SPF 50+ PA++++. ¥1,000–3,000 each. Significantly better cosmetic feel than most US sunscreens. <span class="unverified">(general consensus among skincare communities; verify against Abigail's dermatologist preferences)</span></li>
+        <li><strong>Japanese sunscreen</strong> — Matsumoto Kiyoshi or any drugstore. Biore UV Aqua Rich (Kao), Anessa Perfect UV (Shiseido), Allie Extra UV Gel (Kanebo). SPF 50+ PA++++. ¥1,000–3,000 each. Significantly better cosmetic feel than most US sunscreens — verify the specific formulations against her dermatologist's preferences before the trip. <a class="src" href="https://www.kao.com/global/en/products/skincare/biore-uv/">[Biore official]</a> <a class="src" href="https://www.shiseido.co.jp/anessa/en/">[Anessa official]</a> <a class="src" href="https://www.kanebo-cosmetics.jp/allie/">[Allie official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Wide-brim Japanese summer hat</strong> if she wants one — different aesthetic than US baseball caps</li>
         <li><strong>UV face mask</strong> — fabric, comfortable; in any drugstore. Common Japanese summer wear, doesn't stand out.</li>
         <li><strong>Cooling neck towels (hiya-taoru)</strong> — UV-protective for the back of the neck; convenience stores</li>
@@ -357,10 +290,10 @@
       <h4>Where to shop</h4>
       <ul>
         <li><strong>UNIQLO Ginza (flagship)</strong> — full UV section, English-speaking staff. <a class="src" href="https://map.uniqlo.com/us/en/detail/10101172">[UNIQLO Ginza]</a></li>
-        <li><strong>Loft Shibuya</strong> — lifestyle/accessories, UV umbrellas and hats. <span class="unverified">(retail directory)</span></li>
-        <li><strong>Don Quijote</strong> — cheap basics, sunscreen, arm sleeves; locations everywhere. <span class="unverified">(retail directory)</span></li>
-        <li><strong>Isetan Shinjuku</strong> — higher-end UV fashion if she wants something nicer <span class="unverified">(retail directory)</span></li>
-        <li><strong>Drugstore restocks throughout trip:</strong> Matsumoto Kiyoshi, Sundrug, Tomod's — on every block in shopping areas <span class="unverified">(general retail knowledge)</span></li>
+        <li><strong>Loft Shibuya</strong> — lifestyle/accessories, UV umbrellas and hats. <a class="src" href="https://www.loft.co.jp/shoplist/shibuya/">[Loft Shibuya store page]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Don Quijote</strong> — cheap basics, sunscreen, arm sleeves; locations everywhere. <a class="src" href="https://japan.donki-global.com/shop/">[Don Quijote store locator]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Isetan Shinjuku</strong> — higher-end UV fashion if she wants something nicer. <a class="src" href="https://www.mistore.jp/store/shinjuku.html">[Isetan Shinjuku official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Drugstore restocks throughout trip:</strong> Matsumoto Kiyoshi, Sundrug, Tomod's — on every block in shopping areas. <a class="src" href="https://www.matsukiyococokara-cn.com/store/">[Matsumoto Kiyoshi store locator]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
     </div>
 
@@ -376,7 +309,7 @@
     </div>
 
     <div class="warn-box">
-      <strong>Before the trip:</strong> have a pre-trip conversation with Abigail's dermatologist specifically about Japan summer UV. The plan above assumes she can do outdoor activity with full UV protection and disciplined timing. If her practical tolerance is lower, this needs to be known before locking dates. <span class="unverified">(her doctor's guidance supersedes anything in this hub)</span>
+      <strong>Before the trip:</strong> have a pre-trip conversation with her dermatologist specifically about Japan summer UV. The plan above assumes she can do outdoor activity with full UV protection and disciplined timing. If her practical tolerance is lower, this needs to be known before locking dates. <span class="unverified">(her doctor's guidance supersedes anything in this hub)</span>
     </div>
   </section>
 
@@ -473,12 +406,12 @@
     <div class="card">
       <h3>5. Trains — etiquette, women-only cars, chikan</h3>
 
-      <h4>Women-only cars (relevant for Shaina, Abigail, Isabelle)</h4>
+      <h4>Women-only cars (relevant for your wife and daughters)</h4>
       <p>Women-only train cars (<em>josei senyō sharyō</em>, 女性専用車両) exist on many Tokyo and Osaka commuter lines, primarily to prevent chikan (痴漢, groping) during crowded commutes. Marked with bright pink signs on the platform and on the car doors. <a class="src" href="https://metropolisjapan.com/women-only-train-cars-tokyo/">[Metropolis Japan 2026]</a> <a class="src" href="https://danayao.com/japans-women-only-trains/">[Dana Yao 2026]</a></p>
       <ul>
         <li><strong>Hours vary by line.</strong> Most commonly weekday morning rush (~7:30–9:30am) on heavy commuter lines: JR Saikyo, Chuo, Sobu, and select periods on Yamanote; Tokyo Metro lines variously. <a class="src" href="https://medium.com/yamashita-guild/women-only-train-cars-in-japan-what-they-are-why-they-exist-and-what-tourists-should-know-1d826d2e35ea">[Medium / Yamashita Guild]</a></li>
         <li><strong>Boys and men should not board these cars during enforced hours.</strong> Confrontation is unlikely (Japanese culture avoids it) but it can result in stares or someone notifying staff. Outside enforced hours, the car is open to all.</li>
-        <li>Your itinerary doesn't lean on rush-hour commuter trains, so this is good-to-know rather than essential. For Shaina, Abigail, and Isabelle on any split-from-the-boys train ride during weekday morning rush, the women-only car is an option.</li>
+        <li>Your itinerary doesn't lean on rush-hour commuter trains, so this is good-to-know rather than essential. For your wife and daughters on any split-from-the-boys train ride during weekday morning rush, the women-only car is an option.</li>
       </ul>
 
       <h4>If something happens — chikan response</h4>
@@ -571,21 +504,21 @@
     <p class="sub">Booking windows for the ~June 5–16, 2027 trip window (final length — 11 or 12 nights — locks at flight booking).</p>
 
     <div class="warn-box">
-      <strong>The flight-booking window is open from June 16 to mid-July, 2026 — watch, then act.</strong> ANA partner award space starts releasing via Aeroplan/United at <strong>June 16, 2026 (~2.5 weeks from now)</strong>. Virgin Atlantic's window opens <strong>July 11, 2026 (~6 weeks)</strong> — cheaper but 25 days later. The strategy is not "book on July 11" — it's "watch from June 16 and lock seats when availability becomes solid, balancing cost (Virgin) vs certainty (Aeroplan)." See Flights section for the watch-and-act decision tree. <a class="src" href="https://awardfares.com/blog/ultimate-guide-to-award-release-dates/">[AwardFares booking windows]</a> <a class="src" href="https://roame.travel/guides/book-ana-business-first-class-flights">[Roame ANA guide]</a>
+      <strong>The flight-booking window is open and rolling — watch every morning starting June 9, 2026.</strong> The current plan is three parallel <strong>surcharge-free</strong> award paths on Amex MR (Singapore/KrisFlyer, ANA/LifeMiles, EVA/LifeMiles) — the old Virgin/Aeroplan watch-and-act plan was demoted in June 2026 after live award searches showed both passed ~$386/person ANA fuel surcharges. EVA via LifeMiles opens first (T-360, ~9am PDT Jun 9 for Jun 5, 2027 departure); ANA via LifeMiles and SQ via KrisFlyer open at T-355 (~8am PDT Jun 14 for Jun 5 departure). The binding constraint is award space (two business seats on one flight), not points or surcharges. See <a href="#flights" style="color:var(--vermilion); font-weight:600; text-decoration:none;">Flights</a> for the full release calendar and decision tree. <a class="src" href="https://blog.awardfares.com/ultimate-guide-to-award-release-dates/">[release windows]</a> <a class="src" href="https://princeoftravel.com/points-programs/avianca-lifemiles/">[LifeMiles no-surcharge policy]</a> <span class="tag ok">✓ verified Jun 2026</span>
     </div>
 
     <div class="card">
       <h3>Calendar deadlines</h3>
       <table>
         <tr><th>When</th><th>What opens / what to do</th></tr>
-        <tr><td><strong>June 16, 2026</strong></td><td>Aeroplan window opens for June 6, 2027 travel (355 days). Start intelligence-gathering on ANA partner space patterns. <span class="tag warn">⚠</span></td></tr>
-        <tr><td><strong>July 4, 2026</strong></td><td>United MileagePlus window opens (337 days). Better search engine than Aeroplan for Star Alliance partner award space. <span class="tag warn">⚠</span></td></tr>
-        <tr><td><strong>July 11, 2026</strong></td><td>Virgin Atlantic Flying Club window opens (~330 days). This is the actual booking sprint — best value for ANA business class. <span class="tag warn">⚠</span></td></tr>
-        <tr><td><strong>10:00 a.m. JST on 10th of any month</strong></td><td>Ghibli Museum tickets release for following month. Sells out in &lt;10 min. ¥1,000 adults. Closed Tuesdays. <a class="src" href="https://www.ghibli-museum.jp/en/tickets/">[Ghibli Museum official]</a> <span class="tag warn">⚠</span></td></tr>
-        <tr><td><strong>~February 2027</strong></td><td>Hilton Odawara Resort & Spa booking opens ~6 months ahead. Verify Japanese Western Premium Suite availability for family-of-5 single-room option. Family suite categories book up faster than standard rooms. <a class="src" href="https://www.hilton.com/en/hotels/odwhihi-hilton-odawara-resort-and-spa/">[Hilton Odawara]</a> <span class="tag warn">⚠</span></td></tr>
+        <tr><td><strong>~Jun 9–10, 2026 (T-360 EVA)</strong></td><td>EVA via LifeMiles opens for Jun 5–7, 2027 outbound. Best business-seat odds (2–4 seats/flight), surcharge-free, instant MR transfer. <a class="src" href="https://upgradedpoints.com/travel/airlines/best-ways-to-book-eva-air-business-class/">[Upgraded Points EVA]</a> <span class="tag warn">⚠</span></td></tr>
+        <tr><td><strong>~Jun 14–16, 2026 (T-355 ANA + SQ)</strong></td><td>ANA via LifeMiles and Singapore via KrisFlyer open for Jun 5–7 outbound. ANA is cheapest nonstop but releases only 1–2 biz seats/flight; SQ has its own metal and surcharge-free. <a class="src" href="https://roame.travel/guides/book-ana-business-first-class-flights">[Roame ANA, 355-day]</a> <a class="src" href="https://thepointsguy.com/loyalty-programs/ultimate-guide-singapore-krisflyer/">[KrisFlyer]</a> <span class="tag warn">⚠</span></td></tr>
+        <tr><td><strong>10:00 a.m. JST on 10th of any month</strong></td><td>Ghibli Museum tickets release for following month via Lawson. First-come (not lottery), sells out in minutes. ¥1,000 adults. Closed Tuesdays. <a class="src" href="https://www.ghibli-museum.jp/en/tickets/">[Ghibli Museum official]</a> <span class="tag warn">⚠</span></td></tr>
+        <tr><td><strong>~February 2027</strong></td><td>Hilton Odawara Resort &amp; Spa booking opens ~6 months ahead via Hilton.com. Verify Japanese Western Premium Suite availability for family-of-5 single-room option. Family suite categories book up faster than standard rooms. <a class="src" href="https://www.hilton.com/en/hotels/odwhihi-hilton-odawara-resort-and-spa/">[Hilton Odawara]</a> <span class="tag warn">⚠</span></td></tr>
+        <tr><td><strong>~February 2027 (4 months ahead, 11 a.m. JST)</strong></td><td>Tokyo Disney hotels open: per the official Tokyo Disney Resort, "Hotel reservations can be made from 11:00 a.m. on the day four months before your stay." Not applicable for this plan (staying at Hyatt Regency Tokyo), but included for completeness. <a class="src" href="https://faq-en.tokyodisneyresort.jp/answer/680ba041d7820362f46c7b56/">[TDR official FAQ]</a> <span class="tag ok">✓ verified Jun 2026</span></td></tr>
         <tr><td><strong>~April 2027</strong></td><td>Tokyo Disney park tickets typically open ~2 months ahead. Date-specific. For non-peak early June, sellout risk is low. <a class="src" href="https://www.tokyodisneyresort.jp/en/ticket/index.html">[TDR official]</a></td></tr>
-        <tr><td><strong>5th of any month</strong></td><td>Top omakase platforms (omakase.in) release reservations 2 months out. Mid-tier omakase accommodates dietary restrictions with 7+ days notice; family will use omakase.in + Hyatt concierge for booking. Top-tier 3-star places (Sushi Saito, Sukiyabashi Jiro) typically less flexible — not the target tier. <a class="src" href="https://omakase.in/en">[OMAKASE]</a></td></tr>
-        <tr><td><strong>2 weeks before each visit</strong></td><td>Shibuya Sky (sunset slots sell out), teamLab Borderless, teamLab Planets. <a class="src" href="https://www.klook.com/en-US/activity/70672-shibuya-sky-tokyo/">[Klook]</a> <a class="src" href="https://www.teamlab.art/e/tokyo/">[teamLab official]</a></td></tr>
+        <tr><td><strong>5th of any month</strong></td><td>omakase.in releases reservations ~2 months out. Mid-tier omakase accommodates dietary restrictions with 7+ days notice; family will use omakase.in + Hyatt concierge as primary channels. Top-tier 3-star places (Sushi Saito, Sukiyabashi Jiro) typically less flexible — not the target tier. <a class="src" href="https://omakase.in/en">[omakase.in]</a> <span class="tag ok">✓ verified Jun 2026</span></td></tr>
+        <tr><td><strong>2 weeks before each visit</strong></td><td>Shibuya Sky timed slots release ~14 days ahead at midnight JST and sunset sells out fast; teamLab Borderless releases monthly. <a class="src" href="https://www.shibuya-scramble-square.com/sky/en/">[Shibuya Sky official]</a> <a class="src" href="https://www.teamlab.art/e/tokyo/">[teamLab Borderless official]</a> <span class="tag ok">✓ verified Jun 2026</span></td></tr>
       </table>
     </div>
 
@@ -600,7 +533,7 @@
   <!-- TOKYO DISNEY: updated with UV considerations -->
   <section id="disney">
     <h2><span class="num">06</span>Tokyo Disney Resort — Deep Dive</h2>
-    <p class="sub">Two parks, two days, plus UV-aware scheduling for Abigail.</p>
+    <p class="sub">Two parks, two days, plus UV-aware scheduling for your daughter.</p>
 
     <div class="card">
       <h3>The two parks at a glance</h3>
@@ -609,7 +542,7 @@
         <tr>
           <td><strong>Tokyo Disneyland</strong></td>
           <td>Classic castle park — closest sibling to Magic Kingdom</td>
-          <td>Pooh's Hunny Hunt (TDR exclusive, considered one of the best Disney dark rides anywhere <span class="unverified">(widely held fan opinion)</span>), Monsters Inc. Ride &amp; Go Seek, new Space Mountain (opening spring 2027)</td>
+          <td>Pooh's Hunny Hunt (TDR exclusive, considered one of the best Disney dark rides anywhere <span class="unverified">(widely held fan opinion)</span>), Monsters Inc. Ride &amp; Go Seek, new Space Mountain — officially opening 2027, widely expected ~April 15, 2027 (TDL anniversary); coaster structure already built, so very likely open for June 2027. <a class="src" href="https://www.disneytouristblog.com/new-space-mountain-budget-balloons-to-disneys-most-expensive-attraction-ever-built/">[Disney Tourist Blog]</a> <span class="tag ok">✓ verified Jun 2026</span></td>
         </tr>
         <tr>
           <td><strong>Tokyo DisneySea</strong></td>
@@ -669,11 +602,11 @@
     </div>
 
     <div class="sun-box">
-      <strong>UV-aware Disney day structure for Abigail:</strong>
+      <strong>UV-aware Disney day structure for your daughter:</strong>
       <ul>
         <li><strong>Pre-park (7–8am):</strong> indoor breakfast at hotel, app prep, full UV kit on (umbrella, sleeves, hat, sunscreen reapplied)</li>
         <li><strong>Rope-drop (8–11am):</strong> hit hardest attractions while UV is lower-angle. DPA buy for Frozen Journey or Space Mountain immediately upon entry.</li>
-        <li><strong>Midday break (11am–4pm):</strong> back at hotel. Pool, AC, rest, lunch. UV peaks during this window — Abigail off the property entirely. This is the strongest argument for staying on or very near the resort.</li>
+        <li><strong>Midday break (11am–4pm):</strong> back at hotel. Pool, AC, rest, lunch. UV peaks during this window — your daughter off the property entirely. This is the strongest argument for staying on or very near the resort.</li>
         <li><strong>Evening return (4pm–close):</strong> golden hour and after-dark park is the iconic experience anyway. DisneySea Mediterranean Harbor after sunset is the photo-op. Lower UV.</li>
       </ul>
     </div>
@@ -684,7 +617,7 @@
 
     <div class="card">
       <h3>Lodging tradeoffs — three real variants (kept for reference, not current plan)</h3>
-      <p>For your specific dates (early June, low TDR crowds, low sellout risk), the "guaranteed ticket purchase" benefit that Disney and Official Hotels carry is genuinely low-value. The real question is <strong>Happy Entry vs. cash</strong>, plus midday-break logistics for Abigail.</p>
+      <p>For your specific dates (early June, low TDR crowds, low sellout risk), the "guaranteed ticket purchase" benefit that Disney and Official Hotels carry is genuinely low-value. The real question is <strong>Happy Entry vs. cash</strong>, plus midday-break logistics for your daughter.</p>
 
       <table>
         <tr><th>Option</th><th>Cash 2 nts × 2 rms</th><th>Happy Entry</th><th>Midday-break logistics</th></tr>
@@ -704,12 +637,12 @@
           <td><strong>2. Hyatt Regency Tokyo Bay</strong></td>
           <td><strong>$0 cash, ~120K UR</strong></td>
           <td>✗ No</td>
-          <td>Workable — free shuttle but 10–15 min commute vs. on-resort walking. Adds outdoor exposure for Abigail. <a class="src" href="https://www.hyatt.com/hyatt-regency/tyobd-hyatt-regency-tokyo-bay">[Hyatt official]</a></td>
+          <td>Workable — free shuttle but 10–15 min commute vs. on-resort walking. Adds outdoor exposure for your daughter. <a class="src" href="https://www.hyatt.com/hyatt-regency/tyobd-hyatt-regency-tokyo-bay">[Hyatt official]</a></td>
         </tr>
       </table>
 
       <div class="ok-box">
-        <strong>My recommendation given Abigail's UV needs:</strong> Variant 1 or 1' beats Variant 2 because midday-break logistics matter more. The shuttle commute from Hyatt Regency Tokyo Bay adds outdoor exposure that you'd want to avoid for her.
+        <strong>My recommendation given your daughter's UV needs:</strong> Variant 1 or 1' beats Variant 2 because midday-break logistics matter more. The shuttle commute from Hyatt Regency Tokyo Bay adds outdoor exposure that you'd want to avoid for her.
         <br><br>
         Between Variant 1 and 1': if cash is acceptable and you want the MiraCosta experience for the DisneySea day, that's the right call — the private park entrance is a real UV-protection benefit beyond just being a luxury. If cash conservation matters more, Hilton Tokyo Bay at ~$800–1,600 is the smart middle path — on-resort, family-friendly, recent renovation.
       </div>
@@ -717,7 +650,7 @@
 
     <div class="card">
       <h3>Door-to-park walkthrough — what each option actually looks like</h3>
-      <p>The three variants differ materially in how much time and outdoor exposure you spend between hotel room and park gate. For Abigail's midday-break needs, this is where the rubber meets the road.</p>
+      <p>The three variants differ materially in how much time and outdoor exposure you spend between hotel room and park gate. For your daughter's midday-break needs, this is where the rubber meets the road.</p>
 
       <h4>Variant 1: MiraCosta (Disney Hotel) → DisneySea</h4>
       <table>
@@ -773,7 +706,7 @@
       </table>
 
       <div class="sun-box">
-        <strong>What this means for Abigail specifically:</strong> Hyatt Regency Tokyo Bay's commute steals ~60–80 minutes from her midday break vs. MiraCosta and ~40–50 minutes vs. Hilton Tokyo Bay. Plus more outdoor exposure: ~10 min outdoor between bus terminals and park gates, plus shuttle waits at outdoor stops. The MiraCosta private entrance is the only true indoor-to-indoor option. Hilton Tokyo Bay is a defensible middle ground. The $800–1,600 cash gap between Hyatt Regency and Hilton Tokyo Bay buys Abigail ~60–90 minutes of additional protected indoor time across both Disney days.
+        <strong>What this means for your daughter specifically:</strong> Hyatt Regency Tokyo Bay's commute steals ~60–80 minutes from her midday break vs. MiraCosta and ~40–50 minutes vs. Hilton Tokyo Bay. Plus more outdoor exposure: ~10 min outdoor between bus terminals and park gates, plus shuttle waits at outdoor stops. The MiraCosta private entrance is the only true indoor-to-indoor option. Hilton Tokyo Bay is a defensible middle ground. The $800–1,600 cash gap between Hyatt Regency and Hilton Tokyo Bay buys your daughter ~60–90 minutes of additional protected indoor time across both Disney days.
       </div>
     </div>
 
@@ -803,19 +736,19 @@
     <p class="sub">Day 1 anchor: UV-kit shopping. Then the city, structured around early-morning + evening outdoor.</p>
 
     <div class="sun-box">
-      <strong>Day 1 — UV-kit shopping morning.</strong> Build Abigail's full Tokyo UV kit before any major outdoor day. Suggested route: <strong>UNIQLO Ginza</strong> (UV-cut clothing) → lunch in Ginza → <strong>Loft Shibuya</strong> (umbrellas, hats, accessories) → <strong>Don Quijote Shibuya</strong> (sunscreen, arm sleeves, basics). Frame it as a sister/mom/daughter shopping day, not medical prep. Isabelle gets her own Japanese summer outfits. <a class="src" href="https://map.uniqlo.com/us/en/detail/10101172">[UNIQLO Ginza]</a> <span class="unverified">(retail directory)</span>
+      <strong>Day 1 — UV-kit shopping morning.</strong> Build your daughter's full Tokyo UV kit before any major outdoor day. Suggested route: <strong>UNIQLO Ginza</strong> (UV-cut clothing) → lunch in Ginza → <strong>Loft Shibuya</strong> (umbrellas, hats, accessories) → <strong>Don Quijote Shibuya</strong> (sunscreen, arm sleeves, basics). Frame it as a sister/mom/daughter shopping day, not medical prep. Your other daughter gets her own Japanese summer outfits. <a class="src" href="https://map.uniqlo.com/us/en/detail/10101172">[UNIQLO Ginza]</a> <span class="unverified">(retail directory)</span>
     </div>
 
     <div class="card">
       <h3>Can't miss (timed for UV-aware schedule)</h3>
       <ul>
-        <li class="sun"><strong>Senso-ji + Asakusa</strong> — Tokyo's oldest temple (645 CE). <strong>Best before 9am</strong> to avoid Nakamise crowds AND midday UV. Pair with Kappabashi or a Sumida River cruise to Hamarikyu Gardens. <a class="src" href="https://livejapan.com/en/article-a0004037/">[Live Japan]</a></li>
-        <li><strong>teamLab Planets (Toyosu)</strong> — immersive wading-water digital art. INDOOR, midday-friendly. Reservation 1–2 weeks ahead. From ¥3,200. <a class="src" href="https://www.teamlab.art/e/planets/">[teamLab official]</a></li>
-        <li><strong>teamLab Borderless (Azabudai Hills)</strong> — INDOOR, midday-friendly. Maze-like sister attraction. From ¥3,800. Monthly ticket releases. <a class="src" href="https://www.teamlab.art/e/tokyo/">[teamLab official]</a> <a class="src" href="https://tixvoy.com/en/news/teamlab-tokyo-guide">[TIXVOY]</a></li>
-        <li class="sun"><strong>Shibuya Sky observation deck</strong> — open-air rooftop. <strong>Best ~30 min before sunset</strong> (mid-June sunset ~7pm Tokyo). 360° views. Sunset slots sell out 2 weeks ahead. <a class="src" href="https://www.gotokyo.org/en/spot/1749/index.html">[Go Tokyo]</a></li>
-        <li class="sun"><strong>Meiji Shrine</strong> — 700,000 sqm of forested grounds (shaded paths). Calm even when popular. <a class="src" href="https://www.timeout.com/tokyo/things-to-do/the-biggest-tokyo-tourist-traps-ranked-and-where-you-should-go-instead">[Time Out Tokyo]</a></li>
-        <li><strong>Tokyo Metropolitan Government Building observation decks</strong> — free, 202m up, 45th floor. Indoor, good Skytree alternative. <a class="src" href="https://www.timeout.com/tokyo/things-to-do/the-biggest-tokyo-tourist-traps-ranked-and-where-you-should-go-instead">[Time Out Tokyo]</a></li>
-        <li class="sun"><strong>Shinjuku Gyoen National Garden</strong> — Japanese/English/French gardens. Best in early morning. <a class="src" href="https://rubbisheatrubbishgrow.com/2026/01/30/5-non-negotiable-things-to-do-in-tokyo-before-you-even-think-about-anything-else/">[guide]</a></li>
+        <li class="sun"><strong>Senso-ji + Asakusa</strong> — Tokyo's oldest temple (founded 628 AD, dedicated to Kannon). Main hall 6:00–17:00 (6:30 in winter); grounds 24h; admission free. <strong>Best before 9am</strong> to avoid Nakamise crowds AND midday UV. Pair with Kappabashi or a Sumida River cruise to Hamarikyu Gardens. <a class="src" href="https://www.senso-ji.jp/english/">[Senso-ji official]</a> <a class="src" href="https://www.gotokyo.org/en/spot/15/index.html">[Go Tokyo]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>teamLab Planets (Toyosu)</strong> — immersive wading-water digital art. INDOOR, midday-friendly. Reserve ahead. From ¥3,200 adult / ¥800 child. <strong>Confirmed open through end of 2027</strong> (run extended), so it covers your June 2027 dates. <a class="src" href="https://www.teamlab.art/e/planets/">[teamLab official]</a> <a class="src" href="https://tixvoy.com/en/news/teamlab-tokyo-guide">[TIXVOY]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>teamLab Borderless (Azabudai Hills)</strong> — INDOOR, midday-friendly. Maze-like sister attraction; reopened at Azabudai Hills in Feb 2024 after the Odaiba location closed. From ¥3,800 adult / ¥1,500 child. Monthly ticket releases. <a class="src" href="https://www.teamlab.art/e/tokyo/">[teamLab official]</a> <a class="src" href="https://tixvoy.com/en/news/teamlab-tokyo-guide">[TIXVOY]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li class="sun"><strong>Shibuya Sky observation deck</strong> — open-air rooftop "Sky Stage" atop Shibuya Scramble Square (229m). <strong>Best ~30 min before sunset</strong> (mid-June sunset ~7pm Tokyo). 360° views. ¥2,500 online / ¥3,000 at the counter; timed slots release ~14 days ahead at midnight JST and sunset sells out fast. <a class="src" href="https://www.gotokyo.org/en/spot/1749/index.html">[Go Tokyo]</a> <a class="src" href="https://www.kkday.com/en/blog/59355/shibuya-sky-guide-tickets">[KKday]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li class="sun"><strong>Meiji Shrine (Meiji Jingu)</strong> — 70-hectare forested grounds with ~100,000 donated trees, dedicated to Emperor Meiji and Empress Shoken. Open sunrise to sunset (June: ~5:00am–6:30pm); free; shaded paths stay calm even when popular. June's Iris Garden (¥500 separate admission) is at peak. <a class="src" href="https://www.meijijingu.or.jp/en/">[Meiji Jingu official]</a> <a class="src" href="https://www.gotokyo.org/en/spot/76/index.html">[Go Tokyo]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Tokyo Metropolitan Government Building observation decks</strong> — free, 202m up, 45th floor (North + South decks, no reservation). Indoor, good Skytree alternative. <a class="src" href="https://www.japan-guide.com/e/e3011_tocho.html">[Japan-Guide]</a> <a class="src" href="https://www.ana.co.jp/en/us/japan-travel-planner/tokyo/0000005.html">[official observatory info]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li class="sun"><strong>Shinjuku Gyoen National Garden</strong> — 58.3-hectare Imperial-era park with Japanese, English, and French gardens plus a greenhouse. Hours March 15 – June 30: 9:00–18:00 (admission ends 30 min before close); closed Mondays. Adults ¥500. Best in early morning. <a class="src" href="https://www.env.go.jp/garden/shinjukugyoen/english/index.html">[Ministry of the Environment official]</a> <a class="src" href="https://www.gotokyo.org/en/spot/75/index.html">[Go Tokyo]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Ghibli Museum</strong> if tickets secured — INDOOR. <a class="src" href="https://www.ghibli-museum.jp/en/tickets/">[official]</a></li>
       </ul>
     </div>
@@ -833,21 +766,21 @@
     <div class="card">
       <h3>For the kids</h3>
       <ul>
-        <li><strong>One Piece — Mugiwara Stores and Base Shop</strong> (for Jack). The Tokyo One Piece Tower closed in 2020, but the retail footprint has expanded since:
+        <li><strong>One Piece — Mugiwara Stores and Base Shop</strong> (for your son). The Tokyo One Piece Tower closed in 2020, but the retail footprint has expanded since:
           <ul style="margin-top:6px;">
-            <li><strong>One Piece Base Shop</strong> at Marui City Shinjuku 4F — <strong>closest to Hyatt Regency Tokyo</strong>; features Gear Fifth scale figures. <a class="src" href="https://www.japan-pop-now.com/articles/one-piece-tokyo-guide-2026">[Japan Pop Now 2026]</a></li>
+            <li><strong>One Piece Base Shop</strong> — official flagship, opened Dec 5, 2025 on Shinjuku Marui Main Building 4F (V5's "Marui City Shinjuku"); <strong>closest to Hyatt Regency Tokyo</strong>; ~800 items. <a class="src" href="https://www.haveagood-holiday.com/en/articles/one-piece-base-shop-shinjuku-marui">[opening details]</a> <a class="src" href="https://www.japan-pop-now.com/articles/one-piece-tokyo-guide-2026">[Japan Pop Now 2026]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
             <li><strong>Mugiwara Store Tokyo Station</strong> — largest official One Piece store ever; Tokyo Station exclusives <a class="src" href="https://www.gltjp.com/en/directory/item/18763/">[Good Luck Trip]</a></li>
-            <li><strong>Mugiwara Store Harajuku</strong> — "HARAJUKU CHOPPER" exclusives, 2-meter Gear 5 Luffy figure, photo spots</li>
-            <li><strong>Mugiwara Store Shibuya</strong> (MAGNET by SHIBUYA109) — life-sized Luffy figure at entrance <a class="src" href="https://japanimationhub.com/bywork/onepiecestore.html">[Japanimation Hub]</a></li>
-            <li><strong>Mugiwara Store Ikebukuro / Odaiba</strong> — additional flagship locations</li>
+            <li><strong>Mugiwara Store Harajuku</strong> — "HARAJUKU CHOPPER" exclusives, 2-meter Gear 5 Luffy figure, photo spots <a class="src" href="https://japanimationhub.com/bywork/onepiecestore.html">[Japanimation Hub locations roundup]</a></li>
+            <li><strong>Mugiwara Store Shibuya</strong> (MAGNET by SHIBUYA109) — life-sized Luffy figure at entrance; opened Oct 5, 2012 — considered the main store <a class="src" href="https://onepiece.fandom.com/wiki/One_Piece_Mugiwara_Store">[One Piece Wiki locations]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+            <li><strong>Mugiwara Store Ikebukuro</strong> (Sunshine City alpa 2F) <a class="src" href="https://sunshinecity.jp/en/shop/shop_list/entry-11485.html">[Sunshine City official]</a> <strong>and Odaiba</strong> (DiverCity Tokyo Plaza 2F) <a class="src" href="https://mitsui-shopping-park.com/en/divercity-tokyo/shopguide/2672325.html">[DiverCity Tokyo official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
             <li><strong>One Piece Cafe GENE</strong> at Shibuya PARCO — covered in Food section</li>
           </ul>
           <strong>Timing bonus:</strong> the Elbaph Arc premiered April 5, 2026 — by June 2027 the anime will be well into that storyline.
         </li>
-        <li><strong>Pokemon — PokéPark KANTO</strong> opened Feb 5, 2026 at Yomiuriland (Tama Hills, ~30 min from Shinjuku). World's first permanent outdoor Pokémon theme park. Lottery-based experiences via app; tickets sell out monthly. Fully cashless. <span class="tag warn">⚠</span> book several weeks ahead. <a class="src" href="https://www.pokemon.com/us/pokemon-news/get-ready-to-experience-pokepark-kanto-on-february-5-2026">[Pokemon.com]</a> <a class="src" href="https://www.awesomble.com/en/Shin/jp-tokyo-pokepark-kanto-guide/">[Awesomble guide]</a> <a class="src" href="https://tdrexplorer.com/japans-first-permanent-pokemon-theme-park-pokepark-kanto-to-open-at-yomiuriland-in-2026/">[TDR Explorer]</a></li>
-        <li><strong>Akihabara</strong> for anime/manga/electronics broadly. Mostly indoor — midday-friendly for Abigail. Mandarake, Animate, Jump Shop all here.</li>
-        <li><strong>Studio Tour Tokyo (Harry Potter)</strong> opened in Toshima — indoor walkthrough. <a class="src" href="https://rubbisheatrubbishgrow.com/2026/01/30/5-non-negotiable-things-to-do-in-tokyo-before-you-even-think-about-anything-else/">[guide]</a></li>
-        <li><strong>Studio Ghibli Museum</strong> (Mitaka) — lottery tickets only, 10th of each month 10am JST for the following month. <a class="src" href="https://www.ghibli-museum.jp/en/tickets/">[Ghibli Museum]</a></li>
+        <li><strong>Pokemon — PokéPark KANTO</strong> — confirmed open since Feb 5, 2026 at Yomiuriland (Tama Hills, Inagi; ~25–30 min from Shinjuku to Keio-Yomiuriland Station, then a short gondola). World's first permanent outdoor Pokémon theme park. App-based timed entry; tickets (which include Yomiuriland admission) sell via monthly lottery opening ~3 months ahead, then first-come for leftovers — sells out fast. International buyers use the English ticket site. <span class="tag warn">⚠</span> <a class="src" href="https://www.pokemon.com/us/pokemon-news/get-ready-to-experience-pokepark-kanto-on-february-5-2026">[Pokemon.com]</a> <a class="src" href="https://www.awesomble.com/en/Shin/jp-tokyo-pokepark-kanto-guide/">[Awesomble guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Akihabara</strong> for anime/manga/electronics broadly. Mostly indoor — midday-friendly for your daughter. Mandarake, Animate, Jump Shop all here. <a class="src" href="https://www.gotokyo.org/en/spot/13/index.html">[Go Tokyo / Akihabara]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Studio Tour Tokyo (Harry Potter)</strong> — opened June 16, 2023 in <strong>Nerima</strong> (former Toshimaen site, 2 min from Toshimaen Station — the ward is Nerima, not "Toshima"). World's largest indoor Harry Potter attraction; advance tickets only, ~3.5–5 hrs. <a class="src" href="https://www.wbstudiotour.jp/en/plan-your-visit/location/">[Studio Tour official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Studio Ghibli Museum</strong> (Mitaka, Inokashira Park) — open, advance-reservation only. Timed tickets release via Lawson at 10am JST on the 10th of each month for the following month — first-come, not a lottery, sells out in minutes. ¥1,000 adult. Closed Tuesdays. <a class="src" href="https://www.ghibli-museum.jp/en/tickets/">[Ghibli Museum official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
     </div>
 
@@ -861,7 +794,7 @@
   <!-- DECOMPRESSION (NEW IN V5) -->
   <section id="decompression">
     <h2><span class="num">08</span>Decompression Module — 1 Night After Disney</h2>
-    <p class="sub">A resort hotel between Tokyo and Osaka, placed immediately after Disney days for post-park recovery. Driven by Shaina's preference for Club-Med-style relaxation within an otherwise high-load trip.</p>
+    <p class="sub">A resort hotel between Tokyo and Osaka, placed immediately after Disney days for post-park recovery. Driven by your wife's preference for Club-Med-style relaxation within an otherwise high-load trip.</p>
 
     <div class="ok-box">
       <strong>Locked:</strong> 1 night, resort-style hotel, on the Tokyo-Osaka Shinkansen route, post-Disney positioning. Specific property is open — Hilton Odawara Resort & Spa is the leading candidate but other options that fit the same shape remain in consideration.
@@ -870,7 +803,7 @@
     <div class="card">
       <h3>Why this exists (the planning logic)</h3>
       <p>Disney days are draining. Two Disney days back-to-back leave the family wiped out — long days, walking, sensory overload. The original plan moved straight from Tokyo into Osaka's high-activity Kansai leg, which would have stacked tired-from-Disney on top of new-city orientation. A planned slow day right after Disney lets the family reset before Osaka.</p>
-      <p>Also: Shaina's vacation preference leans Club-Med-style. The cultural-heavy Tokyo + Osaka + Hiroshima trip doesn't naturally include resort-style downtime. A 1-night decompression module gives her a structured recovery touchpoint without restructuring the whole trip around it.</p>
+      <p>Also: your wife's vacation preference leans Club-Med-style. The cultural-heavy Tokyo + Osaka + Hiroshima trip doesn't naturally include resort-style downtime. A 1-night decompression module gives her a structured recovery touchpoint without restructuring the whole trip around it.</p>
       <p class="note">Earlier conversation explored Hakone ryokan as the decompression module. Dropped — the family doesn&apos;t do communal naked bathing (the core onsen format), and real natural hot springs weren&apos;t the appeal. Decompression was the appeal, which a resort hotel delivers more directly.</p>
     </div>
 
@@ -878,14 +811,14 @@
       <h3>Leading option: Hilton Odawara Resort & Spa</h3>
       <p>Coastal resort hotel near Fuji-Hakone-Izu National Park, ~50 min from Tokyo by Shinkansen via Odawara Station + free hotel shuttle. <a class="src" href="https://www.hilton.com/en/hotels/odwhihi-hilton-odawara-resort-and-spa/">[Hilton official]</a></p>
       <ul>
-        <li><strong>10 swimming pools</strong> (8 indoor + 2 outdoor) — the kids would never wait for space</li>
+        <li><strong>10 pools</strong> (8 indoor + 2 outdoor, including a 25m lap pool) — the kids would never wait for space <a class="src" href="https://www.expedia.com/Hilton-Odawara-Resort-Spa.h1050228.Hotel-Information">[Expedia property facts]</a> <a class="src" href="https://www.themanual.com/travel/review-hilton-odawara-japan/">[The Manual review]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Natural mineral hot springs (onsen)</strong> available but optional — family doesn&apos;t need to use these</li>
-        <li><strong>Full-service spa</strong> with hydrotherapy, facials, massage — for Shaina specifically</li>
-        <li><strong>Japanese Western Premium Suite sleeps 6</strong> — entire family in one room is a real option, post-Disney bonding</li>
-        <li><strong>Family amenities:</strong> bowling, playgrounds, arcade/game room, children&apos;s pool, children&apos;s club</li>
+        <li><strong>Full-service spa</strong> with hydrotherapy, facials, massage — for your wife specifically</li>
+        <li><strong>Japanese Western Premium Suite sleeps 6</strong> — entire family in one room is a real option, post-Disney bonding <a class="src" href="https://www.expedia.com/Hilton-Odawara-Resort-Spa.h1050228.Hotel-Information">[Expedia room types]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Family amenities:</strong> bowling, playgrounds, arcade/game room, children&apos;s pool, Kids' Club (ages 4–12) <a class="src" href="https://ternx.com/blogs/going-places/hilton-odawara-resort-and-spa">[TernX family review]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Free train station pickup/drop-off</strong> from Nebukawa Station — no transit friction</li>
         <li><strong>Hilton Honors property — MR transferable 1:2.</strong> ~30–50K MR for 1 family suite × 1 night, OR ~50–70K MR for 2 standard rooms × 1 night</li>
-        <li><strong>Reviews:</strong> 8.6/10 on Hotels.com, 9.5/10 on Trip.com (66 reviews) <span class="unverified">(verify current category and tier on Hilton.com closer to booking)</span></li>
+        <li><strong>Reviews:</strong> 8.6/10 "Excellent" on Expedia; 4.5-star property rating. <a class="src" href="https://www.expedia.com/Hilton-Odawara-Resort-Spa.h1050228.Hotel-Information">[Expedia rating]</a> <span class="tag ok">✓ verified Jun 2026</span> Verify current category and tier on Hilton.com closer to booking.</li>
       </ul>
     </div>
 
@@ -903,10 +836,10 @@
     <div class="card">
       <h3>What this configuration means for the family</h3>
       <ul>
-        <li><strong>Shaina:</strong> spa, pool, slow pace, no decisions. The closest the trip gets to her preferred vacation style.</li>
+        <li><strong>Your wife:</strong> spa, pool, slow pace, no decisions. The closest the trip gets to her preferred vacation style.</li>
         <li><strong>The kids:</strong> pools, arcade/bowling (at Hilton Odawara), recovery from Disney intensity, maybe family suite all in one room</li>
-        <li><strong>Benjamin:</strong> pool + spa available, decompression but also stays mobile for Hakone-adjacent day trip if energy returns (Lake Ashi, Hakone Open-Air Museum nearby)</li>
-        <li><strong>Abigail:</strong> indoor pools = zero UV exposure, full recovery day in low-UV environment</li>
+        <li><strong>You:</strong> pool + spa available, decompression but also stays mobile for Hakone-adjacent day trip if energy returns (Lake Ashi, Hakone Open-Air Museum nearby)</li>
+        <li><strong>Your daughter:</strong> indoor pools = zero UV exposure, full recovery day in low-UV environment</li>
       </ul>
     </div>
   </section>
@@ -925,33 +858,33 @@
 
     <div class="card">
       <h3>Hotel options (all points-redeemable)</h3>
-      <p><strong>The Hyatt Regency Osaka landscape changed in 2023.</strong> The old Hyatt Regency Osaka (Suminoe bay area) closed and was rebranded as Grand Prince Hotel Osaka Bay. Current real Hyatt options are different and need to be evaluated honestly:</p>
+      <p><strong>The Hyatt Regency Osaka landscape changed in 2023.</strong> The old Hyatt Regency Osaka (Suminoe / Sakishima bay area) <strong>exited the Hyatt system on July 1, 2023</strong> and was rebranded as Grand Prince Hotel Osaka Bay, operated by Seibu Prince Hotels. (Precise framing: it didn't shut down — it left the Hyatt program and renovated.) <a class="src" href="https://loyaltylobby.com/2023/03/29/hyatt-regency-osaka-exits-hyatt-system-on-july-1-2023-to-become-grand-prince-hotel/">[LoyaltyLobby]</a> The upshot: <strong>Hyatt has no full-service hotel in Osaka.</strong> Current real Hyatt options are limited and need to be evaluated honestly:</p>
 
       <table>
         <tr><th>Property</th><th>Currency</th><th>~Per-room/night</th><th>Family-of-5 fit</th></tr>
         <tr>
-          <td><strong>Caption by Hyatt Namba Osaka</strong> (opened June 2024)</td>
+          <td><strong>Caption by Hyatt Namba Osaka</strong> (opened June 12, 2024) <a class="src" href="https://newsroom.hyatt.com/news-releases?item=124506">[Hyatt newsroom]</a></td>
           <td>UR (Hyatt, 1:1)</td>
-          <td>~3,000–9,000 UR (Cat 1)</td>
-          <td>⚠ Rooms ~20m², sleep 2 max — would need 3 rooms not 2. Central Namba near Dotonbori/Kuromon.</td>
+          <td>~5,000–9,000 UR — <strong>now Cat 2</strong> (moved up from Cat 1 in Hyatt's 2025 chart; re-verify post-May 2026) <a class="src" href="https://upgradedpoints.com/travel/hotels/caption-by-hyatt-namba-osaka-review/">[Upgraded Points]</a></td>
+          <td>⚠ Select-service; 167 rooms, Standard ~20m² / Deluxe ~30m², sleep 2 — would need 3 rooms not 2. Central Namba near Dotonbori/Kuromon.</td>
         </tr>
         <tr>
-          <td><strong>Park Hyatt Osaka</strong> (opened 2024)</td>
-          <td>UR (Hyatt, 1:1)</td>
-          <td>~35,000–75,000 UR (Cat 8)</td>
-          <td>Premium rooms, 2 rooms workable, but expensive</td>
+          <td><strong>Park Hyatt Osaka</strong> — <strong>does not exist</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td>⚠ <strong>There is no Park Hyatt in Osaka.</strong> Park Hyatt in Japan is Kyoto and Tokyo only. Hyatt's sole Osaka property is the select-service Caption above; a full-service Hyatt Centric Namba Osaka is only announced for ~2031. <a class="src" href="https://newsroom.hyatt.com/082125-Hyatt-Centric-To-Debut-In-Osaka">[Hyatt newsroom]</a></td>
         </tr>
         <tr>
-          <td><strong>Canopy by Hilton Osaka Umeda</strong> (opened Sept 2024)</td>
+          <td><strong>Canopy by Hilton Osaka Umeda</strong> (opened Sept 6, 2024) <a class="src" href="https://stories.hilton.com/apac/releases/canopy-by-hilton-debuts-in-japan-with-opening-of-osaka-umeda-hotel">[Hilton]</a></td>
           <td>MR via Hilton (1:2)</td>
           <td>~25,000–40,000 MR equivalent</td>
-          <td>Central Umeda, standard 2 rooms work for family</td>
+          <td>308 rooms, in Grand Green Osaka, ~7 min from JR Osaka Station. Standard 2 rooms work for family.</td>
         </tr>
         <tr>
-          <td><strong>Conrad Osaka</strong></td>
+          <td><strong>Conrad Osaka</strong> <a class="src" href="https://www.orix.co.jp/grp/en/newsrelease/240906_ORIXGE.html">[Hilton / ORIX]</a></td>
           <td>MR via Hilton (1:2)</td>
           <td>~40,000–60,000 MR equivalent</td>
-          <td>Hilton luxury tier, standard 2 rooms work</td>
+          <td>Hilton luxury tier (one of Hilton's four Osaka hotels), standard 2 rooms work</td>
         </tr>
       </table>
       <p class="note">Marriott Bonvoy properties (W Osaka, St. Regis, Sheraton Miyako) all exist but Marriott&apos;s 1:1 UR transfer ratio makes them weak value. <strong>Verify current categories and tiers on each program closer to booking.</strong> <span class="unverified">(award charts shift; verify live for June 2027 dates)</span></p>
@@ -960,12 +893,12 @@
     <div class="card">
       <h3>What the family does in Osaka</h3>
       <ul>
-        <li><strong>Dotonbori at night</strong> — neon, the Glico running man sign, river boats, takoyaki stalls (Jack and Benjamin can stray to takoyaki/octopus; Shaina and Isabelle skip), the chaos. The teenagers will remember this.</li>
+        <li><strong>Dotonbori at night</strong> — neon, the Glico running man sign, river boats, takoyaki stalls (your son and you can stray to takoyaki/octopus; your wife and other daughter skip), the chaos. The teenagers will remember this.</li>
         <li><strong>Kuromon Ichiba Market</strong> — Osaka&apos;s food market, more raucous than Nishiki. Tuna bowls, wagyu skewers, takoyaki (out for family-together), grilled scallops (out). Plenty of acceptable stalls.</li>
-        <li><strong>Osaka Castle</strong> — historic anchor, gardens, museum inside the keep</li>
-        <li><strong>Kaiyukan Aquarium</strong> — one of the world&apos;s best aquariums, fully indoor, midday-friendly for Abigail</li>
-        <li><strong>Umeda Sky Building</strong> — floating garden observatory, sunset views</li>
-        <li><strong>One Piece anime stops</strong> — Mugiwara Store locations exist in Osaka if Jack wants to keep that thread going (verify current Osaka location)</li>
+        <li><strong>Osaka Castle</strong> — historic anchor, gardens, museum inside the keep. Open daily. <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Kaiyukan Aquarium</strong> — one of the world&apos;s largest aquariums (whale sharks, ~620 species), fully indoor, midday-friendly for your daughter. Open ~10am–8pm. <a class="src" href="https://www.japan-guide.com/e/e4004.html">[Japan-Guide]</a> <a class="src" href="https://osaka-info.jp/en/spot/osaka-aquarium-kaiyukan/">[Osaka Info]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Umeda Sky Building</strong> — Kuchu Teien Floating Garden Observatory (173m), sunset views. <a class="src" href="https://kansaionepass.com/en/article/detail/14">[Kansai guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>One Piece anime stops</strong> — Mugiwara Store locations exist in Osaka if your son wants to keep that thread going (verify current Osaka location)</li>
       </ul>
     </div>
 
@@ -973,10 +906,10 @@
       <h3>Optional Kobe day-trip</h3>
       <p>If you want a real wagyu anchor lunch and one day&apos;s change of pace, Kobe is 30–45 min from Osaka.</p>
       <ul>
-        <li><strong>Kobe beef lunch</strong> at a certified restaurant (must display the official Kobe Beef Marketing Association plaque) — ~¥6,000–12,000/person for mid-tier teppanyaki lunch. Steakland Kobe is the famous mid-priced option.</li>
-        <li><strong>Kitano-cho</strong> — historic Meiji-era foreign merchant district, European-style houses, distinctive cultural angle</li>
-        <li><strong>Nankinmachi (Chinatown)</strong> — one of Japan&apos;s three official Chinatowns, butaman buns, street food (filter for kosher-style)</li>
-        <li><strong>Mt. Rokko night view</strong> — one of Japan&apos;s three famous night views, accessible by cable car. Evening = good UV timing.</li>
+        <li><strong>Kobe beef lunch</strong> at a certified restaurant (must display the official Kobe Beef Marketing Association plaque) — ~¥6,000–12,000/person for mid-tier teppanyaki lunch. <strong>Steakland Kobe</strong> is the famous mid-priced option (confirmed open; certified Kobe beef, lunch sets ~¥3,880–4,880, near Sannomiya, walk-in friendly). <a class="src" href="https://steakland-kobe.jp/en/">[Steakland official]</a> <a class="src" href="https://japanuncharted.com/hyogo/wagyu/steakland-kobe-review">[review]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Kitano-cho</strong> — historic Meiji-era foreign merchant district at the foot of Mt. Rokko, ~15-min walk from Sannomiya or Shin-Kobe stations. Former diplomatic residences (<em>ijinkan</em>) — a dozen are open to the public as museums, ~¥550–880 each or combination ticket. Distinctive cultural angle. <a class="src" href="https://www.japan.travel/en/spot/1044/">[JNTO official]</a> <a class="src" href="https://www.japan-guide.com/e/e3550.html">[Japan-Guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Nankinmachi (Chinatown)</strong> — one of Japan's three official Chinatowns (Yokohama, Nagasaki, Kobe). Centered on Nankinmachi Plaza, ~5-min walk from Motomachi Station, ~10-min from Sannomiya. Butaman buns, street food (filter for kosher-style). <a class="src" href="https://www.japan.travel/en/spot/1037/">[JNTO]</a> <a class="src" href="https://www.feel-kobe.jp/en/facilities/detail/?code=0000000021">[Feel Kobe — official Kobe tourism]</a> <a class="src" href="http://www.nankinmachi.or.jp/">[Nankinmachi official (Japanese)]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Mt. Maya (Kikuseidai) night view</strong> — the "ten-million-dollar" Kobe panorama, one of Japan&apos;s three great night views, reached by the Maya Viewline cable car + ropeway. Evening = good UV timing. <span class="tag warn">⚠</span> <strong>Weekday catch (Mar 20–Jul 19): the ropeway's last descent is ~5:30pm on Mon/Wed/Thu — too early for a June sunset (~7pm). The late ropeway (~8:50pm) runs only Fri/Sat/Sun/holidays.</strong> Closed Tuesdays. (Mt. Rokko itself also offers a Kobe night view via the Rokko Cable Car.) <a class="src" href="https://www.gltjp.com/en/directory/item/10732/">[GLT hours]</a> <a class="src" href="https://koberope.jp/en/maya/miryoku">[Kobe Rope official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
       <p class="note">Decision pending — depends on whether you want a Kobe day or prefer 2 Kyoto day-trips. A Kobe day would be the wagyu-anchor day (replaces or supplements the planned Tokyo teppanyaki).</p>
     </div>
@@ -1015,9 +948,9 @@
     <div class="card">
       <h3>The iconic three (timed for UV-aware schedule)</h3>
       <ul>
-        <li class="sun"><strong>Fushimi Inari Taisha</strong> — thousands of vermilion torii gates. Free, open 24 hours. <strong>8–9am arrival</strong> realistic for this family (dawn is too early). 30+ minute exposed mountain climb at noon would be brutal — be done by 11am. Past the first ~30 min most tourists drop off; becomes peaceful.</li>
-        <li class="sun"><strong>Arashiyama Bamboo Grove + Tenryū-ji</strong> — bamboo provides filtered shade but surrounding area is exposed. <strong>8am arrival</strong> for minimal crowds and lower UV. From Osaka, ~50 min via JR.</li>
-        <li class="sun"><strong>Kiyomizu-dera + Higashiyama district</strong> — wooden stage with panoramic views. Higashiyama neighborhood (Sannenzaka, Ninenzaka) is a half-to-full-day wander. <strong>Late afternoon (4pm+)</strong> works well — golden hour atmospheric, lower UV.</li>
+        <li class="sun"><strong>Fushimi Inari Taisha</strong> — thousands of vermilion torii gates. Free, open 24 hours. <strong>8–9am arrival</strong> realistic for this family (dawn is too early). 30+ minute exposed mountain climb at noon would be brutal — be done by 11am. Past the first ~30 min most tourists drop off; becomes peaceful. <a class="src" href="https://www.japan-guide.com/e/e3915.html">[Japan-Guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li class="sun"><strong>Arashiyama Bamboo Grove + Tenryū-ji</strong> — bamboo provides filtered shade but surrounding area is exposed. <strong>8am arrival</strong> for minimal crowds and lower UV. From Osaka, ~50 min via JR. <a class="src" href="https://www.gltjp.com/en/article/item/20372/">[GLT Kyoto]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li class="sun"><strong>Kiyomizu-dera + Higashiyama district</strong> — wooden stage with panoramic views (main-hall "Reiwa" renovation long complete; open ~6am–6pm). Higashiyama neighborhood (Sannenzaka, Ninenzaka) is a half-to-full-day wander. <strong>Late afternoon (4pm+)</strong> works well — golden hour atmospheric, lower UV. <a class="src" href="https://www.japan-guide.com/e/e3901.html">[Japan-Guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li class="sun"><strong>Gion district at dusk</strong> — traditional machiya houses, geisha district. Strict photo etiquette enforced. After-sunset evening visit perfect on every dimension. <a class="src" href="https://www.theenvironmentalblog.org/2025/08/what-to-do-in-kyoto/">[Environmental Blog]</a></li>
       </ul>
     </div>
@@ -1025,16 +958,16 @@
     <div class="card">
       <h3>Plus, in any free time</h3>
       <ul>
-        <li><strong>Kinkaku-ji (Golden Pavilion)</strong> — small but stunning. 9am opening is the latest acceptable visit time in summer for UV. ~20-min photo stop.</li>
+        <li><strong>Kinkaku-ji (Golden Pavilion)</strong> — small but stunning. 9am opening is the latest acceptable visit time in summer for UV. ~20-min photo stop. <a class="src" href="https://www.gltjp.com/en/article/item/20372/">[GLT Kyoto]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Nishiki Market</strong> — covered food market, ~5 blocks. Indoor/covered — midday-friendly. Excellent for kosher-style: lots of tamagoyaki, tea, mochi, sweets, pickles, soy products, tempura. Avoid the obvious shellfish/eel stalls. <a class="src" href="https://awanderingturtle.com/kyoto-in-a-day-fushimi-inari-markets-gems/">[Wandering Turtle]</a></li>
-        <li><strong>Nintendo Museum (Uji)</strong> — opened October 2024, ~30 min south of Kyoto. Lottery reservation required. Jack would probably love this. <span class="unverified">(verify lottery timing and ticket process closer to date)</span></li>
+        <li><strong>Nintendo Museum (Uji)</strong> — opened October 2, 2024, ~30 min south of Kyoto (near Ogura Station). Lottery reservation only: enter up to ~3 months ahead, one entry per person per month; closed Tuesdays. ¥3,300 adult / ¥2,200 ages 12–17 / ¥1,100 ages 6–11. Your son would probably love this. <a class="src" href="https://www.japan-guide.com/e/e3982.html">[Japan-Guide]</a> <a class="src" href="https://museum.nintendo.com/en/index.html">[Nintendo official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
     </div>
 
     <div class="card">
       <h3>What dropped from earlier plans</h3>
       <ul>
-        <li><strong>Saiho-ji moss temple</strong> — dropped. Reservation-only, ~45 min each way from Osaka adds significant time to a day-trip.</li>
+        <li><strong>Saiho-ji moss temple</strong> — dropped. Reservation-only via the official Saihoji portal, ~45 min each way from Osaka adds significant time to a day-trip. <strong>And the constraint just got tighter:</strong> the online reservation system caps each booking at <strong>2 visitors</strong> (children under 13 not admitted; ¥4,000 + ¥110 booking fee per person; open ~2 months out). For a family of 5 you'd need three separate reservations at identical times — impractical. <a class="src" href="https://saihoji-kokedera.com/en/">[Saiho-ji official]</a> <a class="src" href="https://intosaihoji.com/en/booking/nichinichi">[booking portal]</a> <a class="src" href="https://www.japan-guide.com/e/e3937.html">[Japan-Guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Dawn temple visits</strong> — dropped. The family won&apos;t do 6am starts. Plan for 8–9am arrivals.</li>
         <li><strong>Second-tier temples</strong> (Ginkaku-ji, Philosopher&apos;s Path, Ryoan-ji) — dropped. Temple-fatigue concern argues for the iconic three plus food/atmosphere, not deep temple hopping.</li>
         <li><strong>Shojin ryori at Tenryū-ji (Shigetsu)</strong> — dropped. Family has no vegetarian interest.</li>
@@ -1048,7 +981,7 @@
 
     <div class="card">
       <h3>The day-flip — why Miyajima Day 1 evening, Peace Park Day 2 morning</h3>
-      <p>The Peace Memorial Museum deserves a full ~4 hours, properly paced. Miyajima at sunset/evening (illuminated torii after dark) is the iconic island experience and is only available with an overnight stay in the area.</p>
+      <p>The Peace Memorial Museum (open ~7:30am–7pm Mar–Jul, ¥200 adult / ¥100 high-school / free under 15) plus the surrounding Peace Park and Atomic Bomb Dome deserve a properly paced ~4 hours together. Miyajima at sunset/evening (illuminated torii after dark) is the iconic island experience and is only available with an overnight stay in the area. <a class="src" href="http://hpmmuseum.jp/?lang=eng">[Museum official]</a> <a class="src" href="https://hiroshima.tours/peace-memorial-park.html">[Peace Park guide]</a></p>
       <p>By doing Miyajima evening Day 1 and Peace Park Day 2 morning, you get both anchor experiences without rushing either.</p>
     </div>
 
@@ -1064,8 +997,8 @@
         <tr><td>5:00 PM</td><td>Arrive Miyajima — Omotesando shopping street, feed the deer, Itsukushima Shrine approach</td></tr>
         <tr><td>6:30 PM</td><td>Dinner on Miyajima (restaurants stay open for overnight guests)</td></tr>
         <tr><td>7:20 PM</td><td>Sunset over the torii (mid-June Hiroshima)</td></tr>
-        <tr><td>7:30–9:30 PM</td><td>Illuminated torii (lit until 11pm). Optional 7:55 PM night cruise from Pier 3 (~30 min, ~¥1,600/person)</td></tr>
-        <tr><td>9:45 PM</td><td>Ferry back to Miyajimaguchi (last JR West ferry: 10:14 PM — hard deadline)</td></tr>
+        <tr><td>7:30–9:30 PM</td><td>Illuminated torii — shrine and torii lit nightly until 11:00 PM <a class="src" href="https://www.japan-guide.com/e/e3450.html">[Japan-Guide]</a>. Optional Miyajima Night Cruise from Pier 3 (~30 min; ¥1,600 adult / ¥800 child; departures from ~5:55 PM, book ≥2 hrs ahead) <a class="src" href="https://www.aqua-net-h.co.jp/en/sanpai/">[Aqua Net]</a></td></tr>
+        <tr><td>9:45 PM</td><td>Ferry back to Miyajimaguchi (last ferry off Miyajima ~10:14 PM — hard deadline; confirm the live timetable) <a class="src" href="https://japanuncharted.com/hiroshima/ferry">[ferry guide]</a> <a class="src" href="https://jr-miyajimaferry.co.jp/en/timetable/">[JR timetable]</a></td></tr>
         <tr><td>10:40 PM</td><td>Back at Hilton Hiroshima</td></tr>
       </table>
       <p class="note">Sources: <a class="src" href="https://japanuncharted.com/hiroshima/ferry">[Japan Uncharted ferry guide]</a> <a class="src" href="https://hiddenjapan-gems.com/miyajima-itsukushima-shrine-guide/">[Miyajima guide]</a> Check tide tables — floating-torii effect requires tide in.</p>
@@ -1087,7 +1020,7 @@
     <div class="card">
       <h3>Hotel — Hilton Hiroshima via Chase Travel portal</h3>
       <ul>
-        <li><strong>Hilton Hiroshima</strong> opened August 2022, 420 rooms, walking distance to Peace Memorial Park, 10 min from Hiroshima Station. <a class="src" href="https://www.hilton.com/en/hotels/hijhihi-hilton-hiroshima/">[Hilton official]</a></li>
+        <li><strong>Hilton Hiroshima</strong> opened September 2022 (Hilton's 600th hotel worldwide), 420 rooms, walking distance to the Atomic Bomb Dome and Peace Memorial Park, ~10 min from Hiroshima Station, with an indoor pool. <a class="src" href="https://www.hilton.com/en/hotels/hijshhi-hilton-hiroshima/">[Hilton official]</a> <a class="src" href="https://stories.hilton.com/apac/releases/hilton-hiroshima-debuts">[Hilton newsroom]</a></li>
         <li><strong>Why not Hyatt:</strong> there is no Hyatt in Hiroshima</li>
         <li><strong>Why not direct Hilton points:</strong> Hilton is not a UR transfer partner. MR transfers to Hilton at 1:2 but MR is reserved for flights.</li>
         <li><strong>Chase Travel portal at 1.5 cpp via CSR:</strong> book the Hilton Hiroshima at cash rate (~$150–250/room/night) using UR at 1.5 cpp redemption. ~25–50K UR for 1 night, 2 rooms. Clean, no transfer math.</li>
@@ -1099,8 +1032,8 @@
       <p>Miyajima signature regional foods are <strong>oysters (kaki)</strong> and <strong>anago (conger eel)</strong> — both on the family out list.</p>
       <ul>
         <li>Whole-family dinner: avoid oyster bars and anago specialists, choose tempura/wagyu/general restaurants</li>
-        <li>Jack and Benjamin (and Abigail) can stray on solo market visits — within the family-rule framework</li>
-        <li>Shaina and Isabelle pick from compatible items at any restaurant</li>
+        <li>Your son and you (and one daughter) can stray on solo market visits — within the family-rule framework</li>
+        <li>Your wife and other daughter pick from compatible items at any restaurant</li>
         <li>Hiroshima okonomiyaki next day: order beef/chicken/vegetable version</li>
       </ul>
     </div>
@@ -1123,11 +1056,11 @@
     <div class="card">
       <h3>Why Grand Hyatt Tokyo over a Hyatt Regency Tokyo final night</h3>
       <ul>
-        <li><strong>Famous indoor pool</strong> — rated "Best Pool" among Tokyo family hotels in a 2026 family-hotels review</li>
-        <li><strong>Nagomi Spa</strong> — full-service spa, kid-friendly</li>
-        <li><strong>Kids&apos; club + larger rooms</strong> — comfortable for family of 5 in 2 rooms</li>
+        <li><strong>Indoor pool</strong> — the red-granite indoor lap pool (20m × 7m) at Nagomi Spa &amp; Fitness; children 4–15 may use it during set hours. <a class="src" href="https://www.hyatt.com/en-US/spas/Nagomi-Spa-and-Fitness/fitness">[Hyatt / Nagomi]</a> <span class="unverified">("Best Pool 2026 review" ranking unverified — pool is genuinely well-reviewed)</span></li>
+        <li><strong>Nagomi Spa</strong> — full-service spa</li>
+        <li><strong>Larger rooms</strong> — comfortable for family of 5 in 2 rooms <span class="unverified">(no dedicated "kids' club" at Grand Hyatt Tokyo confirmed; Hilton Odawara is the kids'-club property)</span></li>
         <li><strong>Roppongi location</strong> — restaurants, Mori Art Museum if open, easy access to most of Tokyo</li>
-        <li><strong>~30–40K UR per room per night</strong> (post-May 2026 Hyatt chart, likely Cat 7) <span class="unverified">(verify category live on Hyatt.com for June 2027)</span></li>
+        <li><strong>~30–40K UR per room per night</strong> (post-May 2026 Hyatt chart, likely Cat 7) <a class="src" href="https://www.hyatt.com/grand-hyatt/en-US/tyogh-grand-hyatt-tokyo">[check category on Hyatt]</a></li>
         <li><strong>2 rooms × 1 night: ~60–80K UR.</strong> Comfortable within UR cushion.</li>
       </ul>
     </div>
@@ -1144,15 +1077,15 @@
     </div>
 
     <div class="card">
-      <h3>The role this plays for Shaina&apos;s decompression</h3>
-      <p>With the decompression module reduced to 1 night between Tokyo and Osaka, Grand Hyatt Tokyo&apos;s pool and spa become the trip&apos;s second decompression touchpoint. Shaina can use the spa on arrival evening, pool the next morning.</p>
+      <h3>The role this plays for your wife&apos;s decompression</h3>
+      <p>With the decompression module reduced to 1 night between Tokyo and Osaka, Grand Hyatt Tokyo&apos;s pool and spa become the trip&apos;s second decompression touchpoint. Your wife can use the spa on arrival evening, pool the next morning.</p>
     </div>
   </section>
 
 <!-- FOOD -->
     <section id="food">
     <h2><span class="num">13</span>Food — Kosher-Style Framework + 4 Anchors</h2>
-    <p class="sub">Jack (14) is leading food research and picks. Whole family eats together at the four anchor experiences.</p>
+    <p class="sub">Your son (14) is leading food research and picks. Whole family eats together at the four anchor experiences.</p>
 
     <div class="card" style="background:#fbf5e9; border:1px solid var(--gold);">
       <h3>The family food rule (locked)</h3>
@@ -1163,10 +1096,10 @@
         <li><strong>No shellfish.</strong> No shrimp, crab, lobster, clams, mussels, oysters, scallops.</li>
         <li><strong>Beef, chicken, vegetables, eggs:</strong> all in.</li>
         <li><strong>Kitchen-level kashrut not required.</strong> Restaurants can serve pork to other diners; the family orders pork-free items. Eats at non-kosher restaurants ordering carefully.</li>
-        <li><strong>Pork-broth ramen:</strong> out for Shaina and Isabelle. Acceptable to eat at tonkotsu shops if their bowl is chicken/seafood broth without pork.</li>
-        <li><strong>Solo / partial-family eating:</strong> Jack, Benjamin, and Abigail can stray on solo market visits or shared smaller meals. Whole-family meals follow the rule.</li>
+        <li><strong>Pork-broth ramen:</strong> out for your wife and other daughter. Acceptable to eat at tonkotsu shops if their bowl is chicken/seafood broth without pork.</li>
+        <li><strong>Solo / partial-family eating:</strong> Your son, you, and one daughter can stray on solo market visits or shared smaller meals. Whole-family meals follow the rule.</li>
       </ul>
-      <p class="note">Shaina and Isabelle drive this; whole family follows when together. Documented to allow Hyatt concierge and byFood platform to communicate accurately with restaurants in advance.</p>
+      <p class="note">Your wife and other daughter drive this; whole family follows when together. Documented to allow Hyatt concierge and byFood platform to communicate accurately with restaurants in advance.</p>
     </div>
 
     <div class="card">
@@ -1174,10 +1107,10 @@
       <p>Family prefers multiplying mid-tier experiences over one transcendent meal. No Michelin-starred dinners — the family does not have Michelin-tier palates and would not appreciate that tier. Bang-for-buck framing throughout.</p>
       <table>
         <tr><th>Anchor</th><th>Where</th><th>~Family cost</th><th>What it delivers</th></tr>
-        <tr><td><strong>1. Lunch omakase</strong></td><td>Tokyo (mid-tier counter)</td><td>~$150–300</td><td>Benjamin&apos;s "always wanted to try omakase" wish, at lunch price (~¥4,400–8,800/person). Real chef-driven counter sushi experience, ~10 courses, kosher-style fish list communicated in advance.</td></tr>
+        <tr><td><strong>1. Lunch omakase</strong></td><td>Tokyo (mid-tier counter)</td><td>~$150–300</td><td>Your &quot;always wanted to try omakase&quot; wish, at lunch price (~¥4,400–8,800/person). Real chef-driven counter sushi experience, ~10 courses, kosher-style fish list communicated in advance.</td></tr>
         <tr><td><strong>2. Wagyu yakiniku</strong></td><td>Tokyo or Osaka</td><td>~$150–250</td><td>Premium wagyu, tableside grill, à la carte cuts, kid-engaging. Almost certainly the kids&apos; favorite night.</td></tr>
         <tr><td><strong>3. Wagyu teppanyaki</strong></td><td>Tokyo, Osaka, or Kobe (if day-trip)</td><td>~$200–300</td><td>Theatrical wagyu cooked in front of you, family-friendly pacing.</td></tr>
-        <tr><td><strong>4. Zauo Shinjuku</strong></td><td>Tokyo</td><td>~$150–200</td><td>Catch-your-fish family experience, taiko drums when you catch one, sea bream/flounder (kosher-style compatible — skip lobster). One hotel down from Hyatt Regency Tokyo.</td></tr>
+        <tr><td><strong>4. Zauo Shinjuku</strong></td><td>Tokyo</td><td>~$150–200</td><td>Catch-your-fish family experience, taiko drums when you catch one, sea bream/flounder (kosher-style compatible — skip shrimp/lobster). 1F Shinjuku Washington Hotel, ~10-min walk from Hyatt Regency Tokyo. Book via TableCheck. <a class="src" href="https://www.tablecheck.com/en/shops/zauo-shinjuku/reserve">[TableCheck]</a> <span class="tag ok">✓ verified Jun 2026</span></td></tr>
         <tr><td colspan="2"><strong>Total anchor budget</strong></td><td><strong>~$650–1,050</strong></td><td>4 real anchor experiences, spread across the trip</td></tr>
       </table>
     </div>
@@ -1188,41 +1121,41 @@
       <p>The booking pipeline for the family is:</p>
       <ol>
         <li><strong>Hyatt Regency Tokyo concierge starting ~6 months before trip</strong> — they speak Japanese, have relationships with restaurants, can negotiate dietary accommodations as part of booking conversations. This is the primary channel.</li>
-        <li><strong>omakase.in</strong> for mid-tier counter omakase — browse, filter by date, send dietary notes 7+ days ahead.</li>
-        <li><strong>byFood platform</strong> as backup — has explicit kosher/halal/vegetarian filters and custom private-chef experiences.</li>
+        <li><strong>omakase.in</strong> for mid-tier counter omakase — browse, filter by date, send dietary notes 7+ days ahead. <a class="src" href="https://omakase.in/en">[omakase.in]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>byFood platform</strong> as backup — dietary filters and custom private-chef experiences. <a class="src" href="https://www.byfood.com/">[byFood]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ol>
-      <p class="note">Named mid-tier candidates to research: <strong>Sushi Azabu (Azabudai Hills)</strong> — ¥4,400 lunch with uni and chutoro (skip uni). <strong>Sushi Arakawa (Hiroo)</strong> — ¥3,500 lunch nine-piece. <strong>Kin No Dining</strong> — explicitly kid-friendly omakase, ¥7,500. <strong>Concierge can find others when booking.</strong></p>
+      <p class="note">Named mid-tier candidates (verified Jun 2026): <strong>Sushi Azabu (Azabudai Hills Tower Plaza 3F)</strong> — ¥4,800 weekday-lunch "Karuku Omakase," ~14–15 pieces from Toyosu (dinner ¥9,800 / ¥15,000 adds uni — skip). Sister to one-Michelin-star Sushi Azabu in NYC/Miami. <a class="src" href="https://balconyby6th.com/en/sushiazabu/">[Sushi Azabu official]</a> <a class="src" href="https://www.tablecheck.com/en/shops/sushi-azabu/reserve-thank-you">[TableCheck reservations]</a> <a class="src" href="https://www.timeout.com/tokyo/restaurants/best-omakase-sushi-under-5-000-in-tokyo">[Time Out]</a> <span class="tag ok">✓ verified Jun 2026</span> <strong>Sushidan (Hiroo, Eat Play Works 1F)</strong> — chef Takehiro Arakawa; lunch "Shiro" course ¥3,500 (9 nigiri + 1 maki); "Kuro" ¥5,800 (12 nigiri + soup); ¥4,400 also runs at lunch with uni/chutoro (skip uni). Tokyo Weekender flagged a 2025 price edge toward ¥4,000/¥6,500. <em>V5's "Sushi Arakawa" was the chef's name, not the restaurant — it's Sushidan.</em> <a class="src" href="https://therestaurant-hiroo.com/en/shop/sushidan/">[Sushidan official]</a> <a class="src" href="https://www.tablecheck.com/en/sushidan">[TableCheck]</a> <span class="tag ok">✓ verified Jun 2026</span> <strong>Kin No Dining (Tsunakin, Ginza)</strong> — kid-friendly omakase; lunch ¥7,400–15,600 and counter seats OK for kids; dinner ¥7,500/9,500/10,000/15,000 with kids seated in private booths. 1 min from Higashi-Ginza Station. <a class="src" href="https://www.tablecheck.com/en/shops/tunakin/reserve">[TableCheck reservations]</a> <a class="src" href="https://jpneazy.com/restaurants/31237">[JpnEazy pricing]</a> <a class="src" href="https://www.thetokyochapter.com/kid-friendly-sushi-restaurants-with-omakase-courses/">[Tokyo Chapter — kids policy]</a> <span class="tag ok">✓ verified Jun 2026</span> <strong>Concierge can find others when booking.</strong></p>
     </div>
 
     <div class="card">
       <h3>Non-anchor dinners — 8 nights of casual eating</h3>
       <p>The trip has ~12 dinner slots total. 4 are anchors + Disney days (2) = 6. The remaining ~8 dinners are casual everyday eating:</p>
       <ul>
-        <li><strong>Ramen (4 nights):</strong> Family is comfortable with ramen and has practiced filtering for non-pork-broth at home. Tokyo non-tonkotsu options: <strong>Afuri</strong> (yuzu-shio, chicken+seafood broth), <strong>Ginza Kagari</strong> (chicken paitan), <strong>Konjiki Hototogisu</strong> (chicken-shio + clam, verify shellfish in their bowls), <strong>Tokyo Ramen Street</strong> multi-shop area. Order chicken broth or vegetable broth where mixed-broth shops serve tonkotsu to others.</li>
-        <li><strong>Izakaya (2 nights):</strong> <strong>Omoide Yokocho (Shinjuku)</strong> for yakitori alley experience. Family orders chicken skewers, fish, vegetables, tamagoyaki, salads; others at the table can order pork yakitori. Family-style ordering naturally accommodates the rule.</li>
-        <li><strong>Hiroshima okonomiyaki (1):</strong> Hiroshima-style, order beef/chicken/vegetable version, skip pork toppings. Casual, regional, ~$50–80 family.</li>
-        <li><strong>Depachika dinner-in-room (1):</strong> Department store basement food halls (Isetan Shinjuku, Hankyu Umeda). Family browses, picks individually, eats at hotel. Low-decision-load night.</li>
+        <li><strong>Ramen (4 nights):</strong> Family is comfortable with ramen and has practiced filtering for non-pork-broth at home. Tokyo non-tonkotsu options: <strong>Afuri</strong> (yuzu-shio with chicken+seafood broth — chicken neck/back, ginger, kelp, niboshi sardines — pork-free; multiple Tokyo branches including Ebisu, Naka-Meguro, Shinjuku, Roppongi; watch the tsukemen variants, which add pork belly — order the regular yuzu-shio bowl) <a class="src" href="https://shop.afuri.com/en/">[Afuri official]</a> <a class="src" href="https://www.5amramen.com/post/afuri-ramen-tokyo">[broth detail — 5amramen]</a> <span class="tag ok">✓ verified Jun 2026</span>, <strong>Ginza Kagari</strong> (rich 100% chicken tori-paitan, Michelin Bib Gourmand, pork-free — strong fit; branches in Ginza/Roppongi Hills/Otemachi) <a class="src" href="https://tripmate.news/posts/ginza-kagari-chicken-paitan-ramen-guide/">[guide]</a>, <strong>Tokyo Ramen Street</strong> (B1F of First Avenue Tokyo Station, 8 ramen shops, multiple styles — open ~10:30am–11pm). <a class="src" href="https://www.gotokyo.org/en/spot/660/index.html">[Go Tokyo — First Avenue]</a> <a class="src" href="https://www.gltjp.com/en/directory/item/tokyo-ramenstreet/">[Good Luck Trip]</a> <span class="tag ok">✓ verified Jun 2026</span> <span class="tag warn">⚠</span> <strong>Drop Konjiki Hototogisu for family meals</strong> — its signature broth is sea bream + hamaguri clams (confirmed shellfish), and the shoyu is a triple-broth that includes pork. Both rules fail. <a class="src" href="https://www.gltjp.com/en/article/item/11474/">[Good Luck Trip — Konjiki broth]</a> <a class="src" href="https://www.alohaepicure.com/posts/konjiki-hototogisu">[Aloha Epicure — pork in shoyu]</a> Order chicken or vegetable broth where mixed-broth shops serve tonkotsu to others. <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Izakaya (2 nights):</strong> <strong>Omoide Yokocho ("Memory Lane," Shinjuku)</strong> for yakitori alley experience — a smoky lantern-lit cluster of ~80 tiny stalls behind Shinjuku Station's west exit. Family orders chicken skewers, fish, vegetables, tamagoyaki, salads; others at the table can order pork yakitori. Family-style ordering naturally accommodates the rule. Most stalls open from 5pm. <a class="src" href="https://www.gotokyo.org/en/spot/63/index.html">[Go Tokyo — Omoide Yokocho]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Hiroshima okonomiyaki (1):</strong> Hiroshima-style is layered (not mixed-batter like Osaka): pancake, cabbage, noodles, sauce, egg — order beef/chicken/vegetable version, skip pork toppings. <strong>Okonomimura</strong> is the famous destination: a multi-story "okonomiyaki village" in Hiroshima's Naka-ku Shintenchi district with 20+ stalls. Casual, regional, ~$50–80 family. <a class="src" href="https://www.okonomimura.jp/">[Okonomimura official]</a> <a class="src" href="https://dive-hiroshima.com/en/explore/377/">[Dive Hiroshima — official Hiroshima tourism]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Depachika dinner-in-room (1):</strong> Department store basement food halls (<strong>Isetan Shinjuku</strong> and <strong>Hankyu Umeda</strong> are widely considered the two best in Japan). Family browses, picks individually, eats at hotel. Low-decision-load night. <a class="src" href="https://www.mistore.jp/store/shinjuku.html">[Isetan Shinjuku official]</a> <a class="src" href="https://www.hankyu-dept.co.jp/honten/h/global/en/">[Hankyu Umeda official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
-      <p class="note"><strong>Solo / partial-family options:</strong> Ichiran (tonkotsu booth experience) is solo-stop for Benjamin and Jack. Pure tonkotsu specialists open up for them. Tokyo Ramen Street + Tsukiji Outer Market are great solo stops for Benjamin and Jack to try octopus/eel/uni outside the family-together framework.</p>
+      <p class="note"><strong>Solo / partial-family options:</strong> <strong>Ichiran</strong> (tonkotsu booth experience, multiple Tokyo locations including Shibuya 24h) is solo-stop for you and your son. <a class="src" href="https://en.ichiran.com/shop/area-tokyo.html">[Ichiran official — Tokyo locations]</a> <span class="tag ok">✓ verified Jun 2026</span> Pure tonkotsu specialists open up for them. Tokyo Ramen Street + Tsukiji Outer Market are great solo stops for you and your son to try octopus/eel/uni outside the family-together framework.</p>
     </div>
 
     <div class="card">
       <h3>Markets and konbini culture</h3>
       <h4>Tokyo markets</h4>
       <ul>
-        <li><strong>Tsukiji Outer Market</strong> — 300+ stalls. Curated stops: tuna/salmon bowls, tamagoyaki specialists, kombu, knives, ceramics. Skip obvious shellfish/eel stalls. Best before 9am for lower UV and lively atmosphere.</li>
-        <li><strong>Toyosu Fish Market tuna auction</strong> — observation only (5:30am viewing). Sushi vendors on site for breakfast. Pair with Tsukiji Outer in same morning.</li>
+        <li><strong>Tsukiji Outer Market</strong> — ~300 food stalls remain after the wholesale market moved to Toyosu in 2018. Curated stops: tuna/salmon bowls, tamagoyaki specialists, kombu, knives, ceramics. Skip obvious shellfish/eel stalls. Best before 9am for lower UV and lively atmosphere. <a class="src" href="https://www.tsukiji.or.jp/english/">[Tsukiji Outer Market official]</a> <a class="src" href="https://www.japan.travel/en/spot/1707/">[JNTO]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Toyosu Fish Market tuna auction</strong> — observation only. Free 2F observation passage (no reservation) lets you watch the ~5:30–6:30am tuna auction through windows; a lower-floor Tuna Auction Observation Deck is by lottery (120/day). Sushi vendors on site for breakfast. Pair with Tsukiji Outer in same morning. Closed Sundays, holidays, occasional Wednesdays. Access: Yurikamome Line to Shijo-mae Station. <a class="src" href="https://www.japan-guide.com/e/e3013_market.html">[Japan-Guide]</a> <a class="src" href="https://matcha-jp.com/en/24577">[MATCHA]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
       <h4>Osaka and Kyoto markets</h4>
       <ul>
-        <li><strong>Kuromon Ichiba Market (Osaka)</strong> — partial fit. Lots of grilled scallops/oysters/octopus (out for family), but also tuna bowls, wagyu skewers, fruit. Family-together: filter carefully.</li>
-        <li><strong>Nishiki Market (Kyoto)</strong> — covered, ~5 blocks. Tamagoyaki, mochi, tea, pickles, soy products, tempura. Strong fit for kosher-style.</li>
+        <li><strong>Kuromon Ichiba Market (Osaka)</strong> — 580m covered alley, ~150–170 shops, "Osaka's Kitchen." Partial fit: lots of grilled scallops/oysters/octopus (out for family), but also tuna bowls, wagyu skewers, fruit. Family-together: filter carefully. ~10 min walk from Namba; 5 min from Nipponbashi Station. <a class="src" href="https://kuromon.com/en/">[Kuromon Market official]</a> <a class="src" href="https://www.japan.travel/en/spot/1103/">[JNTO]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Nishiki Market (Kyoto)</strong> — covered 390m arcade with ~130 specialty shops, "Kyoto's Kitchen" (~400 years history). Tamagoyaki, mochi, tea, pickles, soy products, tempura. Strong fit for kosher-style. Most stalls open ~9am–6pm; many closed Wednesdays. Best 10–11am to avoid crowds. <a class="src" href="https://www.kyoto-nishiki.or.jp/">[Nishiki Market official (Japanese)]</a> <a class="src" href="https://www.gltjp.com/en/article/item/21360/">[Good Luck Trip — English guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
       <h4>Konbini (7-Eleven, Lawson, FamilyMart)</h4>
       <ul>
         <li><strong>Compatible:</strong> egg salad sandwich (famous), onigiri (tuna mayo, salmon, kelp, salted plum — verify no pork), karaage chicken, chicken katsu sando, melon pan, premium ice cream, mochi, onsen tamago</li>
         <li><strong>Out:</strong> any pork-filled item (pork katsu sando, nikuman pork buns), eel onigiri</li>
-        <li>Family activity: build recurring konbini tastings, ~¥500–1,000/person per stop</li>
+        <li>Family activity: build recurring konbini tastings, ~¥500–1,000/person per stop. <a class="src" href="https://tokyocheapo.com/food-and-drink/conbini-japan/">[Tokyo Cheapo — konbini guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
     </div>
 
@@ -1241,18 +1174,92 @@
 
   <!-- FLIGHTS -->
   <section id="flights">
-    <h2><span class="num">14</span>Flights — Watch-and-Act Strategy</h2>
-    <p class="sub">June 16 onward: watch ANA partner space across multiple search engines. Lock seats when availability becomes solid — balancing Virgin's lower cost vs. Aeroplan's earlier window.</p>
+    <h2><span class="num">14</span>Flights — Surcharge-Free Award Paths</h2>
+    <p class="sub">Three parallel surcharge-free paths on Amex MR — Singapore/KrisFlyer, ANA/LifeMiles, EVA/LifeMiles. The binding constraint is award space (two business seats on one flight), not points or surcharges.</p>
+
+    <div class="ok-box">
+      <strong>Surcharge-free breakthrough (verified Jun 2026):</strong> Live award-search pricing disproved the earlier "Virgin vs. Aeroplan" framing kept further down — <strong>both Virgin Atlantic AND Air Canada Aeroplan pass ANA's fuel surcharges</strong> (Aeroplan's live app showed large carrier/base-fare cash on ANA and Air Canada metal, not the "near-zero" the blogs still claim). The genuinely surcharge-free, MR-fundable paths onto the same metal are <strong>Avianca LifeMiles</strong> and <strong>Singapore KrisFlyer</strong>. Plan rebuilt below around three parallel surcharge-free options. <a class="src" href="https://princeoftravel.com/points-programs/avianca-lifemiles/">[LifeMiles no-surcharge policy]</a> <span class="tag ok">✓ verified Jun 2026</span>
+    </div>
+
+    <div class="card">
+      <h3>Three parallel surcharge-free paths (all on Amex MR)</h3>
+      <p>The binding constraint is award space — specifically <strong>two business seats on one flight</strong> (economy for the three kids is the easy part). Run all three in parallel and book whichever shows 2 business + 3 economy together first.</p>
+      <table>
+        <tr><th>&nbsp;</th><th>A. KrisFlyer → Singapore</th><th>B. LifeMiles → ANA</th><th>C. LifeMiles → EVA</th></tr>
+        <tr><td><strong>Route</strong></td><td>LAX–NRT nonstop</td><td>LAX–HND/NRT nonstop</td><td>LAX–TPE–Tokyo (1 stop)</td></tr>
+        <tr><td><strong>Surcharge</strong></td><td>None (~$6)</td><td>None (~$25–94)</td><td>None</td></tr>
+        <tr><td><strong>Biz miles/way</strong></td><td>114K</td><td>~85–90K</td><td>~80–90K</td></tr>
+        <tr><td><strong>Econ miles/way</strong></td><td>~42.5K</td><td>~55K</td><td>~55K</td></tr>
+        <tr><td><strong>All 5, one way</strong></td><td>~355K</td><td>~341K</td><td>~340K</td></tr>
+        <tr><td><strong>Biz seats released</strong></td><td>SQ-only; loads own space</td><td>1–2/flight (thinnest)</td><td>2–4/flight (best odds)</td></tr>
+        <tr><td><strong>MR transfer</strong></td><td>≤1 day (not instant)</td><td>Instant</td><td>Instant</td></tr>
+        <tr><td><strong>Tokyo airport</strong></td><td>Narita only</td><td>Haneda or Narita</td><td>either (via TPE)</td></tr>
+      </table>
+      <p class="note"><strong>EVA</strong> has the best business-seat odds but adds a Taipei stop; <strong>ANA</strong> is the cheapest nonstop but releases the fewest business seats; <strong>Singapore</strong> is the only way onto its own metal (partners are suspended), costs the most miles, but tends to load its own Saver space at open. Surcharge-free claims are high-confidence (multiple 2026 sources + each program's structural policy) but <strong>must be confirmed on a live price-summary before transferring</strong> — the lesson from the Aeroplan miss. <a class="src" href="https://awardtravelfinder.com/award-charts/lifemiles">[LifeMiles ANA ~85–90K]</a> <a class="src" href="https://thepointsguy.com/loyalty-programs/ultimate-guide-singapore-krisflyer/">[KrisFlyer 114K]</a> <a class="src" href="https://upgradedpoints.com/travel/airlines/best-ways-to-book-eva-air-business-class/">[EVA 2–4 seats]</a> <span class="tag ok">✓ verified Jun 2026</span></p>
+    </div>
+
+    <div class="card">
+      <h3>Release calendar — be logged in early</h3>
+      <p>Seats load on a rolling daily basis on Japan-clock time. <strong>JST = PDT + 16 hours</strong> (Japan has no daylight saving; Pacific is on PDT in June), so seats for a given date usually appear the <em>day before</em> in Pacific. Outbound is stable at June 5–7; <strong>the return date is not yet locked</strong> — the V5 trip is now 11–12 nights, so the return is likely ~June 16–17 rather than the old June 14–15 holdover, and locks at booking.</p>
+      <h4>EVA via LifeMiles — opens first (T-360)</h4>
+      <table>
+        <tr><th>Travel date</th><th>Loads (JST)</th><th>Be ready (PDT)</th></tr>
+        <tr><td>Outbound Jun 5, 2027</td><td>Wed Jun 10, 2026</td><td>~9:00a Tue Jun 9</td></tr>
+        <tr><td>Outbound Jun 6</td><td>Thu Jun 11</td><td>~9:00a Wed Jun 10</td></tr>
+        <tr><td>Outbound Jun 7</td><td>Fri Jun 12</td><td>~9:00a Thu Jun 11</td></tr>
+      </table>
+      <h4>ANA via LifeMiles + Singapore via KrisFlyer — T-355 (nonstop)</h4>
+      <table>
+        <tr><th>Travel date</th><th>Loads (JST)</th><th>Be ready (PDT)</th></tr>
+        <tr><td>Outbound Jun 5, 2027</td><td>Mon Jun 15, 2026</td><td>8:00a Sun Jun 14</td></tr>
+        <tr><td>Outbound Jun 6</td><td>Tue Jun 16</td><td>8:00a Mon Jun 15</td></tr>
+        <tr><td>Outbound Jun 7</td><td>Wed Jun 17</td><td>8:00a Tue Jun 16</td></tr>
+      </table>
+      <p class="note">ANA loads between midnight and ~9:00a JST (sources differ): midnight JST = 8:00a PDT the prior day; 9:00a JST = 5:00p PDT the prior day. Be ready by 8:00a PDT and keep checking through that afternoon. Returns open ~9–10 days after each return travel date — finalize once the return date locks. <a class="src" href="https://blog.awardfares.com/ultimate-guide-to-award-release-dates/">[release windows]</a> <a class="src" href="https://roame.travel/guides/book-ana-business-first-class-flights">[ANA 1–2 biz seats, 355-day]</a> <span class="tag ok">✓ verified Jun 2026</span></p>
+    </div>
+
+    <div class="card">
+      <h3>Combining your MR with your wife's</h3>
+      <p>Amex only transfers into an airline account matching the cardholder's name (your MR → your accounts; your wife's MR → her accounts). Three ways to cover all five seats:</p>
+      <ul>
+        <li class="fill"><strong>Split by direction (cleanest, all three programs):</strong> your account books the outbound for all 5; your wife's books the return for all 5. Each one-way (~340–355K) fits inside each MR balance, no pooling needed. Both KrisFlyer and LifeMiles let you ticket any named passengers. Bonus: lets you mix programs by direction (e.g., EVA outbound, ANA return).</li>
+        <li class="fill"><strong>LifeMiles family pooling (LifeMiles only):</strong> pool miles among up to six members into one account — a backup if a single balance falls short. <a class="src" href="https://awardwallet.com/airlines/avianca-lifemiles/family-pooling/">[LifeMiles pooling]</a></li>
+        <li><strong>KrisFlyer has no pooling</strong> — so the Singapore path relies on split-by-direction.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Booking-day mechanics</h3>
+      <ul>
+        <li class="fill"><strong>LifeMiles (instant transfer):</strong> see the seats → transfer the exact MR → book, in one sitting. No blind commitment — best for a scarce-seat scramble.</li>
+        <li class="warn"><strong>KrisFlyer (≤1 day, no seat holds):</strong> you can't hold a seat while points move, so you may have to <strong>pre-fund</strong> ~355K MR before release and trust SQ to load its own Saver space. Only pre-fund for the Singapore path, where own-metal space at open is fairly reliable.</li>
+        <li class="fill"><strong>Book ANA through LifeMiles, never ANA Mileage Club</strong> — sidesteps both the ~$386/person surcharge and ANA's slow 2–3 day transfer.</li>
+        <li><strong>Verify surcharge-free now with dummy bookings:</strong> on currently-bookable dates (~May 2027), price a LAX–Tokyo ANA award on LifeMiles and an SQ award on KrisFlyer to the payment screen and read the cash — converts "high confidence" into confirmed before your dates open.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Day-one hunt sequence</h3>
+      <ul>
+        <li><strong>~Jun 9–10 PDT (EVA opens):</strong> check LAX–TPE–Tokyo business via LifeMiles for the outbound — best business-seat odds, instant transfer, strongest surcharge-free shot if 2 biz + 3 econ land together.</li>
+        <li><strong>~Jun 14–16 PDT (ANA + SQ open):</strong> check both nonstops. ANA via LifeMiles for the cheapest nonstop; SQ via KrisFlyer if ANA shows only 1 business seat.</li>
+        <li><strong>Returns:</strong> repeat when each return date opens (T-360 EVA, T-355 ANA/SQ), once the return date is locked.</li>
+      </ul>
+    </div>
+
+    <div class="warn-box">
+      <strong>↓ Superseded approach — kept for reference (what changed):</strong> Everything below is the earlier Virgin-vs-Aeroplan "watch-and-act" plan. It was built on the premise that <strong>Aeroplan passes near-zero surcharges</strong> — which live Aeroplan app pricing in June 2026 disproved (Aeroplan added large carrier/base-fare cash on ANA and Air Canada metal). The surcharge-free MR paths are LifeMiles and KrisFlyer (above). Treat the cards below as historical context, not the current plan.
+    </div>
 
     <div class="card">
       <h3>Cabin and routing</h3>
       <ul>
         <li><strong>Cabin split:</strong> 2 adults business + 3 kids economy <span class="tag ok">✓</span></li>
-        <li><strong>Primary path:</strong> MR → Virgin Atlantic Flying Club → ANA partner award (best value). Fallback: MR/UR → Aeroplan → ANA (more points, earlier window). <span class="tag ok">✓</span></li>
+        <li><strong>Primary path:</strong> MR or UR → Virgin Atlantic Flying Club → ANA partner award (fewest points, but adds fuel surcharges). Fallback: MR/UR → Aeroplan → ANA (more points, ~no surcharges, earlier window). <span class="tag ok">✓</span></li>
         <li><strong>Departure target:</strong> Saturday June 5 or Sunday June 6, 2027. Land in Tokyo June 6 or 7. <span class="tag ok">✓</span></li>
         <li><strong>Return target:</strong> Monday June 14 or Tuesday June 15, 2027. <span class="tag ok">✓</span></li>
         <li><strong>Real constraint is award space, not points.</strong> 5 seats together — 2 business + 3 economy on same ANA flight — is the hard part. <span class="unverified">(general points-travel wisdom; specifically true for ANA premium award space)</span></li>
-        <li><strong>Inter-Japan travel:</strong> Tokyo → Kyoto via Shinkansen Nozomi from Tokyo Station, ~2h15m. Round trip Hikari reserved ~¥27,700. JR Pass NOT worth it for this trip. <a class="src" href="https://www.kkday.com/en/blog/96923/shinkansen-vs-jr-pass">[KKday]</a></li>
+        <li><strong>Inter-Japan travel (V5 routing):</strong> Tokyo → Odawara → Shin-Osaka → Hiroshima → Tokyo, all by Shinkansen, with Kyoto reached as day-trips from Osaka. <em>(The old "Tokyo↔Kyoto round trip ~¥27,700" line was leftover from the Kyoto-base plan — corrected.)</em> JR Pass still NOT worth it for this one-way progression. Per-leg fares now in the <a href="#logistics" style="color:var(--vermilion); font-weight:600; text-decoration:none;">Logistics → Trains</a> table (~¥233,000 total for 5 reserved seats across 4 legs, ~$1,550). <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
     </div>
 
@@ -1261,19 +1268,19 @@
       <p>Approximate cost for 5 RT seats (2 biz + 3 econ) US → Japan via ANA partner awards:</p>
       <table>
         <tr><th>Program</th><th>Window opens</th><th>Adult biz RT (each)</th><th>Kid econ RT (each)</th><th>5-seat total</th></tr>
-        <tr><td><strong>Virgin Atlantic</strong></td><td>July 11, 2026</td><td>~95K–100K</td><td>~45K–50K</td><td><strong>~325K–350K MR</strong></td></tr>
-        <tr><td><strong>Aeroplan</strong></td><td>June 16, 2026</td><td>~150K–170K (dynamic)</td><td>~70K–78K</td><td><strong>~510K–550K MR/UR</strong></td></tr>
-        <tr><td><strong>United MileagePlus</strong></td><td>July 4, 2026</td><td>variable (often higher)</td><td>variable</td><td><strong>~600K+ UR</strong></td></tr>
+        <tr><td><strong>Virgin Atlantic</strong></td><td>~July 10, 2026 (331-day window)</td><td>~105K (West US) / 120K (East)</td><td>~45K–50K <span class="unverified">(verify)</span></td><td><strong>~350K–370K + fuel surcharges</strong></td></tr>
+        <tr><td><strong>Aeroplan</strong></td><td>June 16, 2026 (ANA 355-day release)</td><td>~150K–170K (dynamic)</td><td>~70K–78K</td><td><strong>~510K–550K, minimal surcharges</strong></td></tr>
+        <tr><td><strong>United MileagePlus</strong></td><td>July 4, 2026 (337-day)</td><td>variable (often higher)</td><td>variable</td><td><strong>~600K+</strong></td></tr>
       </table>
-      <p class="note">Virgin saves ~185K–200K points vs. Aeroplan across all 5 seats. Both Aeroplan and United use dynamic pricing on Star Alliance partner-operated flights, including ANA. <a class="src" href="https://10xtravel.com/virgin-atlantic-flying-club-award-booking-instructions/">[10xTravel Virgin chart]</a> <a class="src" href="https://www.maxmilespoints.com/blog/aeroplan-award-chart-changes-2026">[Max Miles & Points Aeroplan 2026]</a> <a class="src" href="https://roame.travel/guides/book-ana-business-first-class-flights">[Roame]</a> <span class="unverified">(verify chart specifics live before booking)</span></p>
+      <p class="note"><strong>Corrected Jun 2026:</strong> Virgin business rose to ~105K RT (West US) / ~120K (East) after a May 2024 increase — and Virgin <strong>passes ANA's carrier fuel surcharges (~$200–400+ per ticket, varies by cabin/route/oil price), which Aeroplan does not.</strong> So "Virgin = best value" is now points-vs-cash: Virgin uses fewer points but adds real cash surcharges; Aeroplan costs more points with near-zero surcharges. Estimate the exact surcharge on ITA Matrix at booking. Both Aeroplan and United price ANA dynamically. <a class="src" href="https://thepointsguy.com/news/virgin-increases-ana-business-class-redemptions">[TPG Virgin/ANA pricing]</a> <a class="src" href="https://onemileatatime.com/guides/redeem-virgin-atlantic-points-ana/">[OMAAT surcharges]</a> <a class="src" href="https://blog.awardfares.com/ultimate-guide-to-award-release-dates/">[AwardFares windows]</a> <span class="tag ok">✓ verified Jun 2026</span></p>
     </div>
 
     <div class="card">
       <h3>Search engines to open this week</h3>
       <p>ANA releases partner space inconsistently across programs — having multiple search engines beats having one. Open these (all free, ~5 min each):</p>
       <ul>
-        <li><strong>Benjamin:</strong> United MileagePlus (best Star Alliance search engine), Singapore KrisFlyer, Avianca LifeMiles <span class="tag todo">○</span></li>
-        <li><strong>Shaina:</strong> Air Canada Aeroplan (still to do), Singapore KrisFlyer, Avianca LifeMiles <span class="tag todo">○</span></li>
+        <li><strong>You:</strong> United MileagePlus (best Star Alliance search engine), Singapore KrisFlyer, Avianca LifeMiles <span class="tag todo">○</span></li>
+        <li><strong>Your wife:</strong> Air Canada Aeroplan (still to do), Singapore KrisFlyer, Avianca LifeMiles <span class="tag todo">○</span></li>
         <li>Skip: Turkish Miles&amp;Smiles (booking experience genuinely painful), British Airways Avios (heavy JAL fuel surcharges kill the math), ANA Mileage Club direct (round-trip only, complications)</li>
       </ul>
       <p class="note">All accounts must use passport-exact name matches. <a class="src" href="https://awardtravelfinder.com/airlines/united">[Award Travel Finder partner overview]</a></p>
@@ -1312,7 +1319,7 @@
         <tr><td>Likely case (adults Aeroplan, kids Virgin)</td><td>~435K–470K combined</td></tr>
         <tr><td>Worst case (all-Aeroplan)</td><td>~510K–550K MR/UR</td></tr>
       </table>
-      <p class="note">These are award-cost estimates only. Your available points comfortably cover all three scenarios (figures in the private points file) — the question is purely how to optimize cost vs. certainty.</p>
+      <p class="note">Award-points estimates only — and the Virgin scenarios carry extra cash fuel surcharges (see cost-math note). Both MR and UR can fund Virgin <em>and</em> Aeroplan, so your combined balance comfortably covers all three (figures in the private points file). The real question is cost (points + surcharges) vs. certainty.</p>
     </div>
 
     <div class="card">
@@ -1322,7 +1329,7 @@
         <li>5 economy seats RT via Virgin Atlantic: ~225K–250K Virgin total (5 × ~45–50K each)</li>
         <li>Significantly cheaper than 2 biz + 3 econ</li>
         <li>Easier to find 5 economy seats together than mixed cabins</li>
-        <li>Trade-off: 10+ hour flight with three teenagers in economy. Doable but you and Shaina would be tired on arrival.</li>
+        <li>Trade-off: 10+ hour flight with three teenagers in economy. Doable but you and your wife would be tired on arrival.</li>
       </ul>
       <p class="note">Worth knowing as a backup. Decide at booking time based on what's available. <span class="unverified">(verify specific ANA economy availability when searching)</span></p>
     </div>
@@ -1330,11 +1337,12 @@
     <div class="card">
       <h3>Transfer mechanics — important</h3>
       <ul>
-        <li><strong>Amex MR → Virgin Atlantic transfer takes up to 48 hours</strong> (not instant as it used to be). Plan for this when timing transfers vs. award holds.</li>
-        <li><strong>Amex MR → Aeroplan</strong> transfer also can take 24+ hours.</li>
-        <li><strong>Chase UR → Aeroplan</strong> transfer is instant. Chase UR → Virgin Atlantic is NOT a partnership — UR can't transfer to Virgin.</li>
-        <li><strong>Only transfer AFTER confirming award availability.</strong> Transfers are irreversible.</li>
-        <li><strong>Household pool mechanics:</strong> Shaina transfers her MR → her Virgin Atlantic account → auto-pools to your Household Leader balance per Virgin T&amp;Cs. Test this pipeline with 1,000 MR before the booking sprint.</li>
+        <li><strong>Chase UR → Virgin Atlantic IS a 1:1 partner</strong> (corrected Jun 2026 — V5 wrongly said it wasn't). Your ~847K UR can <em>also</em> fund Virgin/ANA awards, not just MR. Virgin's own site confirms 1,000 UR = 1,000 Virgin points. <a class="src" href="https://flywith.virginatlantic.com/us/en/flying-club/earn-points/chase-ultimate-rewards.html">[Virgin/Chase official]</a></li>
+        <li><strong>Transfer times:</strong> Amex MR → Virgin and Chase UR → Virgin are both <em>usually instant</em> but can take up to 48 hours — plan for it when timing a transfer against a 48-hour award hold. <a class="src" href="https://www.pointscrowd.com/blog/virgin-atlantic-flying-club-transfer-partners-credit-cards-ratios-and-transfer-times/">[transfer times]</a></li>
+        <li><strong>Chase UR → Aeroplan</strong> is instant; <strong>Amex MR → Aeroplan</strong> can take 24+ hours.</li>
+        <li><strong>Watch for transfer bonuses:</strong> Chase→Virgin and Amex→Virgin run frequent bonuses (a 40% Chase→Virgin bonus ran Feb 2026). One landing before the booking sprint would cut the points cost materially — but never transfer speculatively, only after confirming space. <a class="src" href="https://onemileatatime.com/deals/chase-virgin-atlantic-transfer-bonus/">[bonus example]</a></li>
+        <li><strong>Only transfer AFTER confirming award availability.</strong> Transfers are irreversible. Virgin holds ANA space ~48 hours while you transfer.</li>
+        <li><strong>Household pool mechanics:</strong> Your wife transfers her points → her Virgin Atlantic account → auto-pools to your Household Leader balance per Virgin T&amp;Cs. Test this pipeline with 1,000 points before the booking sprint.</li>
       </ul>
     </div>
   </section>
@@ -1347,9 +1355,10 @@
     <div class="warn-box">
       <strong>Major corrections from prior versions:</strong>
       <ul>
-        <li><strong>Hyatt Regency Osaka closed in 2023</strong> — rebranded as Grand Prince Hotel Osaka Bay. Earlier plans referencing it as a Hyatt property were factually wrong.</li>
-        <li><strong>Hyatt House Osaka Umeda does not exist.</strong> Earlier conversation incorrectly referenced this property. Real Hyatt House properties in Japan are Tokyo Shibuya and Kanazawa only.</li>
-        <li><strong>No Hyatt in Hiroshima.</strong> Hilton Hiroshima via Chase Travel portal becomes the play.</li>
+        <li><strong>Hyatt Regency Osaka left the Hyatt system on July 1, 2023</strong> — rebranded Grand Prince Hotel Osaka Bay (Seibu Prince Hotels). It didn't close, it left Hyatt; referencing it as a current Hyatt property is wrong. <a class="src" href="https://loyaltylobby.com/2023/03/29/hyatt-regency-osaka-exits-hyatt-system-on-july-1-2023-to-become-grand-prince-hotel/">[LoyaltyLobby]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Park Hyatt Osaka does not exist</strong> (corrected Jun 2026). Park Hyatt in Japan is Kyoto + Tokyo only. Hyatt's sole Osaka property is the select-service Caption by Hyatt Namba; a Hyatt Centric Namba Osaka is only announced for ~2031. Any prior "Cat 8 Park Hyatt Osaka" reference was an error. <a class="src" href="https://newsroom.hyatt.com/082125-Hyatt-Centric-To-Debut-In-Osaka">[Hyatt newsroom]</a></li>
+        <li><strong>Hyatt House Osaka Umeda does not exist.</strong> Real Hyatt House properties in Japan are Tokyo Shibuya and Kanazawa only (per Hyatt's Japan directory). <a class="src" href="https://www.hyatt.com/promo/hotels-in-japan">[Hyatt Japan]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>No Hyatt in Hiroshima.</strong> Hilton Hiroshima via Chase Travel portal becomes the play. <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Hilton is NOT a UR transfer partner.</strong> Hilton transfers from Amex MR at 1:2 ratio. Earlier conversation conflated UR and MR partnership.</li>
         <li><strong>Hakone dropped entirely</strong> — family does not do communal naked bathing; real onsen was not the appeal.</li>
       </ul>
@@ -1359,37 +1368,37 @@
       <h3>The recommended hotel plan</h3>
       <table>
         <tr><th>Stay</th><th>Nights × rooms</th><th>Currency</th><th>Est. cost</th></tr>
-        <tr><td><strong>Hyatt Regency Tokyo</strong> (Nishi-Shinjuku)</td><td>5–6 nts × 2 rms</td><td>UR (Hyatt 1:1)</td><td>~170–204K UR (~17K/night/room, Cat 4)</td></tr>
+        <tr><td><strong>Hyatt Regency Tokyo</strong> (Nishi-Shinjuku)</td><td>5–6 nts × 2 rms</td><td>UR (Hyatt 1:1)</td><td>~170–204K UR (~17K/night/room, Cat 4) <a class="src" href="https://www.hyatt.com/hyatt-regency/en-US/tyoty-hyatt-regency-tokyo">[check category on Hyatt]</a></td></tr>
         <tr><td><strong>Hilton Odawara Resort & Spa</strong> (decompression)</td><td>1 nt × 1 suite (sleeps 6) OR 2 rms</td><td>MR via Hilton (1:2)</td><td>~30–50K MR (suite) or ~50–70K MR (2 rooms)</td></tr>
         <tr><td><strong>Osaka hotel</strong> (TBD)</td><td>3 nts × 2 rms (or 3 rms if Caption)</td><td>UR or MR (depending on property)</td><td>See Osaka options below</td></tr>
         <tr><td><strong>Hilton Hiroshima</strong></td><td>1 nt × 2 rms</td><td>UR via Chase Travel portal (1.5 cpp)</td><td>~25–50K UR</td></tr>
-        <tr><td><strong>Grand Hyatt Tokyo</strong> (Roppongi)</td><td>1 nt × 2 rms</td><td>UR (Hyatt 1:1)</td><td>~60–80K UR (~30–40K/room, Cat 7)</td></tr>
+        <tr><td><strong>Grand Hyatt Tokyo</strong> (Roppongi)</td><td>1 nt × 2 rms</td><td>UR (Hyatt 1:1)</td><td>~60–80K UR (~30–40K/room, Cat 7) <a class="src" href="https://www.hyatt.com/grand-hyatt/en-US/tyogh-grand-hyatt-tokyo">[check category on Hyatt]</a></td></tr>
       </table>
-      <p class="note">All UR/MR estimates illustrative; specific property categories and tier pricing need live verification on each loyalty program for June 2027 dates closer to booking. <span class="unverified">(verify Hyatt categories and tiers post-May 2026 chart; Hilton dynamic pricing varies)</span></p>
+      <p class="note">All UR/MR estimates illustrative. Check Hyatt categories live on each property's page — <a class="src" href="https://www.hyatt.com/hyatt-regency/en-US/tyoty-hyatt-regency-tokyo">[Hyatt Regency Tokyo]</a> <a class="src" href="https://www.hyatt.com/grand-hyatt/en-US/tyogh-grand-hyatt-tokyo">[Grand Hyatt Tokyo]</a>. Hilton has no fixed categories — points are dynamic, so check the property's own Hilton page (<a class="src" href="https://www.hilton.com/en/hotels/odwhihi-hilton-odawara-resort-and-spa/">[Odawara]</a> <a class="src" href="https://www.hilton.com/en/hotels/hijshhi-hilton-hiroshima/">[Hiroshima]</a>) for your dates. Verify closer to booking.</p>
     </div>
 
     <div class="card">
       <h3>Osaka hotel options compared (points-only, no cash)</h3>
       <table>
         <tr><th>Property</th><th>Brand / Currency</th><th>~UR or MR/night/room</th><th>Family-of-5 feasibility</th></tr>
-        <tr><td><strong>Caption by Hyatt Namba Osaka</strong> (opened June 2024)</td><td>Hyatt Cat 1 / UR 1:1</td><td>~3,000–9,000 UR</td><td>⚠ Rooms ~20m², sleep 2 max — would need <strong>3 rooms</strong> not 2. Central Namba near Dotonbori/Kuromon. Total: ~36K–108K UR for 3 nts × 3 rms.</td></tr>
-        <tr><td><strong>Park Hyatt Osaka</strong> (opened 2024)</td><td>Hyatt Cat 8 / UR 1:1</td><td>~35,000–75,000 UR</td><td>Premium rooms, 2 rooms workable, expensive. Total: ~210K–450K UR for 3 nts × 2 rms.</td></tr>
+        <tr><td><strong>Caption by Hyatt Namba Osaka</strong> (opened June 12, 2024)</td><td>Hyatt <strong>Cat 2</strong> / UR 1:1 (was Cat 1; re-verify post-May 2026)</td><td>~5,000–9,000 UR</td><td>⚠ Select-service, 167 rooms ~20–30m², sleep 2 — would need <strong>3 rooms</strong> not 2. Central Namba near Dotonbori/Kuromon. Total: ~45K–108K UR for 3 nts × 3 rms.</td></tr>
+        <tr><td><strong>Park Hyatt Osaka</strong> — <strong>does not exist</strong></td><td>—</td><td>—</td><td>⚠ No Park Hyatt in Osaka (corrected Jun 2026). Hyatt's only Osaka property is Caption above; Hyatt Centric Namba Osaka not until ~2031.</td></tr>
         <tr><td><strong>Canopy by Hilton Osaka Umeda</strong> (opened Sept 2024)</td><td>Hilton / MR 1:2</td><td>~25,000–40,000 MR equiv</td><td>Standard 2 rooms, central Umeda. Total: ~150K–240K MR for 3 nts × 2 rms.</td></tr>
         <tr><td><strong>Conrad Osaka</strong></td><td>Hilton / MR 1:2</td><td>~40,000–60,000 MR equiv</td><td>Hilton luxury tier, standard 2 rooms. Total: ~240K–360K MR for 3 nts × 2 rms.</td></tr>
       </table>
-      <p class="note"><strong>Pending decision.</strong> Caption is cheapest on points but requires 3 rooms; Canopy is best mid-tier value via MR but uses MR cushion that&apos;s reserved for flights; Park Hyatt is premium but expensive. Verify all categories live before booking.</p>
+      <p class="note"><strong>Pending decision.</strong> With no Park Hyatt Osaka in existence, the real points choice is Caption (cheapest on UR but needs 3 small rooms) vs. Canopy / Conrad (better rooms via MR 1:2, but MR is largely reserved for flights). Verify all categories live before booking.</p>
     </div>
 
     <div class="card">
       <h3>Why Hyatt Regency Tokyo over Park Hyatt Tokyo</h3>
-      <p>(unchanged from V4 logic) Park Hyatt Tokyo&apos;s post-May 2026 chart pricing (~55–75K UR/night, Cat 8) made the Park Hyatt at both ends plan too expensive. Hyatt Regency Tokyo is in the same Nishi-Shinjuku neighborhood, 5–10 min walk apart, recently renovated, family-friendly. The teenagers won&apos;t notice the room-quality difference when they&apos;re sleeping and charging phones. <a class="src" href="https://hidden-gem-in-japan.com/park-hyatt-tokyo-vs-hyatt-regency-tokyo/">[Hidden Gem in Japan 2026]</a></p>
+      <p>(unchanged from V4 logic) Park Hyatt Tokyo&apos;s post-May 2026 chart pricing (~55–75K UR/night, Cat 8) <a class="src" href="https://www.hyatt.com/en-US/hotel/japan/park-hyatt-tokyo/tyoph">[check category on Hyatt]</a> made the Park Hyatt at both ends plan too expensive. Hyatt Regency Tokyo is in the same Nishi-Shinjuku neighborhood, 5–10 min walk apart, recently renovated, family-friendly. The teenagers won&apos;t notice the room-quality difference when they&apos;re sleeping and charging phones. <a class="src" href="https://hidden-gem-in-japan.com/park-hyatt-tokyo-vs-hyatt-regency-tokyo/">[Hidden Gem in Japan 2026]</a></p>
     </div>
 
     <div class="card">
       <h3>Why Grand Hyatt Tokyo for the final night</h3>
       <ul>
-        <li>Famous indoor pool — rated "Best Pool" among Tokyo family hotels in a 2026 review</li>
-        <li>Nagomi Spa, kids&apos; club, Roppongi neighborhood</li>
+        <li>Well-regarded red-granite indoor lap pool (20m × 7m) at Nagomi Spa &amp; Fitness <a class="src" href="https://www.hyatt.com/en-US/spas/Nagomi-Spa-and-Fitness/fitness">[Hyatt / Nagomi]</a> <span class="unverified">("Best Pool 2026" ranking unverified)</span></li>
+        <li>Nagomi Spa, Roppongi neighborhood <span class="unverified">(no dedicated kids' club confirmed)</span></li>
         <li>Two real decompression touchpoints in the trip: 1-night Hilton Odawara mid-trip + final night Grand Hyatt Tokyo at end</li>
         <li>~30–40K UR per room per night, ~60–80K UR total for 2 rooms × 1 night. Within UR cushion.</li>
       </ul>
@@ -1425,7 +1434,7 @@
         <tr><td>Hilton Odawara decompression (1 nt × 1 suite or 2 rms via MR 1:2)</td><td class="r">~30K–70K MR</td></tr>
         <tr><td><strong>Hotel subtotal (depends on Osaka choice)</strong></td><td class="r"><strong>~285K–340K UR + ~30K–310K MR</strong></td></tr>
       </table>
-      <p class="note">All Hyatt UR estimates based on post-May 2026 chart (Cat 4 properties). Verify live on Hyatt.com for June 2027 dates. Virgin Atlantic ANA partner chart pricing also needs live verification before booking. <a class="src" href="https://10xtravel.com/virgin-atlantic-flying-club-award-booking-instructions/">[10xTravel]</a> <a class="src" href="https://thepointsguy.com/news/hyatt-category-changes-2026/">[TPG Hyatt]</a></p>
+      <p class="note">All Hyatt UR estimates based on the post-May 2026 chart. Check each property's live category/points on its Hyatt page — <a class="src" href="https://www.hyatt.com/hyatt-regency/en-US/tyoty-hyatt-regency-tokyo">[Hyatt Regency Tokyo]</a> <a class="src" href="https://www.hyatt.com/grand-hyatt/en-US/tyogh-grand-hyatt-tokyo">[Grand Hyatt Tokyo]</a> — for June 2027 dates. Virgin Atlantic ANA partner chart pricing also needs live verification before booking. <a class="src" href="https://10xtravel.com/virgin-atlantic-flying-club-award-booking-instructions/">[10xTravel]</a> <a class="src" href="https://thepointsguy.com/news/hyatt-category-changes-2026/">[TPG Hyatt]</a></p>
     </div>
 
     <div class="card">
@@ -1565,7 +1574,7 @@
       <h4>Day 1 on landing</h4>
       <ul>
         <li>After immigration, pick up Router 1 at the Japan Wireless counter near baggage claim (~5–10 min)</li>
-        <li>Power on, connect Benjamin's iPhone first to verify it works, then Shaina's</li>
+        <li>Power on, connect your iPhone first to verify it works, then your wife's</li>
         <li>Kids' phones can hop on once you're in the train/taxi</li>
         <li>Total airport delay added: ~10 minutes</li>
         <li>Router 2 is waiting at Hyatt Regency Tokyo with bell desk or in your room</li>
@@ -1647,19 +1656,30 @@
       <h3>Currency &amp; payments</h3>
       <ul>
         <li><strong>Best yen access: 7-Eleven (Seven Bank) ATMs.</strong> ~25,000 nationwide, 24/7, ¥100,000 per transaction. Always select "charge in JPY" — decline DCC. <a class="src" href="https://www.ana.co.jp/en/us/japan-travel-planner/information/atm/">[ANA Travel Planner]</a> <a class="src" href="https://wise.com/au/blog/atms-in-japan">[Wise]</a></li>
-        <li><strong>No tipping.</strong> Not customary; can be confusing or considered rude.</li>
+        <li><strong>No tipping.</strong> Not customary; can be confusing or considered rude. <a class="src" href="https://www.japan.travel/en/plan/manners-etiquette/">[JNTO etiquette guide]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
         <li><strong>Declare ¥1,000,000+</strong> at customs if entering with that much cash. <a class="src" href="https://travel.state.gov/en/international-travel/travel-advisories/japan.html">[US State Dept]</a></li>
-        <li><strong>No-FX-fee credit card</strong> — use CSR or any premium card without foreign transaction fees. <span class="unverified">(verify specific card terms)</span></li>
+        <li><strong>No-FX-fee credit card</strong> — use Chase Sapphire Reserve or any premium travel card with no foreign transaction fees. <a class="src" href="https://www.chase.com/personal/credit-cards/sapphire-reserve">[CSR — Chase official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Trains</h3>
       <ul>
-        <li><strong>JR Pass NOT worth it</strong> for Tokyo–Kyoto round trip: Hikari round trip ~¥27,700 vs. 7-day pass ¥50,000. Pass nearly double. <a class="src" href="https://www.triptojapan.com/blog/is-japan-rail-pass-worth-it">[Trip to Japan]</a></li>
-        <li><strong>Nozomi (fastest) requires individual tickets</strong> — JR Pass doesn't cover Nozomi without surcharge. Buying individually saves 25–95 min on Tokyo–Kyoto. <a class="src" href="https://japantrain.net/guide/japan-rail-pass-worth">[Japan Train]</a></li>
-        <li>Buy individual Shinkansen tickets at station or via JR-EAST/SmartEX online. <a class="src" href="https://www.kkday.com/en/blog/96923/shinkansen-vs-jr-pass">[KKday]</a></li>
+        <li><strong>JR Pass NOT worth it</strong> for this trip. 2026 7-day nationwide pass is ¥50,000/adult, ¥25,000/child — for a family of 5 over 7 days that's ~¥225,000. The legs below total ~¥150,000 for 5 reserved seats; even the 5-day Kansai-Hiroshima pass (~¥17,000/adult) doesn't cover the Tokyo–Odawara or Hiroshima–Tokyo legs. Buy individual tickets. <a class="src" href="https://japantrain.net/guide/jr-pass-2026-worth">[Japan Train — 2026 JR Pass math]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
+        <li><strong>Nozomi (fastest) requires individual tickets</strong> — JR Pass doesn't cover Nozomi without surcharge. <a class="src" href="https://www.jrpass.com/blog/booking-a-nozomi-train-ticket-with-your-japan-rail-pass">[JRPass.com]</a></li>
+        <li>Buy individual Shinkansen tickets at station ticket machines or online via SmartEX (JR Central) / EX-IC / Klook. <a class="src" href="https://smart-ex.jp/en/">[SmartEX official]</a> <span class="tag ok">✓ verified Jun 2026</span></li>
       </ul>
+
+      <h4>Per-leg fares for the V5 routing (reserved Ordinary Car, one-way, adult)</h4>
+      <table>
+        <tr><th>Leg</th><th>Train type</th><th>Time</th><th>~Fare/adult</th><th>5 reserved seats (~)</th></tr>
+        <tr><td>Tokyo → Odawara</td><td>Hikari or Kodama (Nozomi doesn't stop in Odawara)</td><td>~30–35 min</td><td>~¥3,500</td><td>~¥17,500</td></tr>
+        <tr><td>Odawara → Shin-Osaka</td><td>Hikari (Nozomi doesn't stop Odawara)</td><td>~2h 30min</td><td>~¥13,330</td><td>~¥66,650</td></tr>
+        <tr><td>Shin-Osaka → Hiroshima</td><td>Nozomi (fastest, ~1h25m) or Sakura/Hikari (~1h35m)</td><td>~1h 25–35min</td><td>~¥10,420 Nozomi / ~¥10,100 Sakura</td><td>~¥52,000</td></tr>
+        <tr><td>Hiroshima → Tokyo</td><td>Nozomi direct</td><td>~4h</td><td>~¥19,440 reserved</td><td>~¥97,200</td></tr>
+        <tr><td><strong>Total 4 legs, 5 reserved</strong></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td><strong>~¥233,000 (~$1,550)</strong></td></tr>
+      </table>
+      <p class="note">Children 6–11 pay roughly half-fare; under 6 free if not occupying a reserved seat. Fares are 2026 reference figures from JRPass.com's published table and Klook live listings — verify on SmartEX a few weeks out. <a class="src" href="https://www.jrpass.com/blog/booking-a-nozomi-train-ticket-with-your-japan-rail-pass">[JRPass.com fare table]</a> <a class="src" href="https://www.klook.com/en-US/japan-rail/shinkansen/28-tokyo/24323-hiroshima/">[Klook live Tokyo→Hiroshima]</a> <a class="src" href="https://www.klook.com/en-US/japan-rail/shinkansen/28-tokyo/21906-odawara/">[Klook Tokyo→Odawara]</a> <span class="tag ok">✓ verified Jun 2026</span></p>
     </div>
 
     <div class="card">
@@ -1744,22 +1764,22 @@
     <div class="card">
       <h3>This week</h3>
       <ul>
-        <li class="fill">Open Shaina's Aeroplan account (member number TBD)</li>
-        <li class="fill">Open Benjamin's United MileagePlus account (best Star Alliance search engine for ANA partner space)</li>
-        <li class="fill">Open Benjamin's Singapore KrisFlyer account (backup search engine)</li>
-        <li class="fill">Open Benjamin's Avianca LifeMiles account (backup search engine)</li>
-        <li class="fill">Open Shaina's Singapore KrisFlyer account</li>
-        <li class="fill">Open Shaina's Avianca LifeMiles account</li>
+        <li class="fill">Open your wife's Aeroplan account (member number TBD)</li>
+        <li class="fill">Open your United MileagePlus account (best Star Alliance search engine for ANA partner space)</li>
+        <li class="fill">Open your Singapore KrisFlyer account (backup search engine)</li>
+        <li class="fill">Open your Avianca LifeMiles account (backup search engine)</li>
+        <li class="fill">Open your wife's Singapore KrisFlyer account</li>
+        <li class="fill">Open your wife's Avianca LifeMiles account</li>
         <li class="fill">Verify name-match on all loyalty accounts vs. passports (passport-exact)</li>
-        <li class="fill">Test transfer pipeline: 1,000 MR → Shaina's Virgin Atlantic → confirm household pooling works</li>
+        <li class="fill">Test transfer pipeline: 1,000 MR → your wife's Virgin Atlantic → confirm household pooling works</li>
         <li class="fill">Test transfer pipeline: 1,000 from each pool to Aeroplan to confirm both work</li>
       </ul>
 
       <h3>Cleared blockers (no longer pending)</h3>
       <ul>
         <li class="fill">✓ Dermatologist sign-off — not gating</li>
-        <li class="fill">✓ Third traveler — Jack (14, son)</li>
-        <li class="fill">✓ Shaina's calendar — off when kids are off</li>
+        <li class="fill">✓ Third traveler confirmed (14-year-old son)</li>
+        <li class="fill">✓ Your wife's calendar — off when kids are off</li>
         <li class="fill">✓ Tokyo lodging decision — Hyatt Regency Tokyo for main Tokyo nights + Grand Hyatt Tokyo for final night</li>
         <li class="fill">✓ Kyoto base decision — Kyoto now a day-trip target from Osaka, not a base</li>
         <li class="fill">✓ Hakone decision — dropped (family doesn't do communal onsen)</li>
@@ -1788,11 +1808,11 @@
 
       <h3>Verify before booking</h3>
       <ul>
-        <li class="fill"><strong>Hyatt Regency Tokyo current category and tier</strong> on Hyatt.com (post-May 2026 chart, Cat 4 expected, ~17K/room/night estimated for June 2027 — verify live)</li>
-        <li class="fill"><strong>Grand Hyatt Tokyo current category and tier</strong> on Hyatt.com (Cat 7 expected, ~30–40K/room/night)</li>
+        <li class="fill"><strong>Hyatt Regency Tokyo current category and tier</strong> (Cat 4 expected, ~17K/room/night est. June 2027 — verify live) <a class="src" href="https://www.hyatt.com/hyatt-regency/en-US/tyoty-hyatt-regency-tokyo">[check on Hyatt]</a></li>
+        <li class="fill"><strong>Grand Hyatt Tokyo current category and tier</strong> (Cat 7 expected, ~30–40K/room/night) <a class="src" href="https://www.hyatt.com/grand-hyatt/en-US/tyogh-grand-hyatt-tokyo">[check on Hyatt]</a></li>
         <li class="fill"><strong>Hilton Odawara cash rate and points pricing</strong> for June 2027 — verify Japanese Western Premium Suite availability</li>
-        <li class="fill"><strong>Caption by Hyatt Namba Osaka</strong> category (Cat 1, ~3–9K UR estimated)</li>
-        <li class="fill"><strong>Park Hyatt Osaka</strong> category and tier for comparison (Cat 8 expected)</li>
+        <li class="fill"><strong>Caption by Hyatt Namba Osaka</strong> category (now Cat 2, ~5–9K UR est. — re-verify post-May 2026 chart)</li>
+        <li class="fill"><s><strong>Park Hyatt Osaka</strong> category</s> — <strong>removed: there is no Park Hyatt Osaka</strong> (corrected Jun 2026)</li>
         <li class="fill"><strong>Canopy by Hilton Osaka Umeda</strong> and <strong>Conrad Osaka</strong> points pricing for MR-via-Hilton calculation</li>
         <li class="fill"><strong>Hilton Hiroshima Chase Travel portal rate</strong> for the actual dates (~25–50K UR estimated)</li>
         <li class="fill">Virgin Atlantic ANA partner award chart pricing for US-Japan business + economy</li>
@@ -1808,10 +1828,10 @@
         <li class="fill"><strong>Specific decompression hotel</strong> — Hilton Odawara leading, other resort options on Tokyo-Osaka route still in play.</li>
         <li class="fill"><strong>Hilton Odawara room configuration</strong> — 1 family suite (sleeps 6, family in one room) vs. 2 standard rooms.</li>
         <li class="fill"><strong>Kobe day-trip</strong> — yes/no, would replace or supplement Tokyo teppanyaki anchor.</li>
-        <li class="fill"><strong>Nintendo Museum Uji</strong> — yes/no for Jack on a Kyoto day-trip.</li>
+        <li class="fill"><strong>Nintendo Museum Uji</strong> — yes/no for your son on a Kyoto day-trip.</li>
         <li class="fill"><strong>Specific restaurant picks for the 4 anchor experiences</strong> — Hyatt Regency Tokyo concierge research starting ~6 months out.</li>
-        <li class="fill">Each kid picks one Tokyo thing to anchor a day around (Abigail, Isabelle, Jack — already collecting interests)</li>
-        <li class="fill">Browse UNIQLO UV-cut collection online with Abigail before the trip</li>
+        <li class="fill">Each kid picks one Tokyo thing to anchor a day around (all three kids — already collecting interests)</li>
+        <li class="fill">Browse UNIQLO UV-cut collection online with your daughter before the trip</li>
       </ul>
     </div>
 
@@ -1821,9 +1841,37 @@
   </section>
 
   <footer>
-    Japan 2027 Family Trip Hub V5 · last edited 2026-06-02 10:20p · living document · every fact links to source or is marked (unverified) · shared (sanitized) build · financials in private file
+    Japan 2027 Family Trip Hub V6 · last edited 2026-06-03 5:42p · living document · every fact links to source or is marked (unverified) · shared (sanitized) build · financials in private file
   </footer>
 
 </div>
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.railnav a'));
+  if(!links.length || !('IntersectionObserver' in window)) return;
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var sections = Object.keys(map)
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+  if(!sections.length) return;
+  var active = null;
+  function setActive(a){
+    if(a === active) return;
+    if(active) active.classList.remove('active');
+    a.classList.add('active');
+    active = a;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var a = map[e.target.id];
+        if(a) setActive(a);
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  sections.forEach(function(s){ obs.observe(s); });
+})();
+</script>
 </body>
 </html>
