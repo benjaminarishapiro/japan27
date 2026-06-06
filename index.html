@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Japan 2027 — Family Trip Hub V6</title>
+<title>Japan 2027 — Family Trip Hub V7</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
@@ -116,40 +116,102 @@
     .hero h1{font-size:33px;} .legs{grid-template-columns:1fr;}
     .wrap{padding:0 14px;} h2{font-size:23px;}
   }
+
+  /* --- V7 visual additions --- */
+  .contents-toc{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 26px; box-shadow:0 14px 34px -30px rgba(60,40,20,.6); margin:18px 0 4px;}
+  .contents-kicker{font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:var(--vermilion); font-weight:600;}
+  .contents-title{font-family:"Fraunces",serif; font-size:24px; color:var(--indigo); margin:2px 0 0; font-weight:600;}
+  .contents-rule{height:2px; border:0; margin:12px 0 14px; background:linear-gradient(90deg,var(--vermilion) 0%,var(--vermilion) 16%,var(--line) 16%,var(--line) 100%);}
+  .contents-list{list-style:none; margin:0; padding:0; column-count:3; column-gap:34px;}
+  .contents-list li{padding:0; margin:0; break-inside:avoid;}
+  .contents-list li::before{display:none;}
+  .contents-list a{display:flex; align-items:baseline; gap:10px; text-decoration:none; color:var(--ink); padding:7px 0; border-bottom:1px dotted var(--line); transition:color .15s ease;}
+  .contents-list a:hover{color:var(--indigo);}
+  .contents-list a:hover .ct{border-bottom:1px solid var(--vermilion);}
+  .cn{color:var(--vermilion); font-weight:700; font-size:13px; min-width:22px; font-family:"Fraunces",serif;}
+  .ct{font-size:15px; font-weight:500;}
+  @media (max-width:900px){ .contents-list{column-count:2;} }
+  @media (max-width:560px){ .contents-list{column-count:1;} }
+  /* section heading icons */
+  .sec-ic{width:24px; height:24px; color:var(--indigo); vertical-align:-4px; margin-right:9px;}
+  /* figures (route map, timeline) */
+  .figure{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin:16px 0; box-shadow:0 14px 34px -30px rgba(60,40,20,.6);}
+  .figure h4{margin:0 0 8px; color:var(--indigo); font-size:16px;}
+  .figure svg{display:block;}
+  .figure .cap{font-size:12.5px; color:var(--soft); margin:10px 0 0; font-style:italic;}
+  /* nights timeline */
+  .timeline{margin:8px 0 2px;}
+  .tl-row{display:flex; align-items:center; gap:10px; margin:7px 0;}
+  .tl-label{flex:0 0 128px; font-size:13.5px; color:var(--ink); text-align:right;}
+  .tl-bar{height:22px; border-radius:5px; background:var(--indigo);}
+  .tl-n{font-size:12.5px; color:var(--soft);}
+  /* Disney callout inside the Tokyo leg */
+  .disney-callout{margin-top:9px; padding:8px 11px; background:#fbf5e9; border-left:3px solid var(--gold); border-radius:5px; font-size:13px; color:var(--ink); line-height:1.45;}
+  .disney-callout .star{color:var(--gold); font-weight:700;}
 </style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+ <symbol id="ic-overview" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 6 L13.6 12 L12 13.6 L10.4 12 Z" style="fill:currentColor;stroke:none"/><path d="M12 18 L10.4 12 L12 13.6 L13.6 12 Z" style="fill:currentColor;stroke:none" opacity="0.45"/></symbol>
+ <symbol id="ic-legs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18 Q 9 18 11 13 T 19 7"/><circle cx="5" cy="18" r="1.7" style="fill:currentColor;stroke:none"/><circle cx="19" cy="7" r="1.7" style="fill:currentColor;stroke:none"/></symbol>
+ <symbol id="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="7" y2="7"/><line x1="17" y1="17" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="7" y2="17"/><line x1="17" y1="7" x2="18.8" y2="5.2"/></symbol>
+ <symbol id="ic-safety" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><path d="M9 12 l2 2 l4 -4.5"/></symbol>
+ <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="14.5" rx="2"/><line x1="4" y1="9.5" x2="20" y2="9.5"/><line x1="8" y1="3" x2="8" y2="6.5"/><line x1="16" y1="3" x2="16" y2="6.5"/><path d="M12 12.5 V16 H14.5"/></symbol>
+ <symbol id="ic-disney" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 V12 H6 V9.5 H8 V12 H11 V8 L12 6.4 L13 8 V12 H16 V9.5 H18 V12 H20 V20 Z"/><path d="M10.4 20 V16.6 a1.6 1.6 0 0 1 3.2 0 V20"/><line x1="12" y1="6.4" x2="12" y2="3.2"/><path d="M12 3.4 L15 4.4 L12 5.4 Z" style="fill:currentColor;stroke:none"/></symbol>
+ <symbol id="ic-tokyo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 L7 20 M12 2.5 L17 20"/><line x1="6" y1="20" x2="18" y2="20"/><line x1="8.7" y1="14.5" x2="15.3" y2="14.5"/><line x1="9.9" y1="10" x2="14.1" y2="10"/><line x1="12" y1="2.5" x2="12" y2="1"/></symbol>
+ <symbol id="ic-decompress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20 C 6 16 6 8.5 12 4 C 18 8.5 18 16 12 20 Z"/><path d="M12 6.5 V18"/></symbol>
+ <symbol id="ic-osaka" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4.5" y1="20" x2="19.5" y2="20"/><path d="M6.5 20 V13 H17.5 V20"/><path d="M5.5 13 L7 10 H17 L18.5 13"/><path d="M8 10 V7 H16 V10"/><path d="M7 7 L8.6 5 H15.4 L17 7"/></symbol>
+ <symbol id="ic-kyoto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="8" x2="20" y2="8"/><line x1="5.5" y1="5.5" x2="18.5" y2="5.5"/><line x1="7.5" y1="8" x2="7.5" y2="20"/><line x1="16.5" y1="8" x2="16.5" y2="20"/><line x1="7.5" y1="12" x2="16.5" y2="12"/></symbol>
+ <symbol id="ic-hiroshima" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="20" x2="19" y2="20"/><rect x="8.5" y="11" width="7" height="9"/><path d="M8.5 11 a3.5 3.5 0 0 1 7 0"/><line x1="12" y1="7.5" x2="12" y2="4"/><line x1="10.3" y1="8.6" x2="10.3" y2="11"/><line x1="13.7" y1="8.6" x2="13.7" y2="11"/></symbol>
+ <symbol id="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 4.5 A 8.5 8.5 0 1 0 20 14.5 A 6.8 6.8 0 0 1 16.5 4.5 Z"/><path d="M6 5.4 l.5 1.2 1.2 .5 -1.2 .5 -.5 1.2 -.5 -1.2 -1.2 -.5 1.2 -.5 Z" style="fill:currentColor;stroke:none"/></symbol>
+ <symbol id="ic-food" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 a8 8 0 0 0 16 0 Z"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="13.5" y1="3" x2="20" y2="7.5"/><line x1="15" y1="2" x2="21.5" y2="6.5"/></symbol>
+ <symbol id="ic-flights" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 L2.5 10.5 L9 12.5 L11 19 L21 4 Z"/><path d="M9 12.5 L21 4"/></symbol>
+ <symbol id="ic-hotels" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 V8"/><path d="M3 13 H21 V18"/><path d="M21 13 V11.5 a1.6 1.6 0 0 0 -1.6 -1.6 H10 a1.6 1.6 0 0 0 -1.6 1.6 V13"/><circle cx="6.4" cy="11.4" r="1.3"/></symbol>
+ <symbol id="ic-points" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 8 L12 12 L15 8"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="9.5" y1="12.6" x2="14.5" y2="12.6"/><line x1="9.5" y1="14.6" x2="14.5" y2="14.6"/></symbol>
+ <symbol id="ic-train" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 H17 V16 a2 2 0 0 1 -2 2 H9 a2 2 0 0 1 -2 -2 Z"/><path d="M7 9 a8 4.5 0 0 1 10 0"/><circle cx="9.5" cy="13" r="1" style="fill:currentColor;stroke:none"/><circle cx="14.5" cy="13" r="1" style="fill:currentColor;stroke:none"/><line x1="9.5" y1="18" x2="7.5" y2="21"/><line x1="14.5" y1="18" x2="16.5" y2="21"/></symbol>
+ <symbol id="ic-suitcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="12" rx="2"/><path d="M9 8 V6 a1 1 0 0 1 1 -1 H14 a1 1 0 0 1 1 1 V8"/><line x1="9.5" y1="11" x2="9.5" y2="17"/><line x1="14.5" y1="11" x2="14.5" y2="17"/></symbol>
+ <symbol id="ic-todo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4 V3 a1 1 0 0 1 1 -1 H14 a1 1 0 0 1 1 1 V4"/><path d="M8.8 11 l2 2 l4 -4"/></symbol>
+</defs></svg>
+
+
 
 <header class="hero">
   <div class="wrap">
-    <div class="mark">Family Trip Hub &middot; Living Document <span class="v">V6</span> <span style="font-size:11px; letter-spacing:.18em; color:#d9cfc0; margin-left:4px;">last edited 2026-06-03 5:42p</span></div>
+    <div class="mark">Family Trip Hub &middot; Living Document <span class="v">V7</span> <span style="font-size:11px; letter-spacing:.18em; color:#d9cfc0; margin-left:4px;">last edited 2026-06-05 10:42p</span></div>
     <h1>Japan 2027 <span class="jp">&middot; 日本</span></h1>
     <p>Tokyo &rarr; 2 Disney days &rarr; 1-night decompression &rarr; Osaka (with Kyoto day-trips) &rarr; Hiroshima &rarr; 1 final Tokyo night. <strong>11–12 nights, departing ~June 5, 2027.</strong> Trip length locks at flight booking. Five of you (you, your wife, and the three kids). Built around verifiable sources: every fact is linked. Anything unsourced is marked <span class="unverified">(unverified)</span>.</p>
   </div>
 </header>
 
-<nav class="toc"><div class="wrap">
-  <a href="#overview">Overview</a>
-  <a href="#legs">The Legs</a>
-  <a href="#sun-safety">Sun Safety</a>
-  <a href="#safety">Safety</a>
-  <a href="#book-now">⚠️ Book Early</a>
-  <a href="#tokyo">Tokyo City</a>
-  <a href="#disney">Disney</a>
-  <a href="#decompression">Decompression</a>
-  <a href="#osaka">Osaka</a>
-  <a href="#kyoto">Kyoto Day-Trips</a>
-  <a href="#hiroshima">Hiroshima</a>
-  <a href="#tokyo-final">Tokyo Final</a>
-  <a href="#food">Food</a>
-  <a href="#flights">Flights</a>
-  <a href="#hotels">Hotels</a>
-  <a href="#points">Points</a>
-  <a href="#logistics">Logistics</a>
-  <a href="#departure">Departure</a>
-  <a href="#todo">To-Do</a>
-</div></nav>
+<div class="wrap">
+<nav class="contents-toc" aria-label="Table of contents">
+  <div class="contents-kicker">Japan 2027 &middot; 日本</div>
+  <div class="contents-title">Contents</div>
+  <hr class="contents-rule">
+  <ol class="contents-list">
+    <li><a href="#overview"><span class="cn">01</span><span class="ct">Overview</span></a></li>
+    <li><a href="#legs"><span class="cn">02</span><span class="ct">The Five Legs</span></a></li>
+    <li><a href="#sun-safety"><span class="cn">03</span><span class="ct">Sun Safety</span></a></li>
+    <li><a href="#safety"><span class="cn">04</span><span class="ct">Safety Tips</span></a></li>
+    <li><a href="#book-now"><span class="cn">05</span><span class="ct">Book Early</span></a></li>
+    <li><a href="#disney"><span class="cn">06</span><span class="ct">Tokyo Disney</span></a></li>
+    <li><a href="#tokyo"><span class="cn">07</span><span class="ct">Tokyo City</span></a></li>
+    <li><a href="#decompression"><span class="cn">08</span><span class="ct">Decompression</span></a></li>
+    <li><a href="#osaka"><span class="cn">09</span><span class="ct">Osaka</span></a></li>
+    <li><a href="#kyoto"><span class="cn">10</span><span class="ct">Kyoto Day-Trips</span></a></li>
+    <li><a href="#hiroshima"><span class="cn">11</span><span class="ct">Hiroshima + Miyajima</span></a></li>
+    <li><a href="#tokyo-final"><span class="cn">12</span><span class="ct">Tokyo Final Night</span></a></li>
+    <li><a href="#food"><span class="cn">13</span><span class="ct">Food</span></a></li>
+    <li><a href="#flights"><span class="cn">14</span><span class="ct">Flights</span></a></li>
+    <li><a href="#hotels"><span class="cn">15</span><span class="ct">Hotels</span></a></li>
+    <li><a href="#points"><span class="cn">16</span><span class="ct">Points &amp; Budget</span></a></li>
+    <li><a href="#logistics"><span class="cn">17</span><span class="ct">Logistics</span></a></li>
+    <li><a href="#departure"><span class="cn">18</span><span class="ct">Departure Day</span></a></li>
+    <li><a href="#todo"><span class="cn">19</span><span class="ct">To-Do &amp; Open Qs</span></a></li>
+  </ol>
+</nav>
+</div>
 
 <nav class="railnav" aria-label="Section navigation"><div class="inner"><ul>
   <li><a href="#overview"><span class="n">01</span>Overview</a></li>
@@ -176,7 +238,7 @@
 <div class="wrap">
 
   <div class="change-log">
-    <strong>What changed in V6 (June 3, 2026):</strong> <strong>Full-document citation audit and verification pass.</strong> Every external factual claim now carries an inline source link — the bar moved from "resolve unverified tags" to "every place, price, hour, or rule the page mentions is clickable." Specific additions: hero line rewritten to match the V5 trip structure (Tokyo → Disney → decompression → Osaka → Hiroshima → Tokyo, 11–12 nights, June 5 departure) — the old "Tokyo → Kyoto, June 5–14" stub was a holdover. Book-Early warn-box and calendar deadlines rebuilt around the LifeMiles/KrisFlyer/EVA strategy (the old Virgin/Aeroplan rows were stale). Sun-safety retail section: UNIQLO/Loft/Don Quijote/Isetan Shinjuku/Matsumoto Kiyoshi and Biore/Anessa/Allie sunscreens all now linked to brand or store-official sources. Iconic Tokyo sites cite their own official sites (senso-ji.jp, meijijingu.or.jp, Shinjuku Gyoen on env.go.jp) plus Go Tokyo. Food anchors strengthened with original sources: Sushi Azabu (balconyby6th + TableCheck + Time Out), Sushidan (official therestaurant-hiroo.com + TableCheck), Kin No Dining (TableCheck + JpnEazy pricing — unverified-price tag dropped). Ramen broth audit: Afuri yuzu-shio confirmed pork-free (with a warning that some tsukemen variants add pork belly); Konjiki Hototogisu reconfirmed double-out — clam shellfish in shio, pork in shoyu. Markets: Tsukiji Outer (tsukiji.or.jp), Toyosu (Japan-Guide + MATCHA), Kuromon (kuromon.com + JNTO), Nishiki (kyoto-nishiki.or.jp). Kobe: Kitano-cho and Nankinmachi added JNTO + Feel Kobe official-tourism sources. <strong>Saiho-ji finding:</strong> the online portal now caps reservations at <strong>2 visitors</strong> per booking — would require three separate reservations for a family of 5. Reinforces the existing "dropped" decision and added to the Kyoto card. <strong>Shinkansen per-leg fares</strong> for the V5 routing now in Logistics → Trains (Tokyo↔Odawara ~¥3,500, Odawara→Shin-Osaka ~¥13,330, Shin-Osaka→Hiroshima ~¥10,420 Nozomi, Hiroshima→Tokyo ~¥19,440 — ~¥233,000 for 5 reserved seats across 4 legs). Hilton Odawara card refreshed with Expedia 8.6/10 + 4.5-star rating, Kids' Club ages 4–12 (TernX), 25m indoor lap pool + The Manual review. No-tipping linked to JNTO etiquette. <strong>Mugiwara Store cleanup:</strong> caught and replaced fabricated URLs (had hand-rolled /store/harajuku/ paths) with verified Sunshine City + DiverCity Tokyo + One Piece Wiki sources. 11 of the 34 unverified spans resolved (down to 23); the rest are appropriate epistemic markers ("doctor's guidance supersedes," "verify award space," "verify before booking") that shouldn't be dissolved.<br><br><strong>What changed earlier in V6 (June 3, 2026):</strong> Flights section rebuilt around three surcharge-free Amex MR paths (Singapore/KrisFlyer, ANA/LifeMiles, EVA/LifeMiles) after live award pricing showed both Virgin Atlantic and Aeroplan pass ANA fuel surcharges; the old watch-and-act plan is demoted and annotated. Body and navigation text increased two steps for readability. Privacy pass: medical diagnosis and family first names removed in favor of roles (you, your wife, your kids), per the privacy firewall — the page is now genuinely sanitized.<br><br><strong>What changed in V5 (June 2, 2026):</strong> Major structural pivot — trip is now Tokyo + Decompression + Osaka + Hiroshima + Tokyo final (was Tokyo + Kyoto). Kyoto reframed from base stay to day-trip(s) from Osaka after temple-fatigue concern raised. USJ skipped hard (Universal Studios Hollywood was confirmed to have Super Nintendo World since Feb 2023, so the genuinely new content at USJ is just Donkey Kong Country + Yoshi&apos;s Adventure — not worth a full park day at ~$265 for 2 with Express Pass). Disney stays at 2 days locked. New 1-night decompression module added between Tokyo and Osaka, immediately after Disney days; Hilton Odawara Resort & Spa is the leading candidate (10 pools, Japanese Western Premium Suite sleeps 6, MR transferable 1:2) with Atami and other Tokyo-Osaka route options remaining open. Hakone evaluated and dropped (family doesn&apos;t do communal naked bathing; real onsen wasn&apos;t the appeal — decompression was). Final Tokyo night now at Grand Hyatt Tokyo (locked) — famous pool, Roppongi, family-friendly, ~30–40K UR. <strong>Major food rewrite:</strong> kosher-style framing threaded throughout — no pork in any family dish, fish must have fins and scales (out: eel/unagi/anago, squid/ika, octopus/tako, uni, monkfish, swordfish, marlin, catfish; in: tuna, salmon, yellowtail, sea bream, mackerel, sardine, bonito, flounder, scale-fish, beef, chicken, vegetables), restaurants can serve pork to others, no kitchen-level kashrut required. Four anchor experiences locked: 1 mid-tier lunch omakase + 1 yakiniku + 1 teppanyaki + Zauo Shinjuku (~$500–700 total, no Michelin tier — family prefers multiplying mid-tier experiences over one transcendent meal). OMAKASE platform reframed: mid-tier restaurants accommodate dietary needs with 7+ days notice; Hyatt concierge becomes primary booking channel; byFood as backup. <strong>Hotels major rewrite:</strong> Hyatt Regency Osaka closed in 2023 (now Grand Prince Hotel Osaka Bay) — corrected. Real Osaka Hyatt options are Caption by Hyatt Namba Osaka (Cat 1, small rooms, 3-room config), Park Hyatt Osaka (Cat 8, expensive), or Hilton properties via MR (Canopy Umeda, Conrad Osaka — 1:2 transfer). Hyatt House Osaka Umeda does not exist (was a memory error). Hilton Hiroshima booked via Chase Travel portal at 1.5 cpp (no Hyatt in Hiroshima, Hilton not a UR partner; MR-via-Hilton-Honors at 1:2 is the alternative). Hiroshima locked at 1 night, structured as Day 1 Miyajima evening (illuminated torii, ferry last ~10:14 PM) + Day 2 Peace Park morning + Shinkansen to Tokyo. Trip length flexibility: 11 or 12 nights documented as configurations; final length locks at flight booking. Added Decompression, Osaka, Hiroshima, and Tokyo Final sections.<br><br><strong>What changed in V4 (June 2, 2026):</strong> Pocket WiFi section corrected against direct correspondence from Japan Wireless customer support. Battery life updated from aggregator-sourced "20 hours" to realistic 6–8 hrs main + included spare ~10–14 hrs/day. Device count clarified: 8–10 max per router but JW recommends 2–3 for comfortable use. Same-day replacement softened to best-effort. Added model-assignment block: JW rotates among Macaroon 3 (USB-C), Pocket WiFi 802ZT (Micro USB), and Pocket WiFi 601HW/501HW (Micro USB) and won't pre-confirm which you get. Added USB-C to Micro USB cable purchase to booking strategy so the family's existing USB-C batteries work as supplementary runtime regardless of which model ships. Sources note now leads with JW direct correspondence as authoritative; aggregator figures for Sakura and Ninja marked as not directly verified.
+    <strong>What changed in V7 (June 5, 2026):</strong> <strong>Visual pass + flights re-rank.</strong> Replaced the horizontal nav bar with a proper Contents block (the sticky side-rail stays). Added SVG graphics in the page palette to cut the text-heaviness: a stylized route-map-over-Japan in the Overview, a nights-per-leg timeline in the Legs section, and a small icon beside every section heading. Disney is elevated to a clear callout inside the Tokyo leg (still five legs, not six). <strong>Flights section re-ranked around live award-scan findings.</strong> Empirical seats.aero scans this session found ANA nonstop business near-absent at the release frontier (zero across 119 Aeroplan route-days; one in 472 near-term via United, at 110K dynamic), so ANA-nonstop is demoted to an opportunistic long shot. New ranked priority: EVA (best biz availability, opens first) → Singapore (most reliable, only First) → ANA → United → Virgin, with an operating rule to take the first confirmed 2-premium rather than gamble on a higher-ranked path. The "three parallel paths" table is replaced by this ranked table. First class added as equally acceptable on the transpacific leg (Singapore First LAX–NRT 132.5K vs 114K business, +18.5K/seat). New "discover via Aeroplan/United → book on LifeMiles" card with the LifeMiles Smart Search carrier trick, Points Path / seats.aero-web cross-checks, and the note that ExpertFlyer lost Star Alliance award data in 2023. The release calendar is consolidated into a single be-ready table covering all four programs (EVA T-360, ANA/SQ T-355, United T-337, Virgin T-331) for the June 5–7 outbound and tentative returns. Surcharge correction threaded through: the earlier "Aeroplan passes ANA surcharges" reading was Air Canada metal, not ANA — Aeroplan books ANA surcharge-free; the superseded-plan note and the MR→Aeroplan transfer-time line (was wrongly "24+ hours") are corrected. Overview cabin-plan row and Points &amp; Budget MR-for-flights line updated off the old Virgin→ANA framing.<br><br><strong>What changed in V6 (June 3, 2026):</strong> <strong>Full-document citation audit and verification pass.</strong> Every external factual claim now carries an inline source link — the bar moved from "resolve unverified tags" to "every place, price, hour, or rule the page mentions is clickable." Specific additions: hero line rewritten to match the V5 trip structure (Tokyo → Disney → decompression → Osaka → Hiroshima → Tokyo, 11–12 nights, June 5 departure) — the old "Tokyo → Kyoto, June 5–14" stub was a holdover. Book-Early warn-box and calendar deadlines rebuilt around the LifeMiles/KrisFlyer/EVA strategy (the old Virgin/Aeroplan rows were stale). Sun-safety retail section: UNIQLO/Loft/Don Quijote/Isetan Shinjuku/Matsumoto Kiyoshi and Biore/Anessa/Allie sunscreens all now linked to brand or store-official sources. Iconic Tokyo sites cite their own official sites (senso-ji.jp, meijijingu.or.jp, Shinjuku Gyoen on env.go.jp) plus Go Tokyo. Food anchors strengthened with original sources: Sushi Azabu (balconyby6th + TableCheck + Time Out), Sushidan (official therestaurant-hiroo.com + TableCheck), Kin No Dining (TableCheck + JpnEazy pricing — unverified-price tag dropped). Ramen broth audit: Afuri yuzu-shio confirmed pork-free (with a warning that some tsukemen variants add pork belly); Konjiki Hototogisu reconfirmed double-out — clam shellfish in shio, pork in shoyu. Markets: Tsukiji Outer (tsukiji.or.jp), Toyosu (Japan-Guide + MATCHA), Kuromon (kuromon.com + JNTO), Nishiki (kyoto-nishiki.or.jp). Kobe: Kitano-cho and Nankinmachi added JNTO + Feel Kobe official-tourism sources. <strong>Saiho-ji finding:</strong> the online portal now caps reservations at <strong>2 visitors</strong> per booking — would require three separate reservations for a family of 5. Reinforces the existing "dropped" decision and added to the Kyoto card. <strong>Shinkansen per-leg fares</strong> for the V5 routing now in Logistics → Trains (Tokyo↔Odawara ~¥3,500, Odawara→Shin-Osaka ~¥13,330, Shin-Osaka→Hiroshima ~¥10,420 Nozomi, Hiroshima→Tokyo ~¥19,440 — ~¥233,000 for 5 reserved seats across 4 legs). Hilton Odawara card refreshed with Expedia 8.6/10 + 4.5-star rating, Kids' Club ages 4–12 (TernX), 25m indoor lap pool + The Manual review. No-tipping linked to JNTO etiquette. <strong>Mugiwara Store cleanup:</strong> caught and replaced fabricated URLs (had hand-rolled /store/harajuku/ paths) with verified Sunshine City + DiverCity Tokyo + One Piece Wiki sources. 11 of the 34 unverified spans resolved (down to 23); the rest are appropriate epistemic markers ("doctor's guidance supersedes," "verify award space," "verify before booking") that shouldn't be dissolved.<br><br><strong>What changed earlier in V6 (June 3, 2026):</strong> Flights section rebuilt around three surcharge-free Amex MR paths (Singapore/KrisFlyer, ANA/LifeMiles, EVA/LifeMiles) after live award pricing showed both Virgin Atlantic and Aeroplan pass ANA fuel surcharges; the old watch-and-act plan is demoted and annotated. Body and navigation text increased two steps for readability. Privacy pass: medical diagnosis and family first names removed in favor of roles (you, your wife, your kids), per the privacy firewall — the page is now genuinely sanitized.<br><br><strong>What changed in V5 (June 2, 2026):</strong> Major structural pivot — trip is now Tokyo + Decompression + Osaka + Hiroshima + Tokyo final (was Tokyo + Kyoto). Kyoto reframed from base stay to day-trip(s) from Osaka after temple-fatigue concern raised. USJ skipped hard (Universal Studios Hollywood was confirmed to have Super Nintendo World since Feb 2023, so the genuinely new content at USJ is just Donkey Kong Country + Yoshi&apos;s Adventure — not worth a full park day at ~$265 for 2 with Express Pass). Disney stays at 2 days locked. New 1-night decompression module added between Tokyo and Osaka, immediately after Disney days; Hilton Odawara Resort & Spa is the leading candidate (10 pools, Japanese Western Premium Suite sleeps 6, MR transferable 1:2) with Atami and other Tokyo-Osaka route options remaining open. Hakone evaluated and dropped (family doesn&apos;t do communal naked bathing; real onsen wasn&apos;t the appeal — decompression was). Final Tokyo night now at Grand Hyatt Tokyo (locked) — famous pool, Roppongi, family-friendly, ~30–40K UR. <strong>Major food rewrite:</strong> kosher-style framing threaded throughout — no pork in any family dish, fish must have fins and scales (out: eel/unagi/anago, squid/ika, octopus/tako, uni, monkfish, swordfish, marlin, catfish; in: tuna, salmon, yellowtail, sea bream, mackerel, sardine, bonito, flounder, scale-fish, beef, chicken, vegetables), restaurants can serve pork to others, no kitchen-level kashrut required. Four anchor experiences locked: 1 mid-tier lunch omakase + 1 yakiniku + 1 teppanyaki + Zauo Shinjuku (~$500–700 total, no Michelin tier — family prefers multiplying mid-tier experiences over one transcendent meal). OMAKASE platform reframed: mid-tier restaurants accommodate dietary needs with 7+ days notice; Hyatt concierge becomes primary booking channel; byFood as backup. <strong>Hotels major rewrite:</strong> Hyatt Regency Osaka closed in 2023 (now Grand Prince Hotel Osaka Bay) — corrected. Real Osaka Hyatt options are Caption by Hyatt Namba Osaka (Cat 1, small rooms, 3-room config), Park Hyatt Osaka (Cat 8, expensive), or Hilton properties via MR (Canopy Umeda, Conrad Osaka — 1:2 transfer). Hyatt House Osaka Umeda does not exist (was a memory error). Hilton Hiroshima booked via Chase Travel portal at 1.5 cpp (no Hyatt in Hiroshima, Hilton not a UR partner; MR-via-Hilton-Honors at 1:2 is the alternative). Hiroshima locked at 1 night, structured as Day 1 Miyajima evening (illuminated torii, ferry last ~10:14 PM) + Day 2 Peace Park morning + Shinkansen to Tokyo. Trip length flexibility: 11 or 12 nights documented as configurations; final length locks at flight booking. Added Decompression, Osaka, Hiroshima, and Tokyo Final sections.<br><br><strong>What changed in V4 (June 2, 2026):</strong> Pocket WiFi section corrected against direct correspondence from Japan Wireless customer support. Battery life updated from aggregator-sourced "20 hours" to realistic 6–8 hrs main + included spare ~10–14 hrs/day. Device count clarified: 8–10 max per router but JW recommends 2–3 for comfortable use. Same-day replacement softened to best-effort. Added model-assignment block: JW rotates among Macaroon 3 (USB-C), Pocket WiFi 802ZT (Micro USB), and Pocket WiFi 601HW/501HW (Micro USB) and won't pre-confirm which you get. Added USB-C to Micro USB cable purchase to booking strategy so the family's existing USB-C batteries work as supplementary runtime regardless of which model ships. Sources note now leads with JW direct correspondence as authoritative; aggregator figures for Sakura and Ninja marked as not directly verified.
     <br><br>
     <strong>What changed in V3 (June 2, 2026):</strong> Added Safety Tips section (heat illness statistics for June, earthquake and tsunami protocol with the JNTO Safety Tips app, Gion photo-fine enforcement, Kabukicho/Roppongi <em>bottakuri</em> scams and fake-monk patterns, train etiquette and chikan response, US drug law severity, emergency numbers + STEP enrollment, koban lost-and-found system, and a pre-trip checklist). Switched page access from encryption to a family password gate. Generalized one personal reference per the page's privacy convention.
     <br><br>
@@ -192,13 +254,48 @@
 
   <!-- OVERVIEW -->
   <section id="overview">
-    <h2><span class="num">01</span>Overview</h2>
+    <h2><svg class="sec-ic"><use href="#ic-overview"></use></svg><span class="num">01</span>Overview</h2>
+    <div class="figure">
+      <h4>The route across Japan</h4>
+      <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylized map of Japan with the trip route from Tokyo southwest to Hiroshima and back" style="width:100%; height:auto; font-family:'Fraunces',serif;">
+        <rect x="0" y="0" width="720" height="420" rx="14" fill="#eef1f5"/>
+        <path d="M600 92 C635 68 685 62 698 88 C706 106 686 118 648 116 C620 114 596 106 600 92 Z" fill="#f0e9da" stroke="#cbbda6" stroke-width="1.3"/>
+        <path d="M610 105 C575 120 545 140 515 168 C495 188 505 215 495 242 C488 256 470 254 445 256 C360 262 290 268 175 290 C140 296 118 300 108 305 C118 292 165 280 235 268 C340 250 430 232 500 200 C545 178 575 145 598 118 C603 112 607 107 610 105 Z" fill="#f0e9da" stroke="#cbbda6" stroke-width="1.3"/>
+        <path d="M240 314 C285 310 330 316 336 330 C340 340 300 344 258 341 C240 339 228 328 240 314 Z" fill="#f0e9da" stroke="#cbbda6" stroke-width="1.3"/>
+        <path d="M105 322 C82 322 64 345 76 374 C86 398 110 410 128 402 C146 394 148 368 142 346 C137 330 122 322 105 322 Z" fill="#f0e9da" stroke="#cbbda6" stroke-width="1.3"/>
+        <g opacity="0.5"><line x1="44" y1="64" x2="44" y2="94" stroke="#6c6457" stroke-width="1.4"/><polygon points="44,56 39,68 49,68" fill="#6c6457"/><text x="44" y="108" text-anchor="middle" font-size="11" fill="#6c6457" font-family="Spectral,serif">N</text></g>
+        <path d="M168 286 C 300 256 410 240 462 233" fill="none" stroke="#c1402c" stroke-width="2" stroke-dasharray="4 5" opacity="0.55"/>
+        <polygon points="470,232 458,227 461,239" fill="#c1402c" opacity="0.7"/>
+        <text x="372" y="214" text-anchor="middle" font-size="10.5" fill="#c1402c" font-family="Spectral,serif" font-style="italic" stroke="#fffdf8" stroke-width="3" stroke-linejoin="round" style="paint-order:stroke;">Shinkansen back &middot; final Tokyo night</text>
+        <path d="M470 235 L438 248 L282 272 L165 290" fill="none" stroke="#c1402c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="470" y1="235" x2="500" y2="246" stroke="#b07d2b" stroke-width="2.5"/>
+        <circle cx="470" cy="235" r="6.5" fill="#c1402c" stroke="#fffdf8" stroke-width="2.5"/>
+        <circle cx="500" cy="246" r="6" fill="#fffdf8" stroke="#b07d2b" stroke-width="3"/>
+        <circle cx="438" cy="248" r="6.5" fill="#c1402c" stroke="#fffdf8" stroke-width="2.5"/>
+        <circle cx="282" cy="272" r="6.5" fill="#c1402c" stroke="#fffdf8" stroke-width="2.5"/>
+        <circle cx="165" cy="290" r="6.5" fill="#c1402c" stroke="#fffdf8" stroke-width="2.5"/>
+        <line x1="440" y1="254" x2="456" y2="300" stroke="#6c6457" stroke-width="1" opacity="0.5"/>
+        <g font-size="14" font-weight="600" fill="#1f3a5f" stroke="#fffdf8" stroke-width="3.5" stroke-linejoin="round" style="paint-order:stroke;">
+          <text x="461" y="230" text-anchor="end">Tokyo</text>
+          <text x="512" y="250" text-anchor="start" fill="#b07d2b">Disney</text>
+          <text x="470" y="314" text-anchor="middle">Decompression (TBD)</text>
+          <text x="272" y="269" text-anchor="end">Osaka</text>
+          <text x="158" y="287" text-anchor="end">Hiroshima</text>
+        </g>
+        <g font-size="10.5" fill="#6c6457" font-family="Spectral,serif" stroke="#fffdf8" stroke-width="3" stroke-linejoin="round" style="paint-order:stroke;">
+          <text x="512" y="263" text-anchor="start" fill="#b07d2b">2 days &middot; within Tokyo</text>
+          <text x="272" y="283" text-anchor="end">+ Kyoto day-trips</text>
+          <text x="158" y="300" text-anchor="end">Miyajima</text>
+        </g>
+      </svg>
+      <p class="cap">Stylized and not to scale. Tokyo southwest to Hiroshima, then the Shinkansen back for the final night. Gold marks Disney &mdash; 2 days within the Tokyo stay, not a separate hotel.</p>
+    </div>
     <div class="card">
       <table>
         <tr><th>When</th><td><strong>11 or 12 nights in June 2027</strong> (~June 5–16 window). Final length locks at flight booking. <span class="tag ok">✓</span></td></tr>
         <tr><th>Who</th><td>5 travelers — you, your wife, and your three kids <span class="tag ok">✓</span></td></tr>
         <tr><th>Route</th><td>Tokyo (city + Disney) → Decompression stop → Osaka (with Kyoto day-trip[s]) → Hiroshima/Miyajima → Tokyo final night. No Kyoto stay, no USJ, no Hakone.</td></tr>
-        <tr><th>Cabin plan</th><td>2 adults business + 3 kids economy via MR → Virgin Atlantic → ANA partner award <span class="unverified">(unverified — award space dependent)</span></td></tr>
+        <tr><th>Cabin plan</th><td>2 adults business or first + 3 kids economy; premium on the transpacific leg via LifeMiles (EVA) or KrisFlyer (Singapore) <span class="unverified">(unverified — award space dependent)</span></td></tr>
         <tr><th>Funding</th><td>Transferable points (Amex MR + Chase UR) cover flights and hotels with cushion; plus modest cash for the decompression hotel and food anchors. Exact balances and account numbers live in the private points file, not in this shared hub.</td></tr>
         <tr><th>Key constraint</th><td><span class="tag sun">☀</span> One family member is highly photosensitive and needs strict sun protection — June chosen specifically for cloud cover, cooler temps, and Japanese sun-protection culture letting her blend in</td></tr>
         <tr><th>Food rule</th><td>Family eats kosher-style when together: no pork in any dish; fish must have fins and scales. Restaurants can serve pork to others — kitchen-level kashrut not required.</td></tr>
@@ -208,7 +305,7 @@
   </section>
 <!-- LEGS -->
   <section id="legs">
-    <h2><span class="num">02</span>The Five Legs</h2>
+    <h2><svg class="sec-ic"><use href="#ic-legs"></use></svg><span class="num">02</span>The Five Legs</h2>
     <p class="sub">11-night base / 12-night extended. Total length depends on flight availability.</p>
     <div class="legs" style="grid-template-columns:1fr 1fr;">
       <div class="leg">
@@ -216,6 +313,7 @@
         <div class="jp">東京</div>
         <div class="nights">5–6 nights</div>
         <p>Hyatt Regency Tokyo (Shinjuku). UV-kit shopping, teamLab, Senso-ji, Shibuya Sky, Meiji, Akihabara, One Piece stores, Zauo Shinjuku, lunch omakase, plus 2 Disney days (DisneySea + Disneyland with new Space Mountain). <span class="tag sun">☀</span></p>
+        <div class="disney-callout"><span class="star">&#9733;</span> <strong>Disney is 2 days within this leg</strong> &mdash; DisneySea + Disneyland, no separate hotel (you stay in Tokyo). Full deep-dive in <a href="#disney">&sect;06</a>.</div>
       </div>
       <div class="leg">
         <h3>Decompression</h3>
@@ -242,12 +340,23 @@
         <p>Grand Hyatt Tokyo (Roppongi). Famous indoor pool, kid-friendly, full spa. Memorable last-night anchor before flying home. ~30–40K UR per room.</p>
       </div>
     </div>
+        <div class="figure">
+      <h4>Nights per leg</h4>
+      <div class="timeline">
+        <div class="tl-row"><div class="tl-label">Tokyo + Disney</div><div class="tl-bar" style="width:150px;"></div><span class="tl-n">5 nights</span></div>
+        <div class="tl-row"><div class="tl-label">Decompression</div><div class="tl-bar" style="width:30px;"></div><span class="tl-n">1 night</span></div>
+        <div class="tl-row"><div class="tl-label">Osaka (+ Kyoto)</div><div class="tl-bar" style="width:90px;"></div><span class="tl-n">3 nights</span></div>
+        <div class="tl-row"><div class="tl-label">Hiroshima</div><div class="tl-bar" style="width:30px;"></div><span class="tl-n">1 night</span></div>
+        <div class="tl-row"><div class="tl-label">Tokyo final</div><div class="tl-bar" style="width:30px;"></div><span class="tl-n">1 night</span></div>
+      </div>
+      <p class="cap">11-night base shown. The flexible 12th night (set at flight booking) lands in Tokyo or Osaka.</p>
+    </div>
     <p class="note" style="margin-top:14px;">Why June: <strong>cloud cover</strong> (lowest sunshine of the year, protective for UV), <strong>cooler temperatures</strong> (~68–80°F, UV gear wearable), <strong>lowest TDR crowds</strong>, <strong>hydrangea season at peak</strong> in Kyoto. Tradeoff: ~45% chance of rain on any day, mostly intermittent showers. <a class="src" href="https://www.japan-guide.com/e/e2277.html">[Japan-Guide / JMA]</a> <a class="src" href="https://www.disneytouristblog.com/crowd-calendars-tokyo-disneyland-disneysea/">[Disney Tourist Blog]</a></p>
   </section>
 
   <!-- SUN SAFETY: new section -->
   <section id="sun-safety">
-    <h2><span class="num">03</span>☀ Sun Safety — Planning Around Sun Sensitivity</h2>
+    <h2><svg class="sec-ic"><use href="#ic-sun"></use></svg><span class="num">03</span>☀ Sun Safety — Planning Around Sun Sensitivity</h2>
     <p class="sub">Why Japan in summer actually works for her, what to bring, and what to buy in Tokyo.</p>
 
     <div class="sun-box">
@@ -315,7 +424,7 @@
 
   <!-- SAFETY TIPS: new section -->
   <section id="safety">
-    <h2><span class="num">04</span>Safety Tips</h2>
+    <h2><svg class="sec-ic"><use href="#ic-safety"></use></svg><span class="num">04</span>Safety Tips</h2>
     <p class="sub">What's actually risky in Japan vs. what isn't — the "dangerous neighborhoods" frame is mostly wrong here, but a handful of real tourist-specific risks deserve attention.</p>
 
     <div class="ok-box">
@@ -500,7 +609,7 @@
 
   <!-- BOOK NOW: time-sensitive reservations -->
   <section id="book-now">
-    <h2><span class="num">05</span>⚠️ Book Early — Time-Sensitive Sign-Ups</h2>
+    <h2><svg class="sec-ic"><use href="#ic-book"></use></svg><span class="num">05</span>⚠️ Book Early — Time-Sensitive Sign-Ups</h2>
     <p class="sub">Booking windows for the ~June 5–16, 2027 trip window (final length — 11 or 12 nights — locks at flight booking).</p>
 
     <div class="warn-box">
@@ -532,7 +641,7 @@
 
   <!-- TOKYO DISNEY: updated with UV considerations -->
   <section id="disney">
-    <h2><span class="num">06</span>Tokyo Disney Resort — Deep Dive</h2>
+    <h2><svg class="sec-ic"><use href="#ic-disney"></use></svg><span class="num">06</span>Tokyo Disney Resort — Deep Dive</h2>
     <p class="sub">Two parks, two days, plus UV-aware scheduling for your daughter.</p>
 
     <div class="card">
@@ -732,7 +841,7 @@
 
   <!-- TOKYO CITY -->
   <section id="tokyo">
-    <h2><span class="num">07</span>Tokyo City — Sights and the UV-Aware Itinerary</h2>
+    <h2><svg class="sec-ic"><use href="#ic-tokyo"></use></svg><span class="num">07</span>Tokyo City — Sights and the UV-Aware Itinerary</h2>
     <p class="sub">Day 1 anchor: UV-kit shopping. Then the city, structured around early-morning + evening outdoor.</p>
 
     <div class="sun-box">
@@ -793,7 +902,7 @@
 
   <!-- DECOMPRESSION (NEW IN V5) -->
   <section id="decompression">
-    <h2><span class="num">08</span>Decompression Module — 1 Night After Disney</h2>
+    <h2><svg class="sec-ic"><use href="#ic-decompress"></use></svg><span class="num">08</span>Decompression Module — 1 Night After Disney</h2>
     <p class="sub">A resort hotel between Tokyo and Osaka, placed immediately after Disney days for post-park recovery. Driven by your wife's preference for Club-Med-style relaxation within an otherwise high-load trip.</p>
 
     <div class="ok-box">
@@ -847,7 +956,7 @@
 
   <!-- OSAKA (NEW IN V5) -->
   <section id="osaka">
-    <h2><span class="num">09</span>Osaka — Base for the Kansai Leg</h2>
+    <h2><svg class="sec-ic"><use href="#ic-osaka"></use></svg><span class="num">09</span>Osaka — Base for the Kansai Leg</h2>
     <p class="sub">3 nights. Dotonbori, Kuromon, Osaka Castle, plus 1–2 Kyoto day-trips. Optional Kobe day-trip.</p>
 
     <div class="card">
@@ -917,7 +1026,7 @@
 
   <!-- KYOTO DAY-TRIPS -->
   <section id="kyoto">
-    <h2><span class="num">10</span>Kyoto Day-Trips from Osaka</h2>
+    <h2><svg class="sec-ic"><use href="#ic-kyoto"></use></svg><span class="num">10</span>Kyoto Day-Trips from Osaka</h2>
     <p class="sub">Kyoto is a day-trip target now, not a base. The temple-fatigue concern drove this — the family would tire of multiple temple days. Hit the icons and head back.</p>
 
     <div class="card">
@@ -976,7 +1085,7 @@
   </section>
   <!-- HIROSHIMA + MIYAJIMA (NEW IN V5) -->
   <section id="hiroshima">
-    <h2><span class="num">11</span>Hiroshima + Miyajima — 1 Night, Day-Flip Structure</h2>
+    <h2><svg class="sec-ic"><use href="#ic-hiroshima"></use></svg><span class="num">11</span>Hiroshima + Miyajima — 1 Night, Day-Flip Structure</h2>
     <p class="sub">1 night locked. Day 1 afternoon arrival + Miyajima evening with illuminated torii. Day 2 morning Peace Memorial Park + Museum + Shinkansen to Tokyo.</p>
 
     <div class="card">
@@ -1050,7 +1159,7 @@
 
   <!-- TOKYO FINAL NIGHT (NEW IN V5) -->
   <section id="tokyo-final">
-    <h2><span class="num">12</span>Tokyo Final Night — Grand Hyatt Tokyo</h2>
+    <h2><svg class="sec-ic"><use href="#ic-moon"></use></svg><span class="num">12</span>Tokyo Final Night — Grand Hyatt Tokyo</h2>
     <p class="sub">1 night locked at Grand Hyatt Tokyo (Roppongi). Pool, spa, kid-friendly, central Tokyo, easy departure morning.</p>
 
     <div class="card">
@@ -1084,7 +1193,7 @@
 
 <!-- FOOD -->
     <section id="food">
-    <h2><span class="num">13</span>Food — Kosher-Style Framework + 4 Anchors</h2>
+    <h2><svg class="sec-ic"><use href="#ic-food"></use></svg><span class="num">13</span>Food — Kosher-Style Framework + 4 Anchors</h2>
     <p class="sub">Your son (14) is leading food research and picks. Whole family eats together at the four anchor experiences.</p>
 
     <div class="card" style="background:#fbf5e9; border:1px solid var(--gold);">
@@ -1174,48 +1283,49 @@
 
   <!-- FLIGHTS -->
   <section id="flights">
-    <h2><span class="num">14</span>Flights — Surcharge-Free Award Paths</h2>
-    <p class="sub">Three parallel surcharge-free paths on Amex MR — Singapore/KrisFlyer, ANA/LifeMiles, EVA/LifeMiles. The binding constraint is award space (two business seats on one flight), not points or surcharges.</p>
+    <h2><svg class="sec-ic"><use href="#ic-flights"></use></svg><span class="num">14</span>Flights — Award Paths, by Priority</h2>
+    <p class="sub">A ranked set of award paths on Amex MR. The binding constraint is award space — <strong>two premium (business or first) seats on the transpacific leg</strong> for the adults — not points or surcharges. Economy for the three kids, and on the short Taipei hop, is the easy part.</p>
 
     <div class="ok-box">
-      <strong>Surcharge-free breakthrough (verified Jun 2026):</strong> Live award-search pricing disproved the earlier "Virgin vs. Aeroplan" framing kept further down — <strong>both Virgin Atlantic AND Air Canada Aeroplan pass ANA's fuel surcharges</strong> (Aeroplan's live app showed large carrier/base-fare cash on ANA and Air Canada metal, not the "near-zero" the blogs still claim). The genuinely surcharge-free, MR-fundable paths onto the same metal are <strong>Avianca LifeMiles</strong> and <strong>Singapore KrisFlyer</strong>. Plan rebuilt below around three parallel surcharge-free options. <a class="src" href="https://princeoftravel.com/points-programs/avianca-lifemiles/">[LifeMiles no-surcharge policy]</a> <span class="tag ok">✓ verified Jun 2026</span>
+      <strong>Priority reset (Jun 5, 2026):</strong> Live award scans this session reshaped the plan. <strong>ANA nonstop business is near-absent at the release frontier</strong> — scans found zero nonstop-business across 119 Aeroplan route-days, and one in 472 near-term via United (and that one was 110K dynamic, not a saver) — so ANA-nonstop is now an opportunistic long shot, not the base case. The realistic premium seats are <strong>EVA</strong> (best business availability, opens first) and <strong>Singapore</strong> (most reliable, and the only First option). Also corrected: the earlier "Aeroplan passes ANA surcharges" reading was <strong>Air Canada metal, not ANA</strong> — Aeroplan books ANA surcharge-free, so it's a fine LifeMiles alternative for ANA, not a path to avoid. New ranked order below. <a class="src" href="https://roame.travel/guides/book-ana-business-first-class-flights">[ANA releases few biz seats, 355-day]</a> <span class="tag ok">✓ Jun 2026</span>
     </div>
 
     <div class="card">
-      <h3>Three parallel surcharge-free paths (all on Amex MR)</h3>
-      <p>The binding constraint is award space — specifically <strong>two business seats on one flight</strong> (economy for the three kids is the easy part). Run all three in parallel and book whichever shows 2 business + 3 economy together first.</p>
+      <h3>Priority order — the two adults' transpacific premium</h3>
+      <p>Ranked by what actually delivers two premium seats, weighting availability and timing. <strong>Operating rule: take the first confirmed 2-premium that meets the bar — don't gamble on a higher-ranked path that hasn't appeared.</strong> In practice you'll often be deciding on EVA alone on Jun 9.</p>
       <table>
-        <tr><th>&nbsp;</th><th>A. KrisFlyer → Singapore</th><th>B. LifeMiles → ANA</th><th>C. LifeMiles → EVA</th></tr>
-        <tr><td><strong>Route</strong></td><td>LAX–NRT nonstop</td><td>LAX–HND/NRT nonstop</td><td>LAX–TPE–Tokyo (1 stop)</td></tr>
-        <tr><td><strong>Surcharge</strong></td><td>None (~$6)</td><td>None (~$25–94)</td><td>None</td></tr>
-        <tr><td><strong>Biz miles/way</strong></td><td>114K</td><td>~85–90K</td><td>~80–90K</td></tr>
-        <tr><td><strong>Econ miles/way</strong></td><td>~42.5K</td><td>~55K</td><td>~55K</td></tr>
-        <tr><td><strong>All 5, one way</strong></td><td>~355K</td><td>~341K</td><td>~340K</td></tr>
-        <tr><td><strong>Biz seats released</strong></td><td>SQ-only; loads own space</td><td>1–2/flight (thinnest)</td><td>2–4/flight (best odds)</td></tr>
-        <tr><td><strong>MR transfer</strong></td><td>≤1 day (not instant)</td><td>Instant</td><td>Instant</td></tr>
-        <tr><td><strong>Tokyo airport</strong></td><td>Narita only</td><td>Haneda or Narita</td><td>either (via TPE)</td></tr>
+        <tr><th>#</th><th>Path (book via)</th><th>Premium / way</th><th>Surcharge</th><th>Opens (Jun 5 out)</th><th>Role</th></tr>
+        <tr><td>1</td><td><strong>EVA</strong> biz transpacific + econ Taipei hop (LifeMiles)</td><td>~85–90K</td><td>~$0</td><td>~Jun 9–10 (T-360)</td><td>First at-bat; best biz availability</td></tr>
+        <tr><td>2</td><td><strong>Singapore</strong> nonstop LAX–NRT (KrisFlyer)</td><td>114K biz / <strong>132.5K first</strong></td><td>~$6</td><td>~Jun 14–15 (T-355)</td><td>Best outcome; only First; most reliable</td></tr>
+        <tr><td>3</td><td><strong>ANA</strong> nonstop (LifeMiles / Aeroplan)</td><td>~75–90K (110K dyn)</td><td>None</td><td>~Jun 14–15 (T-355)</td><td>Opportunistic long shot</td></tr>
+        <tr><td>4</td><td><strong>United</strong> nonstop (LifeMiles)</td><td>~85–90K</td><td>None</td><td>~Jul 3 (T-337)</td><td>Later backup; best from SFO</td></tr>
+        <tr><td>5</td><td><strong>Virgin → ANA</strong></td><td>fewest</td><td><strong>Full (~$2–4K RT)</strong></td><td>~Jul 9 (T-331)</td><td>Last resort (cash-heavy)</td></tr>
       </table>
-      <p class="note"><strong>EVA</strong> has the best business-seat odds but adds a Taipei stop; <strong>ANA</strong> is the cheapest nonstop but releases the fewest business seats; <strong>Singapore</strong> is the only way onto its own metal (partners are suspended), costs the most miles, but tends to load its own Saver space at open. Surcharge-free claims are high-confidence (multiple 2026 sources + each program's structural policy) but <strong>must be confirmed on a live price-summary before transferring</strong> — the lesson from the Aeroplan miss. <a class="src" href="https://awardtravelfinder.com/award-charts/lifemiles">[LifeMiles ANA ~85–90K]</a> <a class="src" href="https://thepointsguy.com/loyalty-programs/ultimate-guide-singapore-krisflyer/">[KrisFlyer 114K]</a> <a class="src" href="https://upgradedpoints.com/travel/airlines/best-ways-to-book-eva-air-business-class/">[EVA 2–4 seats]</a> <span class="tag ok">✓ verified Jun 2026</span></p>
+      <p class="note"><strong>First class is in play and affordable:</strong> Singapore First LAX–NRT is 132.5K vs 114K business — only +18.5K/seat (~16%). Treat business or first as equally acceptable on the transpacific leg; economy is fine on the short Taipei hop. <strong>Kids (3 economy):</strong> LifeMiles ~55K ea (possibly ~40K — verify), KrisFlyer ~42.5K ea. All figures are award estimates — <strong>read the live price-summary cash line before transferring</strong> (the Aeroplan lesson). <a class="src" href="https://thepointsguy.com/loyalty-programs/ultimate-guide-singapore-krisflyer/">[KrisFlyer 114K biz / 132.5K first]</a> <a class="src" href="https://awardtravelfinder.com/award-charts/lifemiles">[LifeMiles ANA/EVA ~85–90K]</a> <span class="tag ok">✓ Jun 2026</span></p>
     </div>
 
     <div class="card">
-      <h3>Release calendar — be logged in early</h3>
-      <p>Seats load on a rolling daily basis on Japan-clock time. <strong>JST = PDT + 16 hours</strong> (Japan has no daylight saving; Pacific is on PDT in June), so seats for a given date usually appear the <em>day before</em> in Pacific. Outbound is stable at June 5–7; <strong>the return date is not yet locked</strong> — the V5 trip is now 11–12 nights, so the return is likely ~June 16–17 rather than the old June 14–15 holdover, and locks at booking.</p>
-      <h4>EVA via LifeMiles — opens first (T-360)</h4>
+      <h3>When each option opens — be-ready calendar (Pacific)</h3>
+      <p>Seats load on a rolling daily basis on Japan-clock time. <strong>JST = PDT + 16 hours</strong> (Japan has no daylight saving), so a given travel date usually opens the <em>day before</em> in Pacific. Each program reaches a different number of days ahead, so each opens your dates on a different day:</p>
       <table>
-        <tr><th>Travel date</th><th>Loads (JST)</th><th>Be ready (PDT)</th></tr>
-        <tr><td>Outbound Jun 5, 2027</td><td>Wed Jun 10, 2026</td><td>~9:00a Tue Jun 9</td></tr>
-        <tr><td>Outbound Jun 6</td><td>Thu Jun 11</td><td>~9:00a Wed Jun 10</td></tr>
-        <tr><td>Outbound Jun 7</td><td>Fri Jun 12</td><td>~9:00a Thu Jun 11</td></tr>
+        <tr><th>Travel date</th><th>EVA · LifeMiles (T-360)</th><th>ANA &amp; Singapore (T-355)</th><th>United (T-337)</th><th>Virgin→ANA (T-331)</th></tr>
+        <tr><td><strong>OUT Jun 5, 2027</strong></td><td>be ready <strong>Tue Jun 9, 2026</strong></td><td><strong>Sun Jun 14, 2026</strong></td><td><strong>Fri Jul 3, 2026</strong></td><td><strong>Thu Jul 9, 2026</strong></td></tr>
+        <tr><td>OUT Jun 6</td><td>Wed Jun 10</td><td>Mon Jun 15</td><td>Sat Jul 4</td><td>Fri Jul 10</td></tr>
+        <tr><td>OUT Jun 7</td><td>Thu Jun 11</td><td>Tue Jun 16</td><td>Sun Jul 5</td><td>Sat Jul 11</td></tr>
+        <tr><td>RET Jun 14 <em>(tentative)</em></td><td>~Thu Jun 18</td><td>~Tue Jun 23</td><td>~Sun Jul 12</td><td>~Sat Jul 18</td></tr>
+        <tr><td>RET Jun 15 <em>(tentative)</em></td><td>~Fri Jun 19</td><td>~Wed Jun 24</td><td>~Mon Jul 13</td><td>~Sun Jul 19</td></tr>
       </table>
-      <h4>ANA via LifeMiles + Singapore via KrisFlyer — T-355 (nonstop)</h4>
-      <table>
-        <tr><th>Travel date</th><th>Loads (JST)</th><th>Be ready (PDT)</th></tr>
-        <tr><td>Outbound Jun 5, 2027</td><td>Mon Jun 15, 2026</td><td>8:00a Sun Jun 14</td></tr>
-        <tr><td>Outbound Jun 6</td><td>Tue Jun 16</td><td>8:00a Mon Jun 15</td></tr>
-        <tr><td>Outbound Jun 7</td><td>Wed Jun 17</td><td>8:00a Tue Jun 16</td></tr>
-      </table>
-      <p class="note">ANA loads between midnight and ~9:00a JST (sources differ): midnight JST = 8:00a PDT the prior day; 9:00a JST = 5:00p PDT the prior day. Be ready by 8:00a PDT and keep checking through that afternoon. Returns open ~9–10 days after each return travel date — finalize once the return date locks. <a class="src" href="https://blog.awardfares.com/ultimate-guide-to-award-release-dates/">[release windows]</a> <a class="src" href="https://roame.travel/guides/book-ana-business-first-class-flights">[ANA 1–2 biz seats, 355-day]</a> <span class="tag ok">✓ verified Jun 2026</span></p>
+      <p class="note">Dates are when to be at the keyboard (Pacific). ANA/SQ load ~midnight–9:00a JST = ~8:00a–5:00p PDT the prior day — be on by 8:00a PDT and keep checking. The <strong>EVA T-360 window is LifeMiles-only</strong> (award scanners can't see it). The <strong>return date isn't locked</strong> (the 11–12-night trip may push it to ~Jun 16–17); recompute when it locks — open date = travel date − program window. <a class="src" href="https://blog.awardfares.com/ultimate-guide-to-award-release-dates/">[release windows: EVA 360, ANA/SQ 355, United 337]</a> <span class="tag ok">✓ Jun 2026</span></p>
+    </div>
+
+    <div class="card">
+      <h3>Booking LifeMiles (EVA &amp; ANA) — discover, then book</h3>
+      <ul>
+        <li class="fill"><strong>Find broadly, book on LifeMiles.</strong> Award aggregators can't see LifeMiles' own inventory, but the seat LifeMiles sells is Star Alliance partner space that <strong>Aeroplan and United do show</strong> — so discover via those, then book on LifeMiles.com. That same space is almost always LifeMiles-bookable.</li>
+        <li class="warn"><strong>Never use LifeMiles "Smart Search"</strong> — it hides partner award space. On LifeMiles.com switch the drop-down to a <strong>specific airline</strong> (EVA first, then ANA). This surfaces seats Smart Search won't. If Aeroplan/United show space LifeMiles isn't, this is usually why. <a class="src" href="https://thepointsguy.com/loyalty-programs/lifemiles-award-space-trick/">[LifeMiles carrier-search trick]</a></li>
+        <li class="fill"><strong>Cross-checks for LifeMiles-only space:</strong> Points Path (free browser extension; covers LifeMiles, inconsistent) and seats.aero's website (may show LifeMiles even where its API doesn't). <strong>ExpertFlyer won't help</strong> — it lost Star Alliance award data in 2023. <a class="src" href="https://awardfares.com/blog/awardfares-vs-expertflyer/">[ExpertFlyer lost Star award data]</a></li>
+        <li><strong>Tooling coverage:</strong> Singapore reports real seat counts (you'll know you have two together); ANA/United show presence only (verify the count on the program); EVA is mostly a manual lifemiles.com job, especially the Jun 9 T-360 window.</li>
+      </ul>
     </div>
 
     <div class="card">
@@ -1241,14 +1351,15 @@
     <div class="card">
       <h3>Day-one hunt sequence</h3>
       <ul>
-        <li><strong>~Jun 9–10 PDT (EVA opens):</strong> check LAX–TPE–Tokyo business via LifeMiles for the outbound — best business-seat odds, instant transfer, strongest surcharge-free shot if 2 biz + 3 econ land together.</li>
-        <li><strong>~Jun 14–16 PDT (ANA + SQ open):</strong> check both nonstops. ANA via LifeMiles for the cheapest nonstop; SQ via KrisFlyer if ANA shows only 1 business seat.</li>
-        <li><strong>Returns:</strong> repeat when each return date opens (T-360 EVA, T-355 ANA/SQ), once the return date is locked.</li>
+        <li><strong>~Jun 9 PDT (EVA opens, T-360):</strong> LifeMiles.com, search EVA by name — two business on the LAX/SFO→Taipei leg plus any economy onward. Best business odds, instant MR→LifeMiles transfer. This is the LifeMiles-only window the scanner can't see, so it's eyes-on.</li>
+        <li><strong>~Jun 14 PDT (Singapore + ANA open, T-355):</strong> Singapore first — its space is reliable and shows real counts; grab two business or first on SQ11 (LAX–NRT). Check ANA nonstop opportunistically. The scanner is watching both.</li>
+        <li><strong>~Jul 3 / ~Jul 9 (United / Virgin):</strong> backups only, if the above didn't deliver.</li>
+        <li><strong>Returns:</strong> repeat when each return date opens, once it's locked.</li>
       </ul>
     </div>
 
     <div class="warn-box">
-      <strong>↓ Superseded approach — kept for reference (what changed):</strong> Everything below is the earlier Virgin-vs-Aeroplan "watch-and-act" plan. It was built on the premise that <strong>Aeroplan passes near-zero surcharges</strong> — which live Aeroplan app pricing in June 2026 disproved (Aeroplan added large carrier/base-fare cash on ANA and Air Canada metal). The surcharge-free MR paths are LifeMiles and KrisFlyer (above). Treat the cards below as historical context, not the current plan.
+      <strong>↓ Superseded approach — kept for reference (what changed):</strong> Everything below is the earlier Virgin-vs-Aeroplan "watch-and-act" plan, replaced by the ranked LifeMiles/KrisFlyer/EVA paths above. A later correction worth noting: the apparent Aeroplan surcharge was <strong>Air Canada metal, not ANA</strong> — Aeroplan books ANA surcharge-free. Treat the cards below as historical context, not the current plan.
     </div>
 
     <div class="card">
@@ -1339,7 +1450,7 @@
       <ul>
         <li><strong>Chase UR → Virgin Atlantic IS a 1:1 partner</strong> (corrected Jun 2026 — V5 wrongly said it wasn't). Your ~847K UR can <em>also</em> fund Virgin/ANA awards, not just MR. Virgin's own site confirms 1,000 UR = 1,000 Virgin points. <a class="src" href="https://flywith.virginatlantic.com/us/en/flying-club/earn-points/chase-ultimate-rewards.html">[Virgin/Chase official]</a></li>
         <li><strong>Transfer times:</strong> Amex MR → Virgin and Chase UR → Virgin are both <em>usually instant</em> but can take up to 48 hours — plan for it when timing a transfer against a 48-hour award hold. <a class="src" href="https://www.pointscrowd.com/blog/virgin-atlantic-flying-club-transfer-partners-credit-cards-ratios-and-transfer-times/">[transfer times]</a></li>
-        <li><strong>Chase UR → Aeroplan</strong> is instant; <strong>Amex MR → Aeroplan</strong> can take 24+ hours.</li>
+        <li><strong>Chase UR → Aeroplan</strong> is instant; <strong>Amex MR → Aeroplan</strong> is effectively instant too. (The old "24+ hours" figure was wrong — that delay applied only to Amex MR → ANA Mileage Club, which we don't use.)</li>
         <li><strong>Watch for transfer bonuses:</strong> Chase→Virgin and Amex→Virgin run frequent bonuses (a 40% Chase→Virgin bonus ran Feb 2026). One landing before the booking sprint would cut the points cost materially — but never transfer speculatively, only after confirming space. <a class="src" href="https://onemileatatime.com/deals/chase-virgin-atlantic-transfer-bonus/">[bonus example]</a></li>
         <li><strong>Only transfer AFTER confirming award availability.</strong> Transfers are irreversible. Virgin holds ANA space ~48 hours while you transfer.</li>
         <li><strong>Household pool mechanics:</strong> Your wife transfers her points → her Virgin Atlantic account → auto-pools to your Household Leader balance per Virgin T&amp;Cs. Test this pipeline with 1,000 points before the booking sprint.</li>
@@ -1349,7 +1460,7 @@
 
   <!-- HOTELS -->
     <section id="hotels">
-    <h2><span class="num">15</span>Hotels — The Plan</h2>
+    <h2><svg class="sec-ic"><use href="#ic-hotels"></use></svg><span class="num">15</span>Hotels — The Plan</h2>
     <p class="sub">Hyatt Regency Tokyo for main Tokyo stay + Hilton Odawara for decompression + Hyatt or Hilton for Osaka + Hilton Hiroshima via Chase Travel portal + Grand Hyatt Tokyo for final night.</p>
 
     <div class="warn-box">
@@ -1413,7 +1524,7 @@
 
   <!-- POINTS -->
   <section id="points">
-    <h2><span class="num">16</span>Points &amp; Budget — Verified</h2>
+    <h2><svg class="sec-ic"><use href="#ic-points"></use></svg><span class="num">16</span>Points &amp; Budget — Verified</h2>
     <p class="sub">Award-cost and hotel estimates only. Actual balances and account numbers are kept in a private file, not in this shared hub.</p>
 
     <div class="ok-box">
@@ -1453,7 +1564,7 @@
       <p>The V5 plan uses both currencies:</p>
       <ul>
         <li><strong>UR (Chase Ultimate Rewards):</strong> primary for hotels via Hyatt 1:1 transfer (Tokyo + Grand Hyatt) and Chase Travel portal at 1.5 cpp (Hilton Hiroshima)</li>
-        <li><strong>MR (Amex Membership Rewards):</strong> primary for flights (Virgin Atlantic → ANA) and Hilton properties via 1:2 transfer (decompression hotel, optionally Osaka if Canopy/Conrad chosen)</li>
+        <li><strong>MR (Amex Membership Rewards):</strong> primary for flights — LifeMiles (EVA/ANA) and KrisFlyer (Singapore), surcharge-free — plus Hilton properties via 1:2 transfer (decompression hotel, optionally Osaka if Canopy/Conrad chosen)</li>
         <li>This split puts maximum value where each currency&apos;s sweet-spot redemption lives. Marriott Bonvoy properties are skipped because Marriott&apos;s 1:1 MR/UR transfer is poor value compared to its competitors.</li>
         <li>If Osaka hotel choice goes Caption-via-Hyatt-UR (vs Canopy-via-MR), the MR draw drops by ~120K–240K — substantial flight-points buffer increase.</li>
       </ul>
@@ -1462,7 +1573,7 @@
 
   <!-- LOGISTICS: condensed from v1 -->
   <section id="logistics">
-    <h2><span class="num">17</span>Logistics</h2>
+    <h2><svg class="sec-ic"><use href="#ic-train"></use></svg><span class="num">17</span>Logistics</h2>
     <p class="sub">Phones, money, trains, plugs, entry — condensed essentials.</p>
 
     <div class="card">
@@ -1704,7 +1815,7 @@
 
   <!-- DEPARTURE -->
     <section id="departure">
-    <h2><span class="num">18</span>Departure Day Logistics</h2>
+    <h2><svg class="sec-ic"><use href="#ic-suitcase"></use></svg><span class="num">18</span>Departure Day Logistics</h2>
     <p class="sub">Grand Hyatt Tokyo (Roppongi) → airport. Now a simple last morning rather than a multi-leg transit day.</p>
 
     <div class="card">
@@ -1759,7 +1870,7 @@
 
   <!-- TODO -->
     <section id="todo">
-    <h2><span class="num">19</span>To-Do &amp; Open Questions</h2>
+    <h2><svg class="sec-ic"><use href="#ic-todo"></use></svg><span class="num">19</span>To-Do &amp; Open Questions</h2>
 
     <div class="card">
       <h3>This week</h3>
@@ -1841,7 +1952,7 @@
   </section>
 
   <footer>
-    Japan 2027 Family Trip Hub V6 · last edited 2026-06-03 5:42p · living document · every fact links to source or is marked (unverified) · shared (sanitized) build · financials in private file
+    Japan 2027 Family Trip Hub V7 · last edited 2026-06-05 10:42p · living document · every fact links to source or is marked (unverified) · shared (sanitized) build · financials in private file
   </footer>
 
 </div>
